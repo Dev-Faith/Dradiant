@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+    cursor:none;
+}
+
+body{
+    font-family: var(--font-neucha);
+    background-color: #FFF9EB;
+    color: #1D1C13;
+}
+.logo{
+    font-family: var(--font-bebasNeue);
+}
+
+.noCursor{
+    cursor: none
+}
