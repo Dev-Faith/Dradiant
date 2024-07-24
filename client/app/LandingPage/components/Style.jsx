@@ -26,7 +26,7 @@ const Style = () => {
                   bags.map(bag =>
                       <div className="relative">
                           <Image src={bag.image} alt={`${bag.image} bag`} height={826} width={622} />
-                          <div className="ImageDesc flex justify-between px-[16px] md:text-[32px] text-[14px]/[17px] absolute md:top-[2rem] top-[34px] md:w-[562px] w-[300px] md:items-baseline">
+                          <div className="ImageDesc flex justify-between px-[16px] md:text-[32px]/[40px] text-[14px]/[17px] absolute md:top-[2rem] top-[34px] md:w-[562px] w-[300px] md:items-baseline">
                               <p className="md:w-[337px] text-[#F3EDE0]  w-[145px]">{bag.text}</p>
                               <button className="md:h-[53px] md:w-[53px] h-[31px] w-[31px] bg-[#F3EDE0] flex items-center justify-center rounded-full hover:bg-[#201C00] hover:text-[#F3EDE0] transition ease-in">
                                   <MdOutlineArrowOutward className="md:w-[33px] md:h-[33px] w-[24px] h-[24px]"/>

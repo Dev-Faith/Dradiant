@@ -11,7 +11,7 @@ const Hero = ({setCursorVariant}) => {
     const textLeave = ()=>{setCursorVariant("default")};
 
   return (
-    <div className=" noCursor flex flex-col items-center justify-center relative mt-[60px] overflow w-[100%]">
+    <div className=" noCursor flex flex-col items-center justify-center relative mt-[60px] w-[100%] md:h-[100vh] h-[80vh]">
       <div className="relative w-[100%] h-[100%] flex flex-col items-center">
         <p className="text-[16px] absolute md:w-[162px] w-[188px] md:top-[5.5rem] md:left-[123px] top-[13rem] right-[-.2rem] text-center">from everyday essentials to travel companions</p>
         <p className="md:text-[132px] text-[32px] md:absolute md:right-[18rem] " onMouseEnter={textEnter} onMouseLeave={textLeave}>HEAL THE WORLD</p>

@@ -44,7 +44,7 @@ const Layout = () => {
         ))}
           </div>
           <div className="flex items-center w-full">
-              <p className="logo text-[22px]">DRADIANTBAGS</p>
+              <p className="logo text-[22px] text-center w-full">DRADIANTBAGS</p>
           </div>
           <div className="right md:flex gap-[32px] hidden">
         {navLinks.map((link) => (

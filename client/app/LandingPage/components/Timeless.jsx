@@ -32,7 +32,7 @@ const Timeless = () => {
     ]
 
   return (
-    <div className="md:mt-[90vh] mt-[60vh] md:px-[123px] px-[11px] flex flex-col gap-[61px] items-end md:items-center">
+    <div className="md:px-[123px] px-[11px] flex flex-col gap-[61px] items-end md:items-center">
         <div className="top flex flex-col gap-[11px] md:flex-row md:items-baseline  w-[100%]">
               <p className="md:w-[540px] text-[38px]/[37px] w-[224px]  md:text-[89px]/[84px] text-[#514700]">TIMELESS STYLE</p>
               <p className="text-[#7B7768] w-[300px] text-[16px] md:text-[28px] md:w-[710px]">Owning a bag from us isn't just about acquiring a functional item; it's about carrying a piece of artistry and the love that went into its creation.</p>
