@@ -79,14 +79,14 @@ const Footer = () => {
                   <p className="logo md:text-[40px] md:hidden text-[21px]/[24px] mb-[25px]">DRADIANTBAGS</p> 
                   <div className="top-right flex flex-col gap-[34px]">
                         <p className="md:w-[500px] md:text-[32px]">We offer multiply ways to connect, ensuring you have the most convenient methods for your needs</p>
-                        <div className="socials flex md:gap-[38px] gap-[10px]">
+                        <div className="socials flex  gap-[10px] md:w-[432px] items-start md:justify-start md:gap-[38px] justify-between w-[100%]">
                           {
                               socials.map(social => <button className="w-[52px] h-[52px] rounded-[8px] border-[1px] border-[#FFF9EB] text-[#FFF9EB] text-[24px] flex items-center justify-center hover:bg-[#FFF9EB] hover:text-[#201C00] hover:border-[1px] hover:border-[#201C00] transition ease-in">{social.icon}</button>)
                             }
                         </div>
                   </div>
                     <div className="bottom-right w-[100%] md:h-[346px] flex md:gap-[24px]   md:justify-end">
-                        <div className="bottom-right-left flex flex-col md:h-[100%] h-[200px] justify-between ">
+                        <div className="bottom-right-left flex flex-col md:h-[100%] h-[200px] justify-between  ">
                             {
                                 navLinks.map(nav=> <Link href={nav.url} key={nav.title} className="md:text-[32px] text-[24px] underline text-[#FFF9EB] hover:text-[#C3ECD1] hover:underline transition ease-in">{nav.title}</Link>)
                             }

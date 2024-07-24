@@ -11,18 +11,18 @@ const Hero = ({setCursorVariant}) => {
     const textLeave = ()=>{setCursorVariant("default")};
 
   return (
-    <div className=" noCursor flex flex-col items-center justify-center relative mt-[60px] w-[100%] md:h-[100vh] h-[80vh]">
-      <div className="relative w-[100%] h-[100%] flex flex-col items-center">
-        <p className="text-[16px] absolute md:w-[162px] w-[188px] md:top-[5.5rem] md:left-[123px] top-[13rem] right-[-.2rem] text-center">from everyday essentials to travel companions</p>
-        <p className="md:text-[132px] text-[32px] md:absolute md:right-[18rem] " onMouseEnter={textEnter} onMouseLeave={textLeave}>HEAL THE WORLD</p>
-        <p className="md:text-[132px] text-[32px] md:absolute md:top-[8rem] md:left-[123px]" onMouseEnter={textEnter} onMouseLeave={textLeave}>WITH QUALITY</p>
-        <p className="md:text-[132px] text-[32px] md:absolute md:top-[16rem] md:left-[123px]" onMouseEnter={textEnter} onMouseLeave={textLeave}>STYLES</p>
-        <p className="text-[16px] top-[16rem] right-[8.5rem] absolute md:w-[164px] w-[169px] md:right-[26rem] md:top-[11rem]">Confidence is the belief in yourself to achieve your goals</p>
-        <Image src={image1} alt="bag"  className="absolute right-[11rem] top-[-.1rem] rotate-[-320deg] md:right-[8rem] md:top-[-3rem] md:w-[328.94px] md:h-[412.07px] w-[148.5px] h-[186.02px] object-cover"/>
-        <Image src={image2} alt="bag" className="absolute md:right-[32.5rem] right-[4px] top-[-1rem] md:top-[4rem] md:w-[266px] md:h-[472px] w-[134px] h-[237.77px] object-cover" />
-        <button className="absolute top-[22rem] text-[32px] px-[12px]  py-[24px] rounded-[4px] bg-[#6A5F11] md:text-[32px]/[0px] text-[#fff] md:right-[123px] md:top-[23rem] flex items-center gap-[10px] hover:text-[#6A5F11] hover:bg-[#FFF9EB] hover:border-2 border-[#6A5F11] md:w-[261px] justify-center transition ease-in">2024 Collection<FaArrowRightLong/></button>
+    <div className=" noCursor flex flex-col items-center justify-start py-[40px] relative w-[100%] md:h-[100vh] h-[90vh] ">
+      <div className=" relative md:w-[1308px] md:h-[70vh] flex flex-col w-[90%] h-[70vh] items-center justify-start ">
+        <p className="text-[16px] absolute md:w-[162px] w-[188px] md:top-[5.5rem] md:left-[3.5rem] top-[40%] right-[8%] text-center">from everyday essentials to travel companions</p>
+        <p className="md:text-[132px] text-[32px] md:absolute md:right-[14rem] " onMouseEnter={textEnter} onMouseLeave={textLeave}>HEAL THE WORLD</p>
+        <p className="md:text-[132px] text-[32px] md:absolute md:top-[8rem] md:left-[4rem]" onMouseEnter={textEnter} onMouseLeave={textLeave}>WITH QUALITY</p>
+        <p className="md:text-[132px] text-[32px] md:absolute md:top-[16rem] md:left-[4rem]" onMouseEnter={textEnter} onMouseLeave={textLeave}>STYLES</p>
+        <p className="text-[16px] top-[60%] right-[33%] absolute md:w-[164px] w-[169px] md:right-[20rem] md:top-[11rem]">Confidence is the belief in yourself to achieve your goals</p>
+        <Image src={image1} alt="bag"  className="relative right-[5rem] top-[-8.5rem] rotate-[-320deg] md:rotate-0 md:right-[-25rem] md:top-[-3rem] md:w-[328.94px] md:h-[412.07px] w-[148.5px] h-[186.02px] object-cover"/>
+        <Image src={image2} alt="bag" className="relative md:right-[-5rem] right-[-5rem] top-[-18rem] md:top-[-15.8rem] md:w-[266px] md:h-[472px] w-[134px] h-[237.77px] object-cover" />
+        <button className="absolute top-[80%] text-[32px] px-[12px]  py-[24px] rounded-[4px] bg-[#6A5F11] md:text-[32px]/[0px] text-[#fff] md:right-[123px] md:top-[23rem] flex items-center gap-[10px] hover:text-[#6A5F11] hover:bg-[#FFF9EB] hover:border-2 border-[#6A5F11] md:w-[261px] justify-center transition ease-in">2024 Collection<FaArrowRightLong/></button>
       </div>
-      <div className="separator absolute top-[32rem] md:top-[35rem] text-[#7B7768] flex items-center justify-between w-[100%] md:px-[123px] p">
+      <div className="separator  mt-[50px] mt-[] top-[32rem] md:top-[35rem] text-[#7B7768] flex items-center justify-between w-[100%] md:px-[123px]">
         <div className="md:w-[373px] w-[60px] h-[1px] bg-[#7B7768]"></div>
         <p className="text-[10px] md:text-[24px]">TRENDS</p>
         <div className="w-[8px] h-[8px] bg-[#7B7768] rounded"></div>
