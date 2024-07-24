@@ -8,7 +8,9 @@ import handbag from "./Frame 20.png";
 import red from "./Frame 21.png";
 import brown from "./Frame 22.png";
 import classImg from "./unsplash_QjB4ZpqCESY.png"
-import footerBag from "./unsplash_pSVYyO-XlJk.png"
+import footerBag from "./unsplash_pSVYyO-XlJk.png";
+import cuttingGirl from "./cuttingGirl.png";
+
 
 export{
     croche,
@@ -21,5 +23,6 @@ export{
     red,
     brown,
     classImg,
-    footerBag
+    footerBag,
+    cuttingGirl
 }

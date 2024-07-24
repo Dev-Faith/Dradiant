@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 
 const Layout = () => {
@@ -37,21 +38,20 @@ const Layout = () => {
 
   return (
     <div className="px-[123px] py-[24px] flex justify-between items-center border-b-[1px] border-[#7B7768]">
-        <div className="left flex gap-[32px] text-[16px]">
+        <div className="left md:flex gap-[32px] text-[16px] hidden">
         {navLinks.map((link) => (
-          link.position === "left" ? <p key={link.name} className="cursor-pointer">{link.name}</p> : null
+          link.position === "left" ? <p key={link.name} className="cursor-pointer hover:underline hover:text-[#2A4E3A] ">{link.name}</p> : null
         ))}
           </div>
-          <div>
-              <p className="logo text-[40px]">DRADIANTBAGS</p>
+          <div className="flex items-center w-full">
+              <p className="logo text-[22px]">DRADIANTBAGS</p>
           </div>
-          <div className="right flex gap-[32px]">
+          <div className="right md:flex gap-[32px] hidden">
         {navLinks.map((link) => (
-          link.position === "right" ? <p key={link.name} className="cursor-pointer">{link.name}</p> : null
+          link.position === "right" ? <p key={link.name} className="cursor-pointer hover:underline hover:text-[#2A4E3A]">{link.name}</p> : null
         ))}
           </div>
     </div>
   )
 }
-
 export default Layout;

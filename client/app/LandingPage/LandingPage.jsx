@@ -24,6 +24,7 @@ useEffect(() => {
       y: e.clientY,
     })
   }
+ 
   window.addEventListener("mousemove", mouseMove);
 
   return () => {
@@ -33,8 +34,8 @@ useEffect(() => {
 
 const variants = {
   default: {
-    x: mousePosition.x-16,
-    y: mousePosition.y-16
+    x: mousePosition.x+8,
+    y: mousePosition.y+8,
   },
   text:{
     x: mousePosition.x-75,
@@ -44,13 +45,12 @@ const variants = {
     mixBlendMode: "difference",
     backgroundColor: "#FFF9EB",
     transition: {duration:.5, type: "spring", delay: 0 }
-    
   }
 }
 
 
   return (
-    <div>
+    <div className="overflow-hidden">
           <Hero setCursorVariant={setCursorVariant}/>
           <Timeless />
           <NewArrival />
@@ -62,13 +62,13 @@ const variants = {
         animate={cursorVariant}
         transition={{ duration: 0, ease: "linear", delay: 0 }}
       /> */}
-          <m.div className="cursor h-[32px] w-[32px] rounded-[50%] fixed top-0 left-0 pointer-events-none flex items-center justify-center text-[60px] "
+          <m.div className="cursor h-[32px] w-[32px] rounded-[50%] fixed top-0 left-0 pointer-events-none flex items-center justify-center text-[60px]"
         variants ={variants}
         animate={cursorVariant}
-        transition={{ duration:0, type: "spring", delay: 0 }}
+        transition={{ duration:0, delay: 0 }}
       >👜</m.div>
     </div>
   )
 }
 
-export default LandingPage
+export default LandingPage;
