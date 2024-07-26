@@ -1,4 +1,4 @@
-import { Inter, Bebas_Neue, Neucha } from "next/font/google";
+import {  Bebas_Neue, Neucha } from "next/font/google";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({ subsets: ["latin"], variable: "--font-bebasNeue", weight:"400" });
