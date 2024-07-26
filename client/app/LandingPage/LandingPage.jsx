@@ -62,7 +62,7 @@ const variants = {
         animate={cursorVariant}
         transition={{ duration: 0, ease: "linear", delay: 0 }}
       /> */}
-          <m.div className="cursor h-[32px] w-[32px] rounded-[50%] fixed top-0 left-0 pointer-events-none flex items-center justify-center text-[60px]"
+          <m.div className="cursor h-[32px] w-[32px] rounded-[50%] fixed top-0 left-0 pointer-events-none  items-center justify-center text-[60px] hidden xl:flex"
         variants ={variants}
         animate={cursorVariant}
         transition={{ duration:0, delay: 0 }}
