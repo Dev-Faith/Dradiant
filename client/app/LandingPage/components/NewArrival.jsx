@@ -14,8 +14,8 @@ const NewArrival = () => {
   return (
     <div className="bg-[#201C00] xl:h-[1089px]  text-[#FFF9EB] xl:px-[130px] lg:px-[50px] md:px-[50px] px-[11px] xl:py-[92px] py-[74px] mt-[164px]"> 
           <div className="top flex items-center w-[100%] justify-between">
-             <p className="xl:text-[89px] lg:text-[69px]/[84px] text-[41px] text-center xl:text-start lg:text-start lg:w-auto xl:w-auto w-full">New Arrival</p>
-              <div className="xl:w-[513.5px] lg:w-[300px] h-[1px] bg-[#FFF9EB] hidden xl:flex md:flex"></div>
+             <p className="xl:text-[89px] lg:text-[69px]/[84px] text-[41px] text-center xl:text-start lg:text-start md:w-auto lg:w-auto xl:w-auto w-full">New Arrival</p>
+              <div className="xl:w-[513.5px] lg:w-[300px] md:w-[300px] h-[1px] bg-[#FFF9EB] hidden xl:flex md:flex"></div>
               <div className="arrows xl:flex md:flex gap-[28px] hidden ">
                   <button className="w-[65px] h-[65px] text-[#FFFCF5] border-[#FFFCF5] border-[2px] flex items-center justify-center hover:bg-[#FFF9EB] hover:text-[#201C00] transition ease-in"><FaArrowLeftLong className="w-[37px] h-[37px]"/></button>
                   <button className="w-[65px] h-[65px] text-[#FFF9EB] border-[2px] border-[##FFF9EB] flex items-center justify-center hover:bg-[#FFF9EB] hover:text-[#201C00] transition ease-in"><FaArrowRightLong className="w-[37px] h-[37px]"/></button>
