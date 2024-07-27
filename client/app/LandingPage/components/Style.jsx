@@ -16,12 +16,12 @@ const Style = () => {
     ]
 
   return (
-    <div className="xl:pt-[164px] md:mt-[64px] px-[11px] lg:px-[50px] md:px-[50px] pt-[68px] w-full">
+    <div className="xl:pt-[164px] md:mt-[64px] px-[11px] lg:px-[50px] xl:px-[123px] md:px-[50px] pt-[68px] w-full">
         <div className=" top flex lg:flex-row md:flex-row md:items-end flex-col lg:items-end justify-between items-start  w-[100%] ">
               <p className="text-[#514700] lg:text-[89px]/[64px] text-[41px]/[64px] ">STYLE</p>
               <p className="text-[#7B7768] lg:text-[28px]/[36px] text-[16px]/[24px] w-[300px] xl:w-[844px] md:w-[500px] lg:w-[610px] lg:text-[24px] md:text-[24px] ">le's a creative canvas for self-expression. It allows you to tell a story through your style that reflecting your personality, interest even mood.</p>
         </div>
-        <div className="body flex flex-col lg:flex-row md:flex-row items-center  gap-[23px] lg:gap-[22px] lg:mt-[139px] mt-[68px]">
+        <div className="body flex flex-col lg:flex-row md:flex-row items-center  gap-[23px] lg:gap-[22px] lg:mt-[139px] mt-[68px] md:justify-between">
               {
                   bags.map(bag =>
                       <div className="relative lg:h-[826px] lg:w-[622px] md:h-[500px] md:w-[622px] w-[300px]">

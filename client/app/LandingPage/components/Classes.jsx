@@ -4,7 +4,7 @@ import {classImg, cuttingGirl} from "../../DradiantImages/index";
 
 const Classes = () => {
   return (
-    <div className="xl:pt-[164px]  pt-[68px] md:pt-[64px] xl:px-[124px] md:px-[50px] px-[11px] flex flex-col xl:gap-[98px] gap-[21px]">
+    <div className="xl:pt-[164px]  pt-[68px] md:pt-[64px] xl:px-[123px] md:px-[50px] px-[11px] flex flex-col xl:gap-[98px] gap-[21px]">
        <div className=" top flex xl:flex-row flex-col md:flex-row  xl:items-center items-start justify-between md:items-end">
               <p className="text-[#514700] lg:text-[89px]/[64px] text-[41px]/[64px]">CLASSES</p>
               <p className="text-[#7B7768] lg:text-[28px]/[36px] text-[16px]/[24px] w-[300px] xl:w-[844px] md:w-[500px] lg:w-[610px] lg:text-[24px] md:text-[24px] ">le's a creative canvas for self-expression. It allows you to tell a story through your style that reflecting your personality, interest even mood.</p>
