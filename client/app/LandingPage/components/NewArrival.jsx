@@ -26,7 +26,7 @@ const NewArrival = () => {
               <Image src={pose} alt="woman pose" width={493} height={697} className="xl:flex hidden" />
               {
                   bags.map(bag => <div key={bags.name} className="flex flex-col gap-[32px] w-[300px] md:w-[450px]">
-                      <Image src={bag.image}  className="xl:h-[507px] h-[507px] xl:w-[320px] md:w-[450px] w-[347px] object-cover" />
+                      <Image src={bag.image}  className="xl:h-[507px] h-[507px] xl:w-full md:w-[450px] w-[347px] object-cover" />
                       <div className="itemDesc flex flex-col gap-[60px]">
                           <div className="title flex justify-between items-baseline">
                               <p className="text-[36px]/[44px]">{bag.name}</p>
