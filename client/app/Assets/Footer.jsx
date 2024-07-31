@@ -19,12 +19,8 @@ const Footer = () => {
 
     const socials = [
         {
-            icon:<AiOutlineYoutube/>,
-            url: "./"
-        },
-        {
             icon:<RiTwitterXLine/>,
-            url: "./"
+            url: "https://x.com/Eneupapa2000?t=rNvQS7Mp6QJtApBwx3p2RQ&s=09"
         },
         {
             icon:<FaInstagram/>,
@@ -36,7 +32,7 @@ const Footer = () => {
         },
         {
             icon:<TbBrandFacebook/>,
-            url: "./"
+            url: "https://www.facebook.com/omadaajefu"
         },
     ];
 
