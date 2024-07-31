@@ -4,15 +4,16 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { pose,back,
     handbag } from "../../DradiantImages/index";
 import Image from 'next/image';
+import Link from "next/link";
 
 
 const NewArrival = () => {
     const bags = [
-        { name: 'BACKBAG', image:back, price:"NGN 10,000"},
+        { name: 'SIDEBAG', image:back, price:"NGN 10,000"},
         {name: 'HANDBAG', image:handbag, price:"NGN 8,000"},
     ]
   return (
-    <div className="bg-[#201C00] xl:h-[1089px]  text-[#FFF9EB] xl:px-[130px] lg:px-[50px] md:px-[50px] px-[11px] xl:py-[92px] py-[74px] mt-[164px]"> 
+    <div className="bg-[#201C00] xl:h-[1089px]  text-[#FFF9EB] 2xl:px-[130px] lg:px-[50px] md:px-[50px] px-[11px] xl:py-[92px] py-[74px] mt-[164px]"> 
           <div className="top flex items-center w-[100%] justify-between">
              <p className="xl:text-[89px] lg:text-[69px]/[84px] text-[41px] text-center xl:text-start lg:text-start md:w-auto lg:w-auto xl:w-auto w-full">New Arrival</p>
               <div className="xl:w-[513.5px] lg:w-[300px] md:w-[300px] h-[1px] bg-[#FFF9EB] hidden xl:flex md:flex"></div>
@@ -31,7 +32,7 @@ const NewArrival = () => {
                               <p className="text-[36px]/[44px]">{bag.name}</p>
                               <p className="text-[24px]/[32px]">{bag.price}</p>
                           </div>
-                          <button className="text-[36px] w-[100%] border-[1px] hover:bg-[#FFF9EB] hover:text-[#201C00] transition ease-in">Add to Cart</button>
+                          <Link href="https://bit.ly/ShopfromDradiant"><button className="text-[36px] w-[100%] border-[1px] hover:bg-[#FFF9EB] hover:text-[#201C00] transition ease-in">Add to Cart</button></Link>
                       </div>
                   </div>)
               }

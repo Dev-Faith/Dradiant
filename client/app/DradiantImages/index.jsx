@@ -2,14 +2,14 @@ import croche from "./croche.png";
 import hand from "./Hand.png";
 import sling from "./Sling.png";
 import tote from "./Tote.png";
-import pose from "./pose.png";
-import back from "./Frame 14.png";
-import handbag from "./Frame 20.png";
-import red from "./Frame 21.png";
-import brown from "./Frame 22.png";
+import pose from "./Dradiant_3.png";
+import back from "./Dradiant_12.png";
+import handbag from "./Dradiant_14.png";
+import red from "./Dradiant_10.png";
+import brown from "./Dradiant_4.png";
 import classImg from "./unsplash_QjB4ZpqCESY.png"
-import footerBag from "./unsplash_pSVYyO-XlJk.png";
-import cuttingGirl from "./cuttingGirl.png";
+import footerBag from "./Dradiant_9.png";
+import cuttingGirl from "./Dradiant_7.png";
 
 
 export{

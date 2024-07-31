@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useState} from 'react'
 import { GoArrowRight } from "react-icons/go";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { RiTwitterXLine } from "react-icons/ri";
@@ -8,8 +8,15 @@ import { TbBrandFacebook } from "react-icons/tb";
 import {footerBag} from "../DradiantImages/index";
 import Link from "next/link";
 import Image from "next/image";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Footer = () => {
+    const [subscription, setSubscription] = useState("");
+
+    const handleSub = ()=>{
+        subscription.length == 0 ? toast.error("enter email") : toast.success("email noted! ✍️");
+    }
+
     const socials = [
         {
             icon:<AiOutlineYoutube/>,
@@ -21,11 +28,11 @@ const Footer = () => {
         },
         {
             icon:<FaInstagram/>,
-            url: "./"
+            url: "https://bit.ly/DradiantIG"
         },
         {
             icon:<FiLinkedin/>,
-            url: "./"
+            url: "https://www.linkedin.com/in/omada-ajefu-30298227b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
         },
         {
             icon:<TbBrandFacebook/>,
@@ -36,29 +43,29 @@ const Footer = () => {
     const navLinks = [
         {
             title: "Shop",
-            url: ""
+            url: "https://bit.ly/ShopfromDradiant"
         }, 
         {
             title: "New Arrival",
-            url: ""
+            url: "https://bit.ly/ShopfromDradiant"
         }, 
         {
             title: "Catalogue",
-            url: ""
+            url: "https://bit.ly/ShopfromDradiant"
         }, 
         {
             title: "Wishlist",
-            url: ""
+            url: "https://bit.ly/ShopfromDradiant"
         }, 
         {
             title: "Classes",
-            url: ""
+            url: "https://bit.ly/ShopfromDradiant"
         }, 
     ]
 
   return (
     <div className=" xl:pt-[147px] pt-[65px] bg-[#201C00] xl:h-[1010px] xl:mt-[203px] mt-[45px] text-[#FFF9EB] flex flex-col justify-between">
-      <div className="top flex xl:flex-row flex-col gap-[17px] justify-between xl:px-[123px] md:px-[50px] lg:px-[50px] px-[11px]">
+      <div className="top flex xl:flex-row flex-col gap-[17px] justify-between 2xl:px-[123px] md:px-[50px] lg:px-[50px] px-[11px]">
             <div className="left flex flex-col xl:gap-[183px] gap-[21px]">
                 <div className="top flex flex-col gap-[26px]">
                     <div className="connected flex items-center gap-[15px] w-full">
@@ -70,8 +77,8 @@ const Footer = () => {
                     <div className="bottom flex flex-col xl:gap-[78px] gap-[42px]">
                     <p className="xl:w-[569px] xl:text-[32px]/[40px]">Receive our newsletter and discover our stories, collections and packages</p>
                     <div className="flex items-center justify-between xl:w-[579px] w-[300px] h-[80px] xl:h-[107px] border-[1px] border-[#7B7768] p-[16px] rounded-[8px] style-none xl:gap-[20px]">
-                        <input className="xl:text-[32px] text-[#FFF9EB] border-none bg-[#201C00] appearance-none focus:outline-none w-[100%]" placeholder='Enter your email'/>
-                        <button className="bg-[#FFF9EB] xl:w-[176px] w-[116px] xl:h-[72px] h-[48px] text-[#201C00] xl:text-[32px] text-[16px]/[32px] rounded-[8px] hover:bg-[#201C00] hover:text-[#FFF9EB] hover:border-[1px] hover:border-[#FFF9EB] transition ease-in">Subscribe</button>
+                        <input value={subscription} onChange={e=>setSubscription(e.target.value)} className="xl:text-[32px] text-[#FFF9EB] border-none bg-[#201C00] appearance-none focus:outline-none w-[100%]" placeholder='Enter your email'/>
+                        <button onClick={handleSub}  className="bg-[#FFF9EB] xl:w-[176px] w-[116px] xl:h-[72px] h-[48px] text-[#201C00] xl:text-[32px] text-[16px]/[32px] rounded-[8px] hover:bg-[#201C00] hover:text-[#FFF9EB] hover:border-[1px] hover:border-[#FFF9EB] transition ease-in">Subscribe</button>
                     </div>
                     </div>
             </div>
@@ -81,7 +88,7 @@ const Footer = () => {
                         <p className="xl:w-[500px] xl:text-[32px]">We offer multiply ways to connect, ensuring you have the most convenient methods for your needs</p>
                         <div className="socials flex  gap-[10px] xl:w-[432px] items-start xl:justify-start xl:gap-[38px] justify-between w-[100%]">
                           {
-                              socials.map(social => <button className="w-[52px] h-[52px] rounded-[8px] border-[1px] border-[#FFF9EB] text-[#FFF9EB] text-[24px] flex items-center justify-center hover:bg-[#FFF9EB] hover:text-[#201C00] hover:border-[1px] hover:border-[#201C00] transition ease-in">{social.icon}</button>)
+                              socials.map(social => <Link href={social.url}><button className="w-[52px] h-[52px] rounded-[8px] border-[1px] border-[#FFF9EB] text-[#FFF9EB] text-[24px] flex items-center justify-center hover:bg-[#FFF9EB] hover:text-[#201C00] hover:border-[1px] hover:border-[#201C00] transition ease-in">{social.icon}</button></Link>)
                             }
                         </div>
                   </div>
@@ -92,7 +99,7 @@ const Footer = () => {
                             }
                         </div>
                         <div className="bottom-right-right">
-                          <Image src={footerBag} alt = 'image of a bag held with the hand' height={346} width={277} className="hidden xl:flex"/>
+                          <Image src={footerBag} alt = 'image of a bag held with the hand' className="hidden xl:flex h-[346px] w-[277px] object-cover" />
                         </div>
                     </div>
     
