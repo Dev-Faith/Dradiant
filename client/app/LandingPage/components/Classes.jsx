@@ -13,7 +13,7 @@ const Classes = () => {
         <div className="relative md:my-[64px] flex flex-col justify-center items-center w-full xl:h-[801px]">
               <Image src={cuttingGirl} alt="image of a lady writing"  className="w-[1266px] h-[801px] xl:flex hidden md:flex object-cover rounded-[8px]" />
               <Image src={cuttingGirl} alt="image of a lady writing"  className="w-[408px] h-[501px] xl:hidden object-cover rounded-[10px] md:hidden " />
-              <Link href=""><button className="border-[1px] border-[#FFF9EB] text-[#FFF9EB] xl:text-[89px] md:text-[64px] text-[29px]/[64px] px-[24px] xl:py-[32px] py-[8px] absolute  hover:bg-[#FFF9EB] hover:text-[#201C00] transition ease-in xl:w-[500px] xl:h-[192px] md:w-[400px] md:h-[100px] w-[200px] h-[100px] m-auto inset-0">LEARN NOW</button></Link>
+              <Link href="https://bit.ly/ShopfromDradiant"><button className="border-[1px] border-[#FFF9EB] text-[#FFF9EB] xl:text-[89px] md:text-[64px] text-[29px]/[64px] px-[24px] xl:py-[32px] py-[8px] absolute  hover:bg-[#FFF9EB] hover:text-[#201C00] transition ease-in xl:w-[500px] xl:h-[192px] md:w-[400px] md:h-[100px] w-[200px] h-[100px] m-auto inset-0">LEARN NOW</button></Link>
         </div>
     </div>
   )
