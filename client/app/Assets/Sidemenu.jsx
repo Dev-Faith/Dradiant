@@ -1,6 +1,7 @@
 import { FaArrowTurnDown } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
+import {motion as m } from "framer-motion";
 
 const MenuSheet = ({ closeMenu, isOpen}) => {
   const navLinks = [
@@ -25,8 +26,42 @@ const MenuSheet = ({ closeMenu, isOpen}) => {
       url: "https://bit.ly/ShopfromDradiant"
     },
   ]
+
+  const navBarVariant = {
+    animate: {
+      x: 0,
+      transition: {
+        stiffness: 5,
+      when: "beforeChildren",
+      staggerChildren: 0.2
+    }
+    },
+    initial: {
+      x: "100vw",
+      transition:{
+        stiffness: 5
+      }
+    },
+    
+  }
+  const navItemVariant = {
+    animate: {
+      x: 0,
+    },
+    initial: {
+      x: "100vw"
+    }
+  }
+
+  
+
   return (
-    <div className={`px-[11px] md:px-[50px] py-[64px] text-[24px] size-[24px] fixed  flex-col w-[100vw] h-[100vh] bg-[#FFF9EB] m-auto inset-0 z-10 ${isOpen ? "flex" : "hidden"}`}>
+    <m.div className={`px-[11px] md:px-[50px] py-[64px] text-[24px] size-[24px] fixed  flex-col w-[100vw] h-[100vh] bg-[#FFF9EB] m-auto inset-0 z-10`}
+    variants = {navBarVariant}
+    animate = "animate"
+    initial = "initial"
+    exit = "initial"
+    >
       <div className= "top flex justify-between items-center">
         <div className="top-left flex items-center md:gap-[2rem] gap-[1rem]">
           <p className="md:text-[45px]/[52px] text-[32px]">Go to</p>
@@ -37,9 +72,9 @@ const MenuSheet = ({ closeMenu, isOpen}) => {
         </button>
       </div>
       <ul className="navlinks w-full h-full flex flex-col items-center justify-center md:text-[45px] text-[32px] underline ">
-        {navLinks.map((link)=><Link href={link.url} key={link.title} className=''><li>{link.title}</li></Link>)}
+        {navLinks.map((link)=><Link href={link.url} key={link.title} className=''><m.li  variants={navItemVariant}>{link.title}</m.li></Link>)}
       </ul>
-    </div>
+    </m.div>
   );
 };
 
