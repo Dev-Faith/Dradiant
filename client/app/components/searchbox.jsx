@@ -1,3 +1,4 @@
+"use client"
 import { CiSearch } from "react-icons/ci";
 import {useDispatch, useSelector} from "react-redux";
 import {searchActions} from "../../store/index";

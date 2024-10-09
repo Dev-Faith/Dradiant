@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { IoIosHeartEmpty,IoHeartSharp } from "react-icons/io";
 import {motion as m } from "framer-motion";
