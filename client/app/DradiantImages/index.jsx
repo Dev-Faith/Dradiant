@@ -10,6 +10,7 @@ import brown from "./Dradiant_4.png";
 import classImg from "./unsplash_QjB4ZpqCESY.png"
 import footerBag from "./Dradiant_9.png";
 import cuttingGirl from "./Dradiant_7.png";
+import shopcroche from "./shopCroche.png";
 
 
 export{
@@ -24,5 +25,6 @@ export{
     brown,
     classImg,
     footerBag,
-    cuttingGirl
+    cuttingGirl,
+    shopcroche
 }

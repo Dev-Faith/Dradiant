@@ -7,6 +7,7 @@ import image2 from "../../../DradiantImages/unsplash_W0AEh7sp-3E.png";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import {cursorActions} from "../../../../store/index.js";
+import {motion as m } from "framer-motion";
 
 
 const Hero = () => {
@@ -23,7 +24,7 @@ const Hero = () => {
         <p className="xl:text-[132px] text-[32px] xl:absolute xl:top-[8rem] xl:left-[4rem] md:text-[89px]" onMouseEnter={textEnter} onMouseLeave={textLeave}>WITH QUALITY</p>
         <p className="xl:text-[132px] text-[32px] xl:absolute xl:top-[16rem] xl:left-[4rem] md:text-[89px]" onMouseEnter={textEnter} onMouseLeave={textLeave}>STYLES</p>
         <p className="text-[16px] md:text-[24px] xl:text-[16px] top-[60%]  right-[33%] md:right-[50%] absolute xl:w-[164px] w-[169px] md:w-[300px] xl:right-[20rem] xl:top-[11rem] md:top-[70%] lg:top-[65%]">Confidence is the belief in yourself to achieve your goals</p>
-        <Image src={image1} alt="bag"  className="relative pointer-events-none right-[5rem] lg:right-[15rem] top-[-8.5rem] rotate-[-320deg] xl:rotate-0 xl:right-[-25rem]   xl:top-[-3rem] lg:top-[-20rem] xl:w-[328.94px] xl:h-[412.07px] lg:w-[328.94px] lg:h-[412.07px] w-[148.5px] h-[186.02px] object-cover"/>
+        <Image src={image1} alt="bag" className="relative pointer-events-none right-[5rem] lg:right-[15rem] top-[-8.5rem] rotate-[-320deg] xl:rotate-0 xl:right-[-25rem]   xl:top-[-3rem] lg:top-[-20rem] xl:w-[328.94px] xl:h-[412.07px] lg:w-[328.94px] lg:h-[412.07px] w-[148.5px] h-[186.02px] object-cover"/>
         <Image src={image2} alt="bag" className="relative pointer-events-none xl:right-[-5rem] right-[-5rem] md:right-[-10rem] lg:right-[-15rem] top-[-18rem] lg:top-[-42rem] md:top-[-30rem] xl:top-[-15.8rem] xl:w-[266px] lg:w-[266px] lg:h-[472px] xl:h-[472px] w-[134px] h-[237.77px] object-cover" />
         <Link href="https://bit.ly/ShopfromDradiant" className="absolute top-[80%] lg:top-[80%] md:top-[88%] text-[32px] px-[12px]  py-[24px] rounded-[4px] bg-[#6A5F11] xl:text-[32px]/[0px] text-[#fff] xl:right-[123px] xl:top-[23rem] flex items-center  hover:text-[#6A5F11] hover:bg-[#FFF9EB] hover:border-2 border-[#6A5F11] xl:w-[261px] justify-center transition ease-in"><button className="flex items-center gap-[10px]">2024 Collection<FaArrowRightLong/></button></Link>
       </div>
