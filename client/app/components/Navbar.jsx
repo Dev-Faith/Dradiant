@@ -47,7 +47,7 @@ const Layout = () => {
     },
     {
       name: "Wishlist",
-      url: "https://bit.ly/ShopfromDradiant",
+      url: "/pages/wishlist",
       position: "right"
     }
   ]

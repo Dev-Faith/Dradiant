@@ -12,7 +12,7 @@ const Searchbox = () => {
 
   return (
     <div className="relative">
-    <CiSearch className=" absolute size-[54px] top-[16px] left-[16px] text-[#7B7768]"/>
+    <CiSearch className=" absolute size-[54px] top-[32px] left-[16px] text-[#7B7768]"/>
       <input
         value={searchQuery}
         onChange={handleChange}

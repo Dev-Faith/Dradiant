@@ -21,8 +21,23 @@ const searchSlice = createSlice({
     }
 })
 
+const wishlistSlice = createSlice({
+    name: "wishlist",
+    initialState: {items:[]},
+    reducers: {
+        addToWishlist(state, action){
+            state.items.push(action.payload)
+        },
+        removeFromWishlist(state, action){
+            state.items.filter(item=>item.name!== action.payload)
+        },
+    }
+})
+
 export const cursorActions = cursorSlice.actions;
 export const searchActions = searchSlice.actions;
+export const wishlistActions = wishlistSlice.actions;
+
 export const store = configureStore({
-    reducer: {cursor: cursorSlice.reducer, search:searchSlice.reducer}
+    reducer: {cursor: cursorSlice.reducer, search:searchSlice.reducer, wishlist:wishlistSlice.reducer}
 });
