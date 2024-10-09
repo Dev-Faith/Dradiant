@@ -15,6 +15,7 @@ body{
     font-family: var(--font-bebasNeue);
 }
 
-.noCursor{
-    cursor: none
+
+.cursor{
+    cursor: pointer
 }

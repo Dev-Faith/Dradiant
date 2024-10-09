@@ -72,7 +72,8 @@ const MenuSheet = ({ closeMenu, isOpen}) => {
         </button>
       </div>
       <ul className="navlinks w-full h-full flex flex-col items-center justify-center md:text-[45px] text-[32px] underline ">
-        {navLinks.map((link)=><Link href={link.url} key={link.title} className=''><m.li  variants={navItemVariant}>{link.title}</m.li></Link>)}
+        {navLinks.map((link)=><Link href={link.url} key={link.title} className=''><m.li  variants={navItemVariant}  whileHover={{ scale: 1.5 }}
+                whileTap={{ scale: 1 }}>{link.title}</m.li></Link>)}
       </ul>
     </m.div>
   );

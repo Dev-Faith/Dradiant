@@ -6,10 +6,14 @@ import Link from 'next/link';
 import MenuSheet from './Sidemenu';
 import { RiMenu3Line } from "react-icons/ri";
 import { motion as m, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+
+  const currentPath = router.pathname;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,7 +22,7 @@ const Layout = () => {
   const navLinks = [
     {
       name: "Shop",
-      url: "https://bit.ly/ShopfromDradiant",
+      url: "/pages/shop",
       position: "left"
     },
     {
@@ -33,7 +37,7 @@ const Layout = () => {
     },
     {
       name: "Search",
-      url: "https://bit.ly/ShopfromDradiant",
+      url: "/pages/search",
       position: "right"
     },
     {
