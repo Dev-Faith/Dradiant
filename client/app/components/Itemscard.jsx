@@ -6,10 +6,7 @@ import {motion as m } from "framer-motion";
 export default function Itemscard({name, price, image, desc, liked}){
     return (
         <m.div className="border-[1px] border-[#7B7768] rounded-[20px] min-w-[472px] max-w-[472px] h-[566px] flex flex-col items-center px-[17px] py-[24px] gap-[51px]"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.3 }}
+             layout
         >
            <div className="image&Liked flex w-full justify-between">
              <Image src = {image} width="267" height="250" className="relative left-[76px] "/>

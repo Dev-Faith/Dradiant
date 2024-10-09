@@ -5,7 +5,7 @@ import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import {shopcroche} from "../../DradiantImages";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {AnimatePresence} from "framer-motion";
+import {motion} from "framer-motion";
 
 
 const page = ()=>{
@@ -64,18 +64,17 @@ const page = ()=>{
   );
 
     return (
-      <div className=" h-[100vh] py-[56px] px-[125px] flex flex-col gap-[46px]">
+      <div className=" h-[100vh] pt-[56px] px-[125px] flex flex-col gap-[46px]">
         <p className="text-[96px] ">Buy from the Best Collections! 👜 </p>
         <Searchbox />
         <div className="shopItemsGroups flex flex-col gap-[114px]">
-          <div className="recent flex flex-col gap-[28px]">
+          {filteredItems.length === 0 ? "There's no item that matches your search!" : ( <div className="flex flex-col gap-[114px]">
+            <div className="recent flex flex-col gap-[28px]">
             <div className="flex items-center gap-[15px] text-[30px] cursor-pointer">
               <p>Recent</p>
-               <AnimatePresence>
                  { toggle.recent==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("recent")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("recent")}/>}
-               </AnimatePresence>
             </div>
-            <div className={`items gap-[46px] w-full overflow-y-auto ${toggle.recent==false ? "flex" : "grid grid-cols-3" }`}>
+            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.recent==false ? "flex" : "grid grid-cols-3" }`}>
               {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} />
 )}
             </div>
@@ -85,7 +84,7 @@ const page = ()=>{
               <p>Women's bags</p>
               { toggle.women==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("women")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("women")}/>}
             </div>
-            <div className={`items gap-[46px] w-full overflow-y-auto ${toggle.women==false ? "flex" : "grid grid-cols-3" }`}>
+            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.women==false ? "flex" : "grid grid-cols-3" }`}>
               {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} />
 )}
             </div>
@@ -95,21 +94,22 @@ const page = ()=>{
               <p>Men's bags</p>
               { toggle.men==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("men")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("men")}/>}
             </div>
-            <div className={`items gap-[46px] w-full overflow-y-auto ${toggle.men==false ? "flex" : "grid grid-cols-3" }`}>
+            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.men==false ? "flex" : "grid grid-cols-3" }`}>
               {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} />
 )}
             </div>
           </div>
-          <div className="All flex flex-col gap-[28px]">
+          <div className="All flex flex-col gap-[28px] pb-[56px]">
             <div className="flex items-center gap-[15px] text-[30px]">
               <p>All</p>
               { toggle.all==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("all")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("all")}/>}
             </div>
-            <div className={`items gap-[46px] w-full overflow-y-auto ${toggle.all==false ? "flex" : "grid grid-cols-3" }`}>
+            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.all==false ? "flex" : "grid grid-cols-3" }`}>
               {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} />
 )}
             </div>
           </div>
+          </div>) }
         </div>
       </div>
     );
