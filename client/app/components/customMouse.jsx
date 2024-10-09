@@ -34,9 +34,9 @@ const CustomMouse = () => {
       y: mousePosition.y + 8,
       height: 0,
       width: 0,
-      mixBlendMode: "difference",
-      backgroundColor: "#FFF9EB",
-      transition: { duration: 0.5, type: "spring", delay: 0 },
+      mixBlendMode: "normal",
+      backgroundColor: "black",
+      transition: { duration: 0.5, type: "spring", delay: 0, when: "beforeChildren" },
     },
     text: {
       x: mousePosition.x - 75,
@@ -49,15 +49,6 @@ const CustomMouse = () => {
     },
   };
 
-  const bagIcon = {
-    default: {
-      mixBlendMode: "normal",
-    },
-    text: {
-      mixBlendMode: "normal",
-    },
-  };
-
   return (
     <div>
       <m.div
@@ -66,7 +57,7 @@ const CustomMouse = () => {
         animate={cursorVariant}
         transition={{ duration: 0, delay: 0 }}
       >
-        <m.p style={{mixBlendMode: 'normal'}}>👜</m.p>
+        <p>👜</p>
       </m.div>
     </div>
   );

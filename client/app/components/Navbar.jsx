@@ -82,8 +82,8 @@ const Layout = () => {
           ) : null
         )}
       </div>
-      <div className="flex items-center w-full">
-        <p className="logo text-[22px] text-center w-full">DRADIANTBAGS</p>
+      <div className="flex items-center justify-center w-full">
+        <Link href="/" ><p className="logo text-[22px] text-center cursor-pointer w-full">DRADIANTBAGS</p></Link>
       </div>
       <div className="text-[24px] flex items-center w-[86px] justify-between xl:hidden">
         <Link href="https://bit.ly/ShopfromDradiant">
