@@ -37,28 +37,114 @@ const page = ()=>{
       price: "12,000",
       desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
       image:shopcroche,
-      liked: false,
     }, 
     {
       name: "totebag",
       price: "3,500",
       desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
       image:shopcroche,
-      liked: false,
     }, 
     {
       name: "handbag",
       price: "8,000",
       desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
       image:shopcroche,
-      liked: false,
     }, 
     {
       name: "schoolbag",
       price: "15,000",
       desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
       image:shopcroche,
-      liked: false,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
+    }, 
+    {
+      name: "schoolbag",
+      price: "15,000",
+      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
+      image:shopcroche,
     }, 
   ];
 
@@ -69,46 +155,48 @@ const page = ()=>{
 
     return (
       <div className=" h-[100vh] pt-[56px] px-[125px] flex flex-col gap-[46px]">
-        <p className="text-[96px] ">Buy from the Best Collections! 👜 </p>
-        <Searchbox />
+        <div className="flex flex-col gap-[36px]">
+         <p className="text-[64px] ">Buy from the Best Collections! 👜 </p>
+         <Searchbox />
+        </div>
         <div className="shopItemsGroups flex flex-col gap-[114px]">
-          {filteredItems.length === 0 ? "There's no item that matches your search!" : ( <div className="flex flex-col gap-[114px]">
+          {filteredItems.length === 0 ? "There's no item that matches your search!" : ( <div className="flex flex-col gap-[50px]">
             <div className="recent flex flex-col gap-[28px]">
-            <div className="flex items-center gap-[15px] text-[30px] cursor-pointer">
+            <div className="flex items-center gap-[15px] text-[16px] cursor-pointer">
               <p>Recent</p>
                  { toggle.recent==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("recent")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("recent")}/>}
             </div>
-            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.recent==false ? "flex" : "grid grid-cols-3" }`}>
+            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.recent==false ? "flex" : "grid grid-cols-" }`}>
               {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked}/>
 )}
             </div>
           </div>
           <div className="women'sbag flex flex-col gap-[28px]">
-            <div className="flex items-center gap-[15px] text-[30px]">
+            <div className="flex items-center gap-[15px] text-[16px]">
               <p>Women's bags</p>
               { toggle.women==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("women")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("women")}/>}
             </div>
-            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.women==false ? "flex" : "grid grid-cols-3" }`}>
+            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.women==false ? "flex" : "grid grid-cols-5" }`}>
               {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked} />
 )}
             </div>
           </div>
           <div className="men'sbag flex flex-col gap-[28px]">
-            <div className="flex items-center gap-[15px] text-[30px]">
+            <div className="flex items-center gap-[15px] text-[16px]">
               <p>Men's bags</p>
               { toggle.men==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("men")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("men")}/>}
             </div>
-            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.men==false ? "flex" : "grid grid-cols-3" }`}>
+            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.men==false ? "flex" : "grid grid-cols-5" }`}>
               {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked} />
 )}
             </div>
           </div>
           <div className="All flex flex-col gap-[28px] pb-[56px]">
-            <div className="flex items-center gap-[15px] text-[30px]">
+            <div className="flex items-center gap-[15px] text-[16px]">
               <p>All</p>
               { toggle.all==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("all")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("all")}/>}
             </div>
-            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.all==false ? "flex" : "grid grid-cols-3" }`}>
+            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.all==false ? "flex" : "grid grid-cols-5" }`}>
               {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked} />
 )}
             </div>

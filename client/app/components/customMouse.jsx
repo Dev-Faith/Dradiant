@@ -57,7 +57,7 @@ const CustomMouse = () => {
         animate={cursorVariant}
         transition={{ duration: 0, delay: 0 }}
       >
-        <p>👜</p>
+        <p className="pointer-events-none">👜</p>
       </m.div>
     </div>
   );

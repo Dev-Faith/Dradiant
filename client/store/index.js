@@ -29,7 +29,7 @@ const wishlistSlice = createSlice({
             state.items.push(action.payload)
         },
         removeFromWishlist(state, action){
-            state.items.filter(item=>item.name!== action.payload)
+           state.items = state.items.filter(item=>item.name!== action.payload)
         },
     }
 })

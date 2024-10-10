@@ -6,18 +6,20 @@ import Link from 'next/link';
 import MenuSheet from './Sidemenu';
 import { RiMenu3Line } from "react-icons/ri";
 import { motion as m, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
 
-  const currentPath = router.pathname;
+  const currentPath = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const isActive = (path)=>currentPath == path;
+  console.log(currentPath);
 
   const navLinks = [
     {
@@ -74,7 +76,7 @@ const Layout = () => {
                 whileHover={{ scale: 1.5 }}
                 whileTap={{ scale: 1 }}
                 key={link.name}
-                className="cursor-pointer hover:underline hover:text-[#2A4E3A] "
+                className={`cursor-pointer hover:underline hover:text-[#2A4E3A] ${isActive(link.url) ? "scale-1.5 underline text-[#2A4E3A]": ""}`}
               >
                 {link.name}
               </m.p>
@@ -100,7 +102,7 @@ const Layout = () => {
                 whileHover={{ scale: 1.5 }}
                 whileTap={{ scale: 1 }}
                 key={link.name}
-                className="cursor-pointer hover:underline hover:text-[#2A4E3A]"
+                className={`cursor-pointer hover:underline hover:text-[#2A4E3A] ${isActive(link.url) ? "scale-1.5 underline text-[#2A4E3A]": ""}`}
               >
                 {link.name}
               </m.p>
