@@ -166,7 +166,7 @@ const page = ()=>{
               <p>Recent</p>
                  { toggle.recent==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("recent")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("recent")}/>}
             </div>
-            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.recent==false ? "flex" : "grid grid-cols-" }`}>
+            <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.recent==false ? "flex" : "grid grid-cols-5" }`}>
               {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked}/>
 )}
             </div>

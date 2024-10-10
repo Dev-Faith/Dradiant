@@ -7,12 +7,14 @@ import MenuSheet from './Sidemenu';
 import { RiMenu3Line } from "react-icons/ri";
 import { motion as m, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import {useSelector} from "react-redux";
 
 
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const currentPath = usePathname();
+  const wishListItems = useSelector(state=>state.wishlist.items);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -63,6 +65,10 @@ const Layout = () => {
     }
   }
 
+  const isWishList = (url)=>{
+    return url == "/pages/wishlist"
+  }
+
   return (
     <div className="xl:px-[123px] px-[11px] lg:px-[50px] md:px-[50px] py-[24px] flex justify-between items-center border-b-[1px] w-[100%] border-[#7B7768]">
       <div className="text-[24px] xl:hidden items-start">
@@ -97,7 +103,8 @@ const Layout = () => {
       <div className="right xl:flex gap-[32px] hidden">
         {navLinks.map((link) =>
           link.position === "right" ? (
-            <Link href={link.url}>
+            <Link href={link.url} className="relative">
+               {isWishList(link.url) && <div className={` bg-[#7B7768] rounded-full size-[22px] border-[1px] text-[#fff] items-center justify-center ${wishListItems.length===0 ? "hidden":"flex"} cursor-pointer absolute top-[-15px] right-[-15px] text-[16px]`}>{wishListItems.length}</div>}
               <m.p
                 whileHover={{ scale: 1.5 }}
                 whileTap={{ scale: 1 }}
