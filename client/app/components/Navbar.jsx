@@ -104,7 +104,7 @@ const Layout = () => {
         {navLinks.map((link) =>
           link.position === "right" ? (
             <Link href={link.url} className="relative">
-               {isWishList(link.url) && <div className={` bg-[#7B7768] rounded-full size-[22px] border-[1px] text-[#fff] items-center justify-center ${wishListItems.length===0 ? "hidden":"flex"} cursor-pointer absolute top-[-15px] right-[-15px] text-[16px]`}>{wishListItems.length}</div>}
+               {isWishList(link.url) && <div className={` bg-[#7B7768] rounded-full size-[22px] border-[1px] text-[#fff] items-center justify-center ${wishListItems.length===0 ? "hidden":"flex"} cursor-pointer absolute top-[-15px] right-[-15px] text-[16px]/[0]`}>{wishListItems.length}</div>}
               <m.p
                 whileHover={{ scale: 1.5 }}
                 whileTap={{ scale: 1 }}
