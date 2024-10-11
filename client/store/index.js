@@ -1,5 +1,5 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-
+import productReducer from "../stateSlices/productSlice";
 
 const cursorSlice = createSlice({
     name: "cursor",
@@ -32,12 +32,14 @@ const wishlistSlice = createSlice({
            state.items = state.items.filter(item=>item.name!== action.payload)
         },
     }
-})
+});
+
+
 
 export const cursorActions = cursorSlice.actions;
 export const searchActions = searchSlice.actions;
 export const wishlistActions = wishlistSlice.actions;
 
 export const store = configureStore({
-    reducer: {cursor: cursorSlice.reducer, search:searchSlice.reducer, wishlist:wishlistSlice.reducer}
+    reducer: {cursor: cursorSlice.reducer, search:searchSlice.reducer, wishlist:wishlistSlice.reducer, products:productReducer}
 });

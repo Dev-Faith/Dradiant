@@ -17,6 +17,7 @@ const page = ()=>{
    });
 
    const searchQuery= useSelector(state=>state.search.searchQuery);
+   const shopItems = useSelector(state=>state.products.recentShopItems)
 
 
    const handleToggle = (group)=>{
@@ -31,124 +32,8 @@ const page = ()=>{
       }
    }
 
-  const recentShopItems = [
-    {
-      name: "crochetbag",
-      price: "12,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "totebag",
-      price: "3,500",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "handbag",
-      price: "8,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-    {
-      name: "schoolbag",
-      price: "15,000",
-      desc: "Dradiantbags model 29, from the land of furry, made with tiger skin",
-      image:shopcroche,
-    }, 
-  ];
-
-  const filteredItems = recentShopItems.filter(item => 
+  
+  const filteredItems = shopItems.filter(item => 
     item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
     item.desc.toLowerCase().includes(searchQuery.toLowerCase())
   );

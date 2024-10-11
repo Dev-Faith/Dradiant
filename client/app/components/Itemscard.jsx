@@ -4,6 +4,7 @@ import { IoIosHeartEmpty,IoIosHeart } from "react-icons/io";
 import {motion as m } from "framer-motion";
 import {useSelector, useDispatch} from "react-redux";
 import {wishlistActions} from "../../store/index";
+import Link from "next/link";
 
 
 export default function Itemscard({name, price, image, desc, liked}){
@@ -38,10 +39,10 @@ export default function Itemscard({name, price, image, desc, liked}){
            <div className="flex flex-col gap-[18px]">
              <div className="desc&name flex flex-col gap-[10px]">
                  <p className="text-[24px] text-[#6A5F11]">{name.toUpperCase()}</p>
-                 <p className="text-[16px]/[16px] text-[#1D1C13]">{desc}</p>
+                 <Link href={`shop/${name}`}><p className="text-[16px]/[16px] text-[#1D1C13] hover:text-[#7B7768] hover:underline">{desc}</p></Link>
              </div>
              <div className="details&Price flex justify-between items-baseline">
-                 <p className="underline text-[#426651] text-[16px]">Details</p>
+                  <Link href={`shop/${name}`}><p className="underline text-[#426651] text-[16px]">Details</p></Link>
                  <p className="text-[24px] text-[#6A5F11]">₦{price}</p>
              </div>
            </div>
