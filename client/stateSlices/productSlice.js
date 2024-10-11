@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {shopcroche} from "../app/Dradiantimages"
+import {shopcroche} from "../app/DradiantImages"
 
 const recentShopItems = [
     {
