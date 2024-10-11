@@ -10,7 +10,7 @@ import { motion as m } from "framer-motion";
 const LandingPage = () => {
  
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden cursor-none">
       <Hero/>
       <Timeless />
       <NewArrival />

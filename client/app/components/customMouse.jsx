@@ -2,10 +2,12 @@
 import { motion as m } from "framer-motion";
 import { React, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {usePathname} from "next/navigation";
 
 const CustomMouse = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const cursorVariant = useSelector((state) => state.cursor.cursorVariant);
+  const pathname = usePathname();
 
   useEffect(() => {
     let animationFrameId;
@@ -51,14 +53,14 @@ const CustomMouse = () => {
 
   return (
     <div>
-      <m.div
+      {pathname == "/" && <m.div
         className="cursor h-[32px] w-[32px] rounded-[50%] fixed top-0 left-0 pointer-events-none items-center justify-center text-[60px] hidden xl:flex"
         variants={variants}
         animate={cursorVariant}
         transition={{ duration: 0, delay: 0 }}
       >
         <p className="pointer-events-none">👜</p>
-      </m.div>
+      </m.div>}
     </div>
   );
 };

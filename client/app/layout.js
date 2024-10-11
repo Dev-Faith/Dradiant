@@ -6,6 +6,7 @@ import CustomMouse from "./components/customMouse";
 import Layout from "./storeLayout/layout";
 
 
+
 const bebasNeue = Bebas_Neue({ subsets: ["latin"], variable: "--font-bebasNeue", weight:"400" });
 const neucha = Neucha({ subsets: ["latin"], variable: "--font-neucha", weight:["400"] });
 
@@ -16,9 +17,11 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
+
+  
   return (
     <html lang="en">
-      <body className={`${bebasNeue.variable} ${neucha.variable} cursor`}>
+      <body className={`${bebasNeue.variable} ${neucha.variable}`}>
       <Layout>
         <Navbar />
         {children}
