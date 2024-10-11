@@ -11,7 +11,7 @@ const Searchbox = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
     <CiSearch className=" absolute size-[33px] top-[13px] left-[16px] text-[#7B7768]"/>
       <input
         value={searchQuery}

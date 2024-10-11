@@ -52,7 +52,7 @@ const page = ()=>{
                  { toggle.recent==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("recent")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("recent")}/>}
             </div>
             <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.recent==false ? "flex" : "grid grid-cols-5" }`}>
-              {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked}/>
+              {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} quantity={item.quantity}/>
 )}
             </div>
           </div>
@@ -62,7 +62,7 @@ const page = ()=>{
               { toggle.women==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("women")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("women")}/>}
             </div>
             <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.women==false ? "flex" : "grid grid-cols-5" }`}>
-              {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked} />
+              {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} quantity={item.quantity} />
 )}
             </div>
           </div>
@@ -72,7 +72,7 @@ const page = ()=>{
               { toggle.men==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("men")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("men")}/>}
             </div>
             <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.men==false ? "flex" : "grid grid-cols-5" }`}>
-              {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked} />
+              {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} quantity={item.quantity} />
 )}
             </div>
           </div>
@@ -82,7 +82,7 @@ const page = ()=>{
               { toggle.all==false ? <IoIosArrowForward className="cursor-pointer cursor" onClick={()=>handleToggle("all")}/> : <IoIosArrowDown className="cursor-pointer cursor" onClick={()=>handleToggle("all")}/>}
             </div>
             <div className={`items gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${toggle.all==false ? "flex" : "grid grid-cols-5" }`}>
-              {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked} />
+              {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} quantity={item.quantity} />
 )}
             </div>
           </div>

@@ -15,6 +15,7 @@ const Layout = () => {
 
   const currentPath = usePathname();
   const wishListItems = useSelector(state=>state.wishlist.items);
+  const cartItems = useSelector(state=>state.cart.items);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -46,7 +47,7 @@ const Layout = () => {
     },
     {
       name: "Cart",
-      url: "https://bit.ly/ShopfromDradiant",
+      url: "/pages/cart",
       position: "right"
     },
     {
@@ -69,6 +70,14 @@ const Layout = () => {
     return url == "/pages/wishlist"
   }
 
+  const notificationButton = (url)=>{
+      switch (url){
+        case "/pages/wishlist" : return <div className={` bg-[#7B7768] rounded-full size-[22px] border-[1px] text-[#fff] items-center justify-center ${wishListItems.length===0 ? "hidden":"flex"} cursor-pointer absolute top-[-15px] right-[-15px] text-[16px]/[0] pt-[4px] align-middle`}>{wishListItems.length}</div>;
+        case "/pages/cart": return <div className={` bg-[#7B7768] rounded-full size-[22px] border-[1px] text-[#fff] items-center justify-center ${cartItems.length===0 ? "hidden":"flex"} cursor-pointer absolute top-[-15px] right-[-15px] text-[16px]/[0] pt-[4px] align-middle`}>{cartItems.length}</div>;
+        default: return;
+      }
+  }
+
   return (
     <div className="xl:px-[123px] px-[11px] lg:px-[50px] md:px-[50px] py-[24px] flex justify-between items-center border-b-[1px] w-[100%] border-[#7B7768]">
       <div className="text-[24px] xl:hidden items-start">
@@ -82,7 +91,7 @@ const Layout = () => {
                 whileHover={{ scale: 1.5 }}
                 whileTap={{ scale: 1 }}
                 key={link.name}
-                className={`cursor-pointer hover:underline hover:text-[#2A4E3A] ${isActive(link.url) ? "scale-1.5 underline text-[#2A4E3A]": ""}`}
+                className={`cursor-pointer hover:underline hover:text-[#2A4E3A] ${isActive(link.url) ? " underline text-[#2A4E3A]": ""}`}
               >
                 {link.name}
               </m.p>
@@ -104,12 +113,12 @@ const Layout = () => {
         {navLinks.map((link) =>
           link.position === "right" ? (
             <Link href={link.url} className="relative">
-               {isWishList(link.url) && <div className={` bg-[#7B7768] rounded-full size-[22px] border-[1px] text-[#fff] items-center justify-center ${wishListItems.length===0 ? "hidden":"flex"} cursor-pointer absolute top-[-15px] right-[-15px] text-[16px]/[0] pt-[4px] align-middle`}>{wishListItems.length}</div>}
+               {notificationButton(link.url)}
               <m.p
                 whileHover={{ scale: 1.5 }}
                 whileTap={{ scale: 1 }}
                 key={link.name}
-                className={`cursor-pointer hover:underline hover:text-[#2A4E3A] ${isActive(link.url) ? "scale-1.5 underline text-[#2A4E3A]": ""}`}
+                className={`cursor-pointer hover:underline hover:text-[#2A4E3A] ${isActive(link.url) ? " underline text-[#2A4E3A]": ""}`}
               >
                 {link.name}
               </m.p>
