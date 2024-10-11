@@ -6,7 +6,7 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 import {shopcroche} from "../../DradiantImages";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {productsActions, cartActions} from "../../../store/index";
+import {productsActions, wishlistActions, cartActions} from "../../../store/index";
 import {motion} from "framer-motion";
 import Image from "next/image";
 
@@ -19,12 +19,11 @@ const page = ()=>{
    const searchQuery= useSelector(state=>state.search.searchQuery);
    const shopItems = useSelector(state=>state.products.recentShopItems)
    
-   const isLiked = wishlistItems.some(item=>item.name === name);
-   const likeIcons = isLiked?<IoIosHeart className="size-[24px] text-[#7B7768]"/>:<IoIosHeartEmpty className="size-[24px] text-[#7B7768]"/>
+   const isLiked = (name)=> wishlistItems.some(item=>item.name === name);
+   const likeIcons = isLiked ? <IoIosHeart className="size-[24px] text-[#7B7768]"/>:<IoIosHeartEmpty className="size-[24px] text-[#7B7768]"/>;
 
-   const addToWishlistHandler = ()=>{
-    isLiked ? (dispatch(wishlistActions.removeFromWishlist(name))) : dispatch(wishlistActions.addToWishlist({name, price, image, desc, quantity}));
-
+   const addToWishlistHandler = (name)=>{
+    isLiked(name) ? (dispatch(wishlistActions.removeFromWishlist(name))) : dispatch(wishlistActions.addToWishlist(cart.find(item=>item.name==name)));
   }
 
    const incrementItemQuantityHandler = (name)=>{
@@ -56,7 +55,7 @@ const page = ()=>{
                      <div className="middle flex flex-col gap-[49px]">
                         <div className="top-middle flex gap-[30px] items-center">
                             <p className="name text-[36px]">{item.name.toUpperCase()}</p>
-                            <div onClick={addToWishlistHandler} className="like relative  bg-[#fff] rounded-full size-[33px] border-[1px] border-[#7B7768] flex items-center justify-center cursor-pointer">{likeIcons}</div>
+                            <div onClick={()=>addToWishlistHandler(item.name)} className="like relative  bg-[#fff] rounded-full size-[33px] border-[1px] border-[#7B7768] flex items-center justify-center cursor-pointer">{likeIcons}</div>
                         </div>
                         <p className="desc">{item.desc}</p>
                      </div>
