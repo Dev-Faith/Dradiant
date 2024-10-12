@@ -48,6 +48,10 @@ const page = () => {
     dispatch(cartActions.removeFromCart(name));
   };
 
+  const emptyCartHandler = ()=>{
+    dispatch(cartActions.emptyCart())
+  }
+
  const totalPrice =
    cart.length > 0
      ? cart.reduce(
@@ -148,7 +152,7 @@ const page = () => {
           <p className="total "> ₦{totalPrice.toLocaleString()}</p>
         </div>
         <div className="checkout&empty flex  items-center gap-[24px]">
-          <button className="empty text-[24px]  underline text-[#6A5F11]">
+          <button onClick={emptyCartHandler} className="empty text-[24px]  underline text-[#6A5F11]">
             Empty Cart
           </button>
           <button className="checkout text-[24px] bg-[#6A5F11] rounded-[10px] text-[#fff] px-[20px] py-[10px]">

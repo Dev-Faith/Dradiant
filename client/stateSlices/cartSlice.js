@@ -17,6 +17,9 @@ const cartSlice = createSlice({
         decrementItemQuantity(state, action){
           state.items = state.items.map(item=>item.name==action.payload && item.quantity>1 ? {...item, quantity: item.quantity-1} : item)
         },
+        emptyCart(state, action) {
+            state.items = []
+        }
     }
 })
 
