@@ -44,5 +44,5 @@ export const productsActions = productSlice.actions;
 export const cartActions = cartSlice.actions;
 
 export const store = configureStore({
-    reducer: {cursor: cursorSlice.reducer, search:searchSlice.reducer, wishlist:wishlistSlice.reducer, products:productSlice.reducer, cart:cartSlice.reducer}
+    reducer: { cursor: cursorSlice.reducer, search: searchSlice.reducer, wishlist: wishlistSlice.reducer, products: productSlice.reducer, cart: cartSlice.reducer }
 });

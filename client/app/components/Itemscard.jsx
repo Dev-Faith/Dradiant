@@ -8,8 +8,7 @@ import {wishlistActions, cartActions} from "../../store/index";
 import Link from "next/link";
 
 
-export default function Itemscard({name}){
-  const {price, image, desc, quantity} = useSelector(state=> state.products.recentShopItems.find(item=>item.name));
+export default function Itemscard({name,price, image, desc, quantity}){
   const dispatch = useDispatch();
   const wishlistItems = useSelector(state=>state.wishlist.items)
   const currentItem = wishlistItems.filter(item=>item.name==name);
