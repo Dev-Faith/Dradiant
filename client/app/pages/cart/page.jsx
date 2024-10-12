@@ -146,13 +146,16 @@ const page = () => {
             })
           : "There's nothing in the cart!"}
       </div>
-      <div className="clearItem&total self-end flex flex-col gap-[64px] items-end">
+      <div className="clearItem&total self-end flex flex-col gap-[64px] items-end pb-[64px]">
         <div className="total flex items-center gap-[24px] text-[36px] text-[#6A5F11]">
           <p className="label ">Sum total:</p>
           <p className="total "> ₦{totalPrice.toLocaleString()}</p>
         </div>
         <div className="checkout&empty flex  items-center gap-[24px]">
-          <button onClick={emptyCartHandler} className="empty text-[24px]  underline text-[#6A5F11]">
+          <button
+            onClick={emptyCartHandler}
+            className="empty text-[24px]  underline text-[#6A5F11]"
+          >
             Empty Cart
           </button>
           <button className="checkout text-[24px] bg-[#6A5F11] rounded-[10px] text-[#fff] px-[20px] py-[10px]">
