@@ -14,17 +14,31 @@ const pages = ()=>{
     item.desc.toLowerCase().includes(searchQuery.toLowerCase())
   );
   
-    return(
-        <m.div layout className="py-[56px] px-[125px] flex flex-col gap-[64px]">
-             <p className="text-[64px] ">Your wishlist ⭐️</p>
-             <Searchbox />
-             {filteredItems.length === 0 ? "There's no item that matches your search!" : (
-                <div className="wishlist grid grid-cols-5 gap-[40px]">
-                     {filteredItems.map(item=><Itemscard key={item.name} image={item.image} name={item.name} desc={item.desc} price={item.price} liked={item.liked} />)}
-                </div>
-             )}
-        </m.div>
-    )
+    return (
+      <m.div
+        layout
+        className="py-[56px] px-[11px] xl:px-[125px] flex flex-col gap-[64px]"
+      >
+        <p className=" text-[24px] xl:text-[64px] ">Your wishlist ⭐️</p>
+        <Searchbox />
+        {filteredItems.length === 0 ? (
+          "There's no item that matches your search!"
+        ) : (
+          <div className="wishlist grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-[10px] sm:gap-[30px] md:gap-[30px] lg:gap-[46px]">
+            {filteredItems.map((item) => (
+              <Itemscard
+                key={item.name}
+                image={item.image}
+                name={item.name}
+                desc={item.desc}
+                price={item.price}
+                quantity={item.quantity}
+              />
+            ))}
+          </div>
+        )}
+      </m.div>
+    );
 }
 
 export default pages;

@@ -2,7 +2,7 @@ const page = () => {
   return (
     <div className="px-[125px] pt-[64px] flex flex-col items-center gap-[73px]">
       <div className="welcome flex flex-col gap-[16px] justify-center">
-        <p className="text-[36px] text-center">Welcome back to</p>
+        <p className="text-[36px] text-center">Welcome to</p>
         <p className="text-[36px] logo text-center">DRADIANTBAGS</p>
       </div>
       <form className="flex flex-col w-[657px] h-[610px] rounded-[30px] bg-[#E8E2D4] px-[135px] py-[64px] gap-[30px] items-center">

@@ -22,9 +22,9 @@ const page = () => {
 
   const isLiked = (name) => wishlistItems.some((item) => item.name === name);
   const likeIcons = isLiked() ? (
-    <IoIosHeart className="size-[24px] text-[#7B7768]" />
+    <IoIosHeart className="xl:size-[24px] size-[12px] text-[#7B7768]" />
   ) : (
-    <IoIosHeartEmpty className="size-[24px] text-[#7B7768]" />
+    <IoIosHeartEmpty className="xl:size-[24px] size-[12px] text-[#7B7768]" />
   );
 
   const addToWishlistHandler = (name) => {
@@ -68,7 +68,7 @@ const page = () => {
   );
 
   return (
-    <div className=" h-[100vh] py-[56px] px-[125px] flex flex-col gap-[64px]">
+    <div className=" h-[100vh] py-[56px] px-[11px] xl:px-[125px] flex flex-col gap-[64px]">
       <Searchbox />
       <div className="cartItems flex flex-col w-full">
         {filteredItems.length !== 0
@@ -84,27 +84,28 @@ const page = () => {
                   className="flex items-center w-full border-b-[1px] border-[#7B7768] justify-between py-[16px]"
                   key={item.name}
                 >
-                  <div className="flex gap-[60px] items-center">
+                  <div className="flex gap-[12px] xl:gap-[60px] items-center">
                     <Image
                       src={item.image}
                       alt={item.name}
                       width="104"
                       height="101"
+                      className="w-[75px] h-[72.84px] xl:w-[104px] xl:h-[101px] "
                     />
-                    <div className="middle flex flex-col gap-[20px]">
-                      <div className="top-middle flex gap-[30px] items-center">
-                        <p className="name text-[24px] text-[#6A5F11]">
+                    <div className="middle flex flex-col gap-[17px] xl:gap-[20px]">
+                      <div className="top-middle flex gap-[10px] xl:gap-[30px] items-center">
+                        <p className="name text-[16px] xl:text-[24px] text-[#6A5F11]">
                           {item.name.toUpperCase()}
                         </p>
                         <button
                           onClick={() => addToWishlistHandler(item.name)}
-                          className="like relative bg-[#fff] rounded-full size-[24px] border-[1px] border-[#7B7768] flex items-center justify-center cursor-pointer"
+                          className="like relative bg-[#fff] rounded-full size-[18px] xl:size-[24px] border-[1px] border-[#7B7768] flex items-center justify-center cursor-pointer"
                         >
                           {likeIcons}
                         </button>
                       </div>
                       <Link href={`shop/${item.name}`} className="">
-                        <p className="desc text-[20px] w-[390px] hover:underline hover:text-[#7B7768]">
+                        <p className="desc  text-[10px] xl:text-[20px] w-[130px] xl:w-[390px] hover:underline hover:text-[#7B7768]">
                           {item.desc}
                         </p>
                       </Link>
@@ -118,7 +119,7 @@ const page = () => {
                       >
                         Remove
                       </button>
-                      <p className="price text-[28px] text-[#6A5F11]">
+                      <p className="price text-[16px] xl:text-[28px] text-[#6A5F11]">
                         ₦
                         {(
                           Number(item.price.replace(/,/g, "")) * item.quantity
@@ -128,14 +129,16 @@ const page = () => {
                     <div className="incrementals flex items-center justify-between">
                       <button
                         onClick={() => decrementItemQuantityHandler(item.name)}
-                        className="minus size-[24px] text-[18px] rounded-[5px] text-[#6A5F11] flex items-center justify-center"
+                        className="minus size-[16px] xl:size-[24px] text-[18px] rounded-[5px] text-[#6A5F11] flex items-center justify-center"
                       >
                         <FaMinus />
                       </button>
-                      <p className="text-[24px]">{item.quantity}</p>
+                      <p className=" text-[16px] xl:text-[24px]">
+                        {item.quantity}
+                      </p>
                       <button
                         onClick={() => incrementItemQuantityHandler(item.name)}
-                        className="plus size-[24px] text-[16px] bg-[#6A5F11] rounded-[5px] text-[#fff] flex items-center justify-center"
+                        className="plus size-[16px] xl:size-[24px] text-[16px] bg-[#6A5F11] rounded-[5px] text-[#fff] flex items-center justify-center"
                       >
                         <FaPlus />
                       </button>
@@ -146,19 +149,19 @@ const page = () => {
             })
           : "There's nothing in the cart!"}
       </div>
-      <div className="clearItem&total self-end flex flex-col gap-[64px] items-end pb-[64px]">
-        <div className="total flex items-center gap-[24px] text-[36px] text-[#6A5F11]">
-          <p className="label ">Sum total:</p>
+      <div className="clearItem&total self-end flex flex-col gap-[20px] xl:gap-[64px] items-end pb-[64px]">
+        <div className="total flex items-center gap-[24px] text-[16px] xl:text-[36px] text-[#6A5F11]">
+          <p className="label">Sum total:</p>
           <p className="total "> ₦{totalPrice.toLocaleString()}</p>
         </div>
-        <div className="checkout&empty flex  items-center gap-[24px]">
+        <div className="checkout&empty flex  items-center gap-[20px] xl:gap-[24px]">
           <button
             onClick={emptyCartHandler}
-            className="empty text-[24px]  underline text-[#6A5F11]"
+            className="empty text-[16px] xl:text-[24px]  underline text-[#6A5F11]"
           >
             Empty Cart
           </button>
-          <button className="checkout text-[24px] bg-[#6A5F11] rounded-[10px] text-[#fff] px-[20px] py-[10px]">
+          <button className="checkout text-[16px] xl:text-[24px] bg-[#6A5F11] rounded-[10px] text-[#fff] xl:px-[20px] px-[8px] py-[4px] xl:py-[10px]">
             Checkout
           </button>
         </div>

@@ -2,6 +2,7 @@
 import {React, useState} from 'react';
 import { IoSearch } from "react-icons/io5";
 import { TiShoppingCart } from "react-icons/ti";
+import { IoIosHeartEmpty, IoIosHeart, IoIosCart } from "react-icons/io";
 import Link from 'next/link';
 import MenuSheet from './Sidemenu';
 import { RiMenu3Line } from "react-icons/ri";
@@ -22,7 +23,6 @@ const Layout = () => {
   };
 
   const isActive = (path)=>currentPath == path;
-  console.log(currentPath);
 
   const navLinks = [
     {
@@ -82,9 +82,16 @@ const Layout = () => {
     <>
       {currentPath !== "/pages/signin" && currentPath !== "/pages/signup" && (
         <div className="xl:px-[123px] px-[11px] lg:px-[50px] md:px-[50px] py-[24px] flex justify-between items-center border-b-[1px] w-[100%] border-[#7B7768]">
-          <div className="text-[24px] xl:hidden items-start">
-            <IoSearch />
-          </div>
+          <Link href="/pages/wishlist" className=" relative text-[24px] xl:hidden items-start">
+            <div
+              className={` bg-[#7B7768] rounded-full size-[18px] border-[1px] text-[#fff] items-center justify-center ${
+                wishListItems.length === 0 ? "hidden" : "flex"
+              } cursor-pointer absolute top-[-12px] right-[-12px] text-[13px]/[0] pt-[4px] align-middle`}
+            >
+              {wishListItems.length}
+            </div>
+            <IoIosHeart />
+          </Link>
           <div className="left xl:flex gap-[32px] text-[16px] hidden">
             {navLinks.map((link) =>
               link.position === "left" ? (
@@ -111,8 +118,15 @@ const Layout = () => {
             </Link>
           </div>
           <div className="text-[24px] flex items-center w-[86px] justify-between xl:hidden">
-            <Link href="https://bit.ly/ShopfromDradiant">
-              <TiShoppingCart />
+            <Link href="/pages/cart" className="relative">
+              <div
+                className={` bg-[#7B7768] rounded-full size-[18px] border-[1px] text-[#fff] items-center justify-center ${
+                  cartItems.length === 0 ? "hidden" : "flex"
+                } cursor-pointer absolute top-[-12px] right-[-12px] text-[13px]/[0] pt-[4px] align-middle`}
+              >
+                {cartItems.length}
+              </div>
+              {<TiShoppingCart />}
             </Link>
             <RiMenu3Line className="size-[24px]" onClick={toggleMenu} />
             <AnimatePresence>
