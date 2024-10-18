@@ -8,7 +8,7 @@ import {
   wishlistActions,
   cartActions,
 } from "../../../store/index";
-import { motion } from "framer-motion";
+import { motion as m} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -70,7 +70,7 @@ const page = () => {
   return (
     <div className=" h-[100vh] py-[56px] px-[11px] xl:px-[125px] flex flex-col gap-[64px]">
       <Searchbox />
-      <div className="cartItems flex flex-col w-full">
+      <m.div className="cartItems flex flex-col w-full">
         {filteredItems.length !== 0
           ? filteredItems.map((item) => {
               const likeIcons = isLiked(item.name) ? (
@@ -148,7 +148,7 @@ const page = () => {
               );
             })
           : "There's nothing in the cart!"}
-      </div>
+      </m.div>
       <div className="clearItem&total self-end flex flex-col gap-[20px] xl:gap-[64px] items-end pb-[64px]">
         <div className="total flex items-center gap-[24px] text-[16px] xl:text-[36px] text-[#6A5F11]">
           <p className="label">Sum total:</p>

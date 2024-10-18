@@ -47,7 +47,7 @@ export default function Itemscard({name,price, image, desc, quantity}){
     return (
       <m.div
         name={name}
-        className="border-[1px] border-[#7B7768] rounded-[20px] min-w-[150px] sm:min-w-[169px] md:min-w-[200px] md:max-w-[200px] lg:min-w-[263px] lg:max-w-[263px] sm:max-w-[169px]  h-[196px] md:h-[280px] lg:h-[310px] flex flex-col items-center px-[14px] md:px-[17px] py-[18px] md:py-[16px] gap-[11px] md:gap-[23px]"
+        className=" bg-[#F3EDE0] border-[1px] border-[#7B7768] rounded-[20px] min-w-[150px] sm:min-w-[169px] md:min-w-[200px] md:max-w-[200px] lg:min-w-[263px] lg:max-w-[263px] sm:max-w-[169px]  h-[196px] md:h-[280px] lg:h-[310px] flex flex-col items-center px-[14px] md:px-[17px] py-[18px] md:py-[16px] gap-[11px] md:gap-[23px]"
         layout
       >
         <div className="image&Liked flex w-full justify-between">
