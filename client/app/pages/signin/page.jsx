@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FallingLines } from "react-loader-spinner";
 import { loginUser } from "../../../stateSlices/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import { GoEye, GoEyeClosed } from "react-icons/go";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -12,6 +13,8 @@ const page = () => {
     email: "",
     password: "",
   });
+
+  const [see, setSee] = useState(false);
 
   const router = useRouter();
 
@@ -23,10 +26,6 @@ const page = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(loginUser(formData));
-    !loading && user?.message && toast.success(user.message);
-    !loading && toast.error(error);
-    !loading && setFormData({ email: "", password: "" });
-    isAuthenticated && router.push("/pages/cart");
   };
 
   const onChangeHandler = (e) => {
@@ -38,6 +37,11 @@ const page = () => {
         setFormData({ ...formData, password: e.target.value });
     }
   };
+
+  useEffect(() => {
+    isAuthenticated && router.push("/pages/cart");
+    !loading && setFormData({ email: "", password: "" });
+  }, [isAuthenticated, loading, user, error]);
 
   return (
     <div className=" px-[16px] xl:px-[125px] pt-[64px] flex flex-col items-center gap-[36px]">
@@ -68,17 +72,24 @@ const page = () => {
             placeholder="e.g Olubimo@gmail.com"
           />
         </div>
-        <div className="password self-start flex flex-col gap-[10px] w-full">
+        <div className="password relative self-start flex flex-col gap-[10px] w-full">
           <label htmlFor="" className="self-start">
             Password
           </label>
           <input
             value={formData.password}
             onChange={onChangeHandler}
-            type="password"
+            type={see ? "text" : "password"}
             className="self-start bg-[#E8E2D4] border-[1px] border-[#6A5F11] px-[16px] py-[8px] w-full rounded-[8px] outline-none"
             placeholder="***"
           />
+          <button
+            type="button"
+            className="absolute bottom-[12px] right-[16px]"
+            onClick={() => setSee(!see)}
+          >
+            {see ? <GoEye /> : <GoEyeClosed />}
+          </button>
         </div>
         <button
           type="submit"
@@ -97,7 +108,10 @@ const page = () => {
         </button>
         <div className="signup flex items-center gap-[8px]">
           <p className="text-[16px]">Got no account?</p>
-          <Link href="./signup"> <p className="text-[#426651] underline text-[16px]">Sign up</p></Link>
+          <Link href="./signup">
+            {" "}
+            <p className="text-[#426651] underline text-[16px]">Sign up</p>
+          </Link>
         </div>
       </form>
     </div>

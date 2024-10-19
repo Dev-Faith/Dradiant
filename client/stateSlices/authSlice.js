@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
@@ -48,15 +49,20 @@ const authSlice = createSlice({
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.user = null
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
+        toast.success(action.payload.message)
         state.user = action.payload;
+        state.error = null;
         state.isAuthenticated = true;
         localStorage.setItem("token", action.payload.token);
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.user = null;
         state.loading = false;
+        toast.error(action.payload)
         state.error = action.payload;
       });
 
@@ -65,15 +71,21 @@ const authSlice = createSlice({
       .addCase(signupUser.pending, (state) => {
         state.loading = true;
         state.user = null;
+        state.error = null
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.loading = false;
+        toast.success(action.payload.message);
         state.user = action.payload;
+        state.error = null
         state.isAuthenticated = true;
         localStorage.setItem("token", action.payload.token);
+        
       })
       .addCase(signupUser.rejected, (state, action) => {
+        state.user = null;
         state.loading = false;
+         toast.error(action.payload);
         state.error = action.payload;
       });
   },

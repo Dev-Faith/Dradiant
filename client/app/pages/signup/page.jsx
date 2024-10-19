@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FallingLines } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../../stateSlices/authSlice";
 import { ToastContainer, toast } from "react-toastify";
+import { GoEye, GoEyeClosed } from "react-icons/go";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -12,6 +13,8 @@ const page = () => {
     email: "",
     password: "",
   });
+
+  const [see, setSee] = useState(false);
 
   const router = useRouter();
 
@@ -23,10 +26,6 @@ const page = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(signupUser(formData));
-    !loading && user?.message && toast.success(user.message);
-    !loading && toast.error(error);
-    !loading && setFormData({ email: "", password: "" });
-    isAuthenticated && router.push("/pages/cart");
   };
 
   const onChangeHandler = (e) => {
@@ -38,6 +37,11 @@ const page = () => {
         setFormData({ ...formData, password: e.target.value });
     }
   };
+
+  useEffect(() => {
+    isAuthenticated && router.push("/pages/cart");
+    !loading && setFormData({ email: "", password: "" });
+  }, [isAuthenticated, loading, user, error]);
 
   return (
     <div className=" px-[16px] xl:px-[125px] pt-[64px] flex flex-col items-center gap-[36px]">
@@ -73,10 +77,17 @@ const page = () => {
           <input
             value={formData.password}
             onChange={onChangeHandler}
-            type="password"
+            type={see ? "text" : "password"}
             className="self-start bg-[#E8E2D4] border-[1px] border-[#6A5F11] px-[16px] py-[8px] w-full rounded-[8px] outline-none"
             placeholder="***"
           />
+          <button
+            type="button"
+            className="absolute bottom-[12px] right-[16px]"
+            onClick={() => setSee(!see)}
+          >
+            {see ? <GoEye /> : <GoEyeClosed />}
+          </button>
         </div>
         <button
           type="submit"
