@@ -3,6 +3,9 @@ import { useState } from "react";
 import { FallingLines } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../../stateSlices/authSlice";
+import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const page = () => {
   const [formData, setFormData] = useState({
@@ -10,12 +13,20 @@ const page = () => {
     password: "",
   });
 
+  const router = useRouter();
+
   const dispatch = useDispatch();
-  const { loading, error, user } = useSelector((state) => state.auth);
+  const { loading, error, user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(signupUser(formData));
+    !loading && user?.message && toast.success(user.message);
+    !loading && toast.error(error);
+    !loading && setFormData({ email: "", password: "" });
+    isAuthenticated && router.push("/pages/cart");
   };
 
   const onChangeHandler = (e) => {
@@ -40,11 +51,11 @@ const page = () => {
         onSubmit={submitHandler}
         className="flex flex-col w-full h-auto xl:w-[657px] xl:h-[550px] rounded-[10px] xl:rounded-[30px] bg-[#E8E2D4] px-[13px] py-[16px] xl:px-[135px] xl:py-[64px] gap-[30px] items-center"
       >
-        <p className="signin text-[16px] font-bold xl:text-[32px] self-start">
+        <p className="signin font-bold text-[16px] font-bold xl:text-[32px] self-start">
           Sign Up:
         </p>
         <div className="email self-start flex flex-col gap-[10px] w-full">
-          <label htmlFor="" className="self-start">
+          <label htmlFor="" className="self-start font-bold">
             Email
           </label>
           <input
@@ -56,7 +67,7 @@ const page = () => {
           />
         </div>
         <div className="password self-start flex flex-col gap-[10px] w-full">
-          <label htmlFor="" className="self-start">
+          <label htmlFor="" className="self-start font-bold">
             Password
           </label>
           <input
@@ -69,22 +80,21 @@ const page = () => {
         </div>
         <button
           type="submit"
-          className="self-start bg-[#6A5F11] text-[16px] text-[#fff] p-[16px] rounded-[8px] w-full flex justify-center"
+          className="self-start bg-[#6A5F11] text-[16px] text-[#fff] p-[16px] rounded-[8px] w-full flex justify-center font-bold"
         >
           {loading ? (
-            <FallingLines
-              color="#fff"
-              width="33"
-              visible={true}
-              className="hidden"
-            />
+            <FallingLines color="#fff" width="33" visible={true} />
           ) : (
             "sign Up"
           )}
         </button>
         <div className="signup flex items-center gap-[8px]">
           <p className="text-[16px]">Got an account already?</p>
-          <p className="text-[#426651] underline text-[16px]">Sign In</p>
+          <Link href="./signin">
+            <p className="text-[#426651] underline text-[16px] font-bold">
+              Sign In
+            </p>
+          </Link>
         </div>
       </form>
     </div>

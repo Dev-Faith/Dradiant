@@ -3,22 +3,30 @@ import { useState } from "react";
 import { FallingLines } from "react-loader-spinner";
 import { loginUser } from "../../../stateSlices/authSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const page = () => {
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const dispatch = useDispatch();
-  const { error, loading } = useSelector(state => state.auth);
+  const router = useRouter();
 
+  const dispatch = useDispatch();
+  const { error, loading, user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(loginUser(formData));
-     console.log(error);
+    !loading && user?.message && toast.success(user.message);
+    !loading && toast.error(error);
+    !loading && setFormData({ email: "", password: "" });
+    isAuthenticated && router.push("/pages/cart");
   };
 
   const onChangeHandler = (e) => {
@@ -89,7 +97,7 @@ const page = () => {
         </button>
         <div className="signup flex items-center gap-[8px]">
           <p className="text-[16px]">Got no account?</p>
-          <p className="text-[#426651] underline text-[16px]">Sign up</p>
+          <Link href="./signup"> <p className="text-[#426651] underline text-[16px]">Sign up</p></Link>
         </div>
       </form>
     </div>

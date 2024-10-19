@@ -53,7 +53,7 @@ const page = ()=>{
             <div className="flex flex-col gap-[50px]">
               <div className="recent flex flex-col gap-[28px]">
                 <div className="flex items-center gap-[15px] text-[16px] cursor-pointer">
-                  <p>Recent</p>
+                  <p className="font-bold">Recent</p>
                   {toggle.recent == false ? (
                     <IoIosArrowForward
                       className="cursor-pointer cursor"
@@ -87,7 +87,7 @@ const page = ()=>{
               </div>
               <div className="women'sbag flex flex-col gap-[28px]">
                 <div className="flex items-center gap-[15px] text-[16px]">
-                  <p>Women's bags</p>
+                  <p className="font-bold">Women's bags</p>
                   {toggle.women == false ? (
                     <IoIosArrowForward
                       className="cursor-pointer cursor"
@@ -121,7 +121,7 @@ const page = ()=>{
               </div>
               <div className="men'sbag flex flex-col gap-[28px]">
                 <div className="flex items-center gap-[15px] text-[16px]">
-                  <p>Men's bags</p>
+                  <p className="font-bold">Men's bags</p>
                   {toggle.men == false ? (
                     <IoIosArrowForward
                       className="cursor-pointer cursor"
@@ -155,7 +155,7 @@ const page = ()=>{
               </div>
               <div className="All flex flex-col gap-[28px] pb-[56px]">
                 <div className="flex items-center gap-[15px] text-[16px]">
-                  <p>All</p>
+                  <p className="font-bold">All</p>
                   {toggle.all == false ? (
                     <IoIosArrowForward
                       className="cursor-pointer cursor"

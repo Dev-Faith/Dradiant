@@ -11,14 +11,22 @@ import {
 import { motion as m} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
+import {useRouter} from "next/navigation";
 
 const page = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  
   const cart = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist.items);
 
   const searchQuery = useSelector((state) => state.search.searchQuery);
   const shopItems = useSelector((state) => state.products.recentShopItems);
+
+  const { error, loading, user, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
 
   const isLiked = (name) => wishlistItems.some((item) => item.name === name);
   const likeIcons = isLiked() ? (
@@ -66,6 +74,10 @@ const page = () => {
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.desc.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  useEffect(() => {
+    !isAuthenticated && router.push("/pages/signin");
+  }, []);
 
   return (
     <div className=" h-[100vh] py-[56px] px-[11px] xl:px-[125px] flex flex-col gap-[64px]">
