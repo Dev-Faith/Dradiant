@@ -19,13 +19,14 @@ async function dbConnect() {
     return cached.conn;
   }
 
-
   if (!cached.promise) {
-
+    console.log("Attempting to connect to MongoDB...");
     const opts = {
       bufferCommands: false,
+      connectTimeoutMS: 30000,
+      serverSelectionTimeoutMS: 30000,
     };
-    
+
     cached.promise = mongoose
       .connect(MONGO_URL, opts)
       .then((mongoose) => {
@@ -41,5 +42,6 @@ async function dbConnect() {
   cached.conn = await cached.promise;
   return cached.conn;
 }
+
 
 export default dbConnect;

@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
 import { FallingLines } from "react-loader-spinner";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser } from "../../../stateSlices/authSlice";
 
@@ -18,14 +16,6 @@ const page = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(signupUser(formData));
-    error && console.log(error)
-    error && toast.error(error);
-    !error &&
-      toast.success(user?.message)
-      setFormData({
-        email: "",
-        password: "",
-      });
   };
 
   const onChangeHandler = (e) => {
