@@ -5,8 +5,8 @@ import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 
 export default function Home() {
   return (
-    <>
+    <div>
       <LandingPage />
-    </>
+    </div>
   );
 }

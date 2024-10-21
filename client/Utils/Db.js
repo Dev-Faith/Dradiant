@@ -35,6 +35,7 @@ async function dbConnect() {
       })
       .catch((error) => {
         console.error("MongoDB connection error:", error);
+        cached.promise = null;
         throw new Error("Failed to connect to MongoDB");
       });
   }
@@ -42,6 +43,5 @@ async function dbConnect() {
   cached.conn = await cached.promise;
   return cached.conn;
 }
-
 
 export default dbConnect;

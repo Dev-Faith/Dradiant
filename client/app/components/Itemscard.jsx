@@ -61,7 +61,7 @@ export default function Itemscard({name,price, image, desc, quantity}){
             src={image}
             width="120"
             height="117"
-            className=" w-[75px] h-[73px] md:w-[100px]  md:h-[98px] lg:w-[120px] md:h-[117px] pointer-events-none"
+            className=" w-[75px] h-[73px] md:w-[100px]  md:h-[98px] lg:w-[120px] lg:h-[117px] pointer-events-none"
           />
           <div
             onClick={addToWishlistHandler}

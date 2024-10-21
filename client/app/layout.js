@@ -25,7 +25,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${bebasNeue.variable} ${neucha.variable}`}>
+      <body
+        className={`${bebasNeue.variable} ${neucha.variable} h-screen flex flex-col`}
+      >
         <Layout>
           <ToastContainer />
           <Navbar />
