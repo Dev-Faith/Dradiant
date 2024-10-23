@@ -299,17 +299,17 @@ const Overview = () => {
   return (
     <div className="w-full p-[28px] flex flex-col gap-[45px] h-screen overflow-hidden">
       <div className="top  flex items-center justify-between w-full">
-        <p className="logo text-[57px]">Welcome dorcas!</p>
+        <p className="logo text-[57px]">Welcome Dorcas!</p>
         <div className="top-middle flex items-center gap-[59px]">
           <div className="separator bg-black w-[24px] h-[2px] "></div>
           <p className="time">Today - May 29, 2024</p>
         </div>
         <div className="profiles flex items-center min-w-[420px] justify-between">
-          <div className="search size-[71px] rounded-full flex items-center justify-center border-[1px] border-black">
+          <div className="search size-[71px] rounded-full flex items-center justify-center border-[1px] border-black cursor-pointer">
             <CiSearch className="size-[38px]" />
           </div>
-          <div className="notification size-[71px] rounded-full flex items-center justify-center border-[1px] border-black">
-            <IoIosNotificationsOutline className="size-[38px]" />
+          <div className="notification size-[71px] rounded-full flex items-center justify-center border-[1px] border-black cursor-pointer">
+            <IoIosNotificationsOutline className="size-[38px] " />
           </div>
           <div className="profile min-w-[258px] h-[71px] flex items-center justify-between bg-[#EEE8DA] rounded-[50px] pr-[16px]">
             <Image
@@ -317,13 +317,13 @@ const Overview = () => {
               alt="profile image"
               width="71"
               height="71"
-              className="w-[71px] h-[71px] fit-cover rounded-full"
+              className="w-[71px] h-[71px] fit-cover rounded-full object-fit"
             />
             <div className="texts ">
               <p className="name text-[16px]">Ajefu Omada</p>
               <p className="role text-[12px] text-[#81737A]">Executive</p>
             </div>
-            <FaChevronDown />
+            <FaChevronDown className="cursor-pointer" />
           </div>
         </div>
       </div>
@@ -349,13 +349,13 @@ const Overview = () => {
           </div>
         </div>
         <div className="right flex items-center w-[439px] justify-between">
-          <div className="warning flex items-center w-[300px]">
+          <div className="warning flex items-center w-[300px] cursor-pointer hover:underline">
             <CiWarning className="size-[24px] text-[#BA1A1A]" />
             <p className="text-[16px] ">You got 5 pending uploads</p>
           </div>
           <div className="addBags flex items-center gap-[5px]">
-            <div className="setting size-[60px] border-[1px] border-[#79747E] rounded-full flex items-center justify-center">
-              <GiSettingsKnobs className="size-[22px]" />
+            <div className="setting size-[60px] border-[1px] border-[#79747E] rounded-full flex items-center justify-center cursor-pointer">
+              <GiSettingsKnobs className="size-[22px] " />
             </div>
             <button className="bg-[#6A5F11] h-[60px] min-w-[114px] rounded-[32px] px-[16px] py-[10px] text-[#fff] text-[14px]">
               Add Bags
@@ -405,7 +405,7 @@ const Overview = () => {
                 {!checkedItems ? (
                   <MdOutlineCheckBoxOutlineBlank className="size-[24px] pointer-cursor" />
                 ) : (
-                  <IoIosCheckbox className="size-[24px] pointer-cursor" />
+                  <IoIosCheckbox className="size-[24px] cursor-pointer" />
                 )}
                 <p>{item.bagId}</p>
               </div>
@@ -435,7 +435,7 @@ const Overview = () => {
                   <p>{item.Status}</p>
                 </div>
                 <div className="menu text-[24px]">
-                  <HiOutlineDotsVertical />
+                  <HiOutlineDotsVertical className="cursor-pointer" />
                 </div>
               </div>
             </div>

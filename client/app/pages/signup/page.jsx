@@ -70,7 +70,7 @@ const page = () => {
             placeholder="e.g Olubimo@gmail.com"
           />
         </div>
-        <div className="password self-start flex flex-col gap-[10px] w-full">
+        <div className="relative password self-start flex flex-col gap-[10px] w-full">
           <label htmlFor="" className="self-start font-bold">
             Password
           </label>
@@ -78,7 +78,7 @@ const page = () => {
             value={formData.password}
             onChange={onChangeHandler}
             type={see ? "text" : "password"}
-            className="self-start bg-[#E8E2D4] border-[1px] border-[#6A5F11] px-[16px] py-[8px] w-full rounded-[8px] outline-none"
+            className=" self-start bg-[#E8E2D4] border-[1px] border-[#6A5F11] px-[16px] py-[8px] w-full rounded-[8px] outline-none"
             placeholder="***"
           />
           <button
