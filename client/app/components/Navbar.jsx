@@ -82,7 +82,7 @@ const Layout = () => {
     <>
       {currentPath !== "/pages/signin" &&
         currentPath !== "/pages/signup" &&
-        currentPath !== "/pages/admin" && (
+        !currentPath.includes("/pages/admin") && (
           <div className="xl:px-[123px] px-[11px] lg:px-[50px] md:px-[50px] py-[24px] flex justify-between items-center border-b-[1px] w-[100%] border-[#7B7768]">
             <Link
               href="/pages/wishlist"

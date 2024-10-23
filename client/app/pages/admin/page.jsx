@@ -1,11 +1,9 @@
 import React from 'react';
-import Sidemenu from "./sidemenu";
-import Overview from './overview';
+import Overview from './overview/page';
 
 const page = () => {
   return (
-    <div className="flex flex-1">
-      <Sidemenu />
+    <div className="h-full">
       <Overview/>
     </div>
   );
