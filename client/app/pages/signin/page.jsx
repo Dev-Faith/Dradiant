@@ -19,7 +19,7 @@ const page = () => {
   const router = useRouter();
 
   const dispatch = useDispatch();
-  const { error, loading, user, isAuthenticated } = useSelector(
+  const { error, loading, user, isAuthenticated, role} = useSelector(
     (state) => state.auth
   );
 
@@ -39,9 +39,13 @@ const page = () => {
   };
 
   useEffect(() => {
-    isAuthenticated && router.push("/pages/cart");
+      if (role === "admin") {
+         router.push("/pages/admin");
+      } else {
+        isAuthenticated && router.push("/pages/cart");
+      }
     !loading && setFormData({ email: "", password: "" });
-  }, [isAuthenticated, loading, user, error]);
+  }, [isAuthenticated, loading, user, error,role]);
 
   return (
     <div className=" px-[16px] xl:px-[125px] pt-[64px] flex flex-col items-center gap-[36px]">

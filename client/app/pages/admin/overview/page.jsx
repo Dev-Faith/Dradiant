@@ -292,8 +292,9 @@ const Overview = () => {
     },
   ];
 
+   
   return (
-    <div className="w-full p-[28px] h-full flex flex-col gap-[45px] overflow-hidden">
+    <div className="w-full p-[28px] h-full flex flex-col flex-1 gap-[45px] overflow-hidden">
       <div className="middle flex items-center justfiy-between">
         <div className="left w-full flex items-center gap-[60px]">
           <div className="sales w-[200px] h-[100px] flex items-center justify-between">

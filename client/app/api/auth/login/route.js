@@ -27,12 +27,14 @@ export async function POST(req) {
       );
     }
 
+    const payload = {userId:user._id, role:user.role}
+
     //generate token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_KEY, {
+    const token = jwt.sign(payload, process.env.JWT_KEY, {
       expiresIn: "1h",
     });
 
-    return NextResponse.json({ message: "Login Successful", token });
+    return NextResponse.json({ message: "Login Successful", token, role: user.role });
   } catch (error) {
     console.error("Error login in:", error);
     return NextResponse.json(

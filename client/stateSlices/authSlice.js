@@ -30,6 +30,7 @@ const initialState = {
   user: null,
   loading: false,
   error: null,
+  role: null,
   isAuthenticated: false,
 };
 
@@ -55,6 +56,7 @@ const authSlice = createSlice({
         state.loading = false;
         toast.success(action.payload.message)
         state.user = action.payload;
+        state.role = action.payload.role;
         state.error = null;
         state.isAuthenticated = true;
         localStorage.setItem("token", action.payload.token);

@@ -10,7 +10,7 @@ import footerBag from "../../DradiantImages/Dradiant_9.png";
 const Navbar = () => {
 
   return (
-    <div className="w-full p-[28px] flex flex-col gap-[45px] h-screen overflow-hidden max-h-[130px]">
+    <div className="w-full p-[28px] flex flex-col gap-[45px] h-screen overflow-hidden min-h-[130px] max-h-[130px]">
       <div className="top  flex items-center justify-between w-full">
         <p className="logo text-[57px]">Welcome Dorcas!</p>
         <div className="top-middle flex items-center gap-[59px]">
