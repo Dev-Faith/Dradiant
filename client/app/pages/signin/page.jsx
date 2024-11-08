@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import  useAuth  from "../../UseAuth";
 
 const page = () => {
   const [formData, setFormData] = useState({

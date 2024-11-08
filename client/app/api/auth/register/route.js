@@ -32,6 +32,7 @@ export async function POST(req) {
     return NextResponse.json({
       message: "registration Successful!",
       user,
+      userId:user._id
     });
   } catch (error) {
     console.error("Error handling registration:", error);

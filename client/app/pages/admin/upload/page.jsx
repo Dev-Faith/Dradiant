@@ -75,7 +75,7 @@ const UploadPage = () => {
         price: "",
         amount: "",
         category: "",
-        des: "",
+        desc: "",
         image: "",
         quantity: 1,
       });

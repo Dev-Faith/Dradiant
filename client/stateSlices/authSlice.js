@@ -43,6 +43,11 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       localStorage.removeItem("token");
     },
+    setUser(state, action) {
+      state.user = action.payload.user;
+      state.role = action.payload.role;
+      state.isAuthenticated = true;
+    },
   },
   extraReducers: (builder) => {
     //handle Signin

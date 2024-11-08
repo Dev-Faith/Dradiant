@@ -6,25 +6,30 @@ import {motion as m } from "framer-motion";
 import {useSelector, useDispatch} from "react-redux";
 import {wishlistActions, cartActions} from "../../store/index";
 import Link from "next/link";
+import { fetchCart, addToCart, removeFromCart } from '../../stateSlices/cartSlice';
+import useAuth from "../UseAuth";
 
 
-export default function Itemscard({name,price, image, desc, quantity}){
+export default function Itemscard({name,price, image, desc, quantity, productId}) {
+  useAuth();
   const dispatch = useDispatch();
-  const wishlistItems = useSelector(state=>state.wishlist.items)
+  const wishlistItems = useSelector(state=>state.wishlist.items);
   const currentItem = wishlistItems.filter(item=>item.name==name);
   const cart = useSelector(state=>state.cart.items);
+  const userId = useSelector(state=>state.auth.user?.userId);
 
     const isLiked = wishlistItems.some(item=>item.name === name);
-    const isAddedToCart = cart.some(item=>item.name == name);
+    const isAddedToCart = cart.some(item=>item.productId._id == productId);
+    // console.log(cart)
   
 
   const addToWishlistHandler = ()=>{
-    isLiked ? (dispatch(wishlistActions.removeFromWishlist(name))) : dispatch(wishlistActions.addToWishlist({name, price, image, desc, quantity}));
+    isLiked ? (dispatch(wishlistActions.removeFromWishlist(name))) : dispatch(wishlistActions.addToWishlist());
 
   }
 
   const addToCartHandler = ()=>{
-            isAddedToCart ? dispatch(cartActions.removeFromCart(name)): dispatch(cartActions.addToCart({name, price, image, desc, quantity}));
+            isAddedToCart ? dispatch(removeFromCart({userId, productId})): dispatch(addToCart({userId, quantity, productId}));
         }
 
  
@@ -59,6 +64,7 @@ export default function Itemscard({name,price, image, desc, quantity}){
           </div>
           <Image
             src={image}
+            alt={name}
             width="120"
             height="117"
             className=" w-[75px] h-[73px] md:w-[100px]  md:h-[98px] lg:w-[120px] lg:h-[117px] pointer-events-none"
@@ -70,7 +76,7 @@ export default function Itemscard({name,price, image, desc, quantity}){
             {likeIcons}
           </div>
         </div>
-        <div className="flex flex-col gap-[2px] md:gap-[18px]">
+        <div className="flex flex-col gap-[2px] md:gap-[18px] w-full h-full justify-between">
           <div className="desc&name flex flex-col gap-[2px] md:gap-[10px]">
             <p className=" text-[16px] md:text-[18px] lg:text-[24px] text-[#6A5F11]">
               {name.toUpperCase()}

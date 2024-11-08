@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { getProducts } from "@/stateSlices/productSlice";
 import { ToastContainer, toast } from "react-toastify";
+import { loginUser } from "@/stateSlices/authSlice";
 
 const page = () => {
   const [toggle, setToggle] = useState({
@@ -24,6 +25,7 @@ const page = () => {
     (state) => state.products
   );
 
+  // console.log(recentShopItems);
   
 
   const handleToggle = (group) => {
@@ -46,8 +48,12 @@ const page = () => {
 
   useEffect(() => {
     dispatch(getProducts());
-    error && toast.error(error);
-  }, []);
+  }, [dispatch]);
+  
+  useEffect(() => {
+    if (error) toast.error(error);
+  }, [error]);
+  
 
   return (
     <div className=" h-[100vh] pt-[56px] px-[13px] md:px-[50px] lg:px-[50px] xl:px-[125px] flex flex-col gap-[46px]">
@@ -59,7 +65,7 @@ const page = () => {
       </div>
       <div className="shopItemsGroups flex flex-col gap-[114px]">
         {loading ? (
-          "Loading"
+          "Loading..."
         ) : filteredItems.length === 0 ? (
           "There's no item that matches your search!"
         ) : (
@@ -94,6 +100,7 @@ const page = () => {
                     desc={item.desc}
                     price={item.price}
                     quantity={item.quantity}
+                    productId={item._id}
                   />
                 ))}
               </div>
@@ -128,6 +135,7 @@ const page = () => {
                     desc={item.desc}
                     price={item.price}
                     quantity={item.quantity}
+                    productId={item._id}
                   />
                 ))}
               </div>
@@ -162,6 +170,7 @@ const page = () => {
                     desc={item.desc}
                     price={item.price}
                     quantity={item.quantity}
+                    productId={item._id}
                   />
                 ))}
               </div>
@@ -196,6 +205,7 @@ const page = () => {
                     desc={item.desc}
                     price={item.price}
                     quantity={item.quantity}
+                    productId={item._id}
                   />
                 ))}
               </div>

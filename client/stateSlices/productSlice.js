@@ -145,7 +145,7 @@ import axios from "axios";
         const response = await axios.get("/api/bags/get");
         return response.data;
       } catch (error) {
-        return rejectWithValue(error.response?.data?.error || error.message);
+        return (rejectWithValue(error.response?.data?.error|| error.message));
       }
     }
   );
@@ -171,16 +171,17 @@ const productSlice = createSlice({
         .addCase(getProducts.pending, (state) => {
           state.loading = true;
           state.error = null;
-          console.log(state.recentShopItems, state.loading, state.error);
         })
         .addCase(getProducts.fulfilled, (state, action) => {
           state.loading = false;
           state.recentShopItems = action.payload;
           state.error = null;
+          // console.log(state.recentShopItems, state.loading, state.error);
         })
         .addCase(getProducts.rejected, (state, action) => {
           state.loading = false;
           state.error = action.payload;
+          // console.log(state.recentShopItems, state.loading, state.error);
         });
     }
 });

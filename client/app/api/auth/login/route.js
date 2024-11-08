@@ -34,7 +34,7 @@ export async function POST(req) {
       expiresIn: "1h",
     });
 
-    return NextResponse.json({ message: "Login Successful", token, role: user.role });
+    return NextResponse.json({ message: "Login Successful", token, role: user.role, userId:user._id });
   } catch (error) {
     console.error("Error login in:", error);
     return NextResponse.json(

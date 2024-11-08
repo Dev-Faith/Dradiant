@@ -9,9 +9,11 @@ import { RiMenu3Line } from "react-icons/ri";
 import { motion as m, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import {useSelector} from "react-redux";
+import useAuth from '../UseAuth';
 
 
 const Layout = () => {
+  useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const currentPath = usePathname();
@@ -100,7 +102,7 @@ const Layout = () => {
             <div className="left xl:flex gap-[32px] text-[16px] hidden">
               {navLinks.map((link) =>
                 link.position === "left" ? (
-                  <Link href={link.url}>
+                  <Link key={link.name} href={link.url}>
                     <m.p
                       whileHover={{ scale: 1.5 }}
                       whileTap={{ scale: 1 }}
@@ -143,7 +145,7 @@ const Layout = () => {
             <div className="right xl:flex gap-[32px] hidden">
               {navLinks.map((link) =>
                 link.position === "right" ? (
-                  <Link href={link.url} className="relative">
+                  <Link key={link.name} href={link.url} className="relative">
                     {notificationButton(link.url)}
                     <m.p
                       whileHover={{ scale: 1.5 }}
