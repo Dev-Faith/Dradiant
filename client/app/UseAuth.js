@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {jwtDecode} from "jwt-decode";
 import { authActions } from "../store/index";
 import { fetchCart } from "../stateSlices/cartSlice";
+import {fetchwishList} from "../stateSlices/wishListSlice";
 
 export default function UseAuth() {
   const dispatch = useDispatch();
@@ -28,6 +29,8 @@ export default function UseAuth() {
   useEffect(() => {
     if (userId) {
       dispatch(fetchCart(userId));
+      dispatch(fetchwishList(userId));
+      
     }
   }, [userId]); // Run only when `userId` changes
 }

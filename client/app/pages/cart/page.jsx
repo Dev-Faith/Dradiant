@@ -63,30 +63,30 @@ const page = () => {
     dispatch(emptyCart(userId));
   }
 
-const totalPrice =
-   cart.length > 0
-     ? cart.reduce(
-         (total, item) =>
-           total + Number(item.productId.price?.replace(/,/g, "")) * item.quantity,
-         0
-       )
-     : 0;
-
+  const totalPrice = cart.reduce(
+    (total, item) =>
+      total +
+      (item.productId?.price
+        ? Number(item.productId.price.replace(/,/g, "")) * item.quantity
+        : 0),
+    0
+  );
+  
   const filteredItems = cart.filter(
     (item) =>
-      item.productId.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.productId.desc?.toLowerCase().includes(searchQuery.toLowerCase())
+      item.productId?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.productId?.desc?.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    !token && router.push("/pages/signin");
-    if (userId) {
-      dispatch(fetchCart(userId));
-    } else {
-      router.push("/pages/signin")
-    }
-  }, []);
+  
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   !token && router.push("/pages/signin");
+  //   if (userId) {
+  //     dispatch(fetchCart(userId));
+  //   } else {
+  //     router.push("/pages/signin")
+  //   }
+  // }, []);
 
   return (
     <div className=" h-[100vh] py-[56px] px-[11px] xl:px-[125px] flex flex-col gap-[64px]">

@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import dbConnect from "../../../../Utils/Db";
 import User from "../../../../Models/User";
+import bcrypt from "bcrypt";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
@@ -29,10 +30,18 @@ export async function POST(req) {
       password: hashedPassword,
     });
 
+    const payload = {userId:user._id, role:user.role}
+
+    //generate token
+    const token = jwt.sign(payload, process.env.JWT_KEY, {
+      expiresIn: "1h",
+    });
+
     return NextResponse.json({
       message: "registration Successful!",
       user,
-      userId:user._id
+      userId:user._id,
+      token, role: user.role,
     });
   } catch (error) {
     console.error("Error handling registration:", error);

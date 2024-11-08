@@ -27,6 +27,10 @@ const page = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(loginUser(formData));
+    isAuthenticated && role==="user"&& router.push("/pages/cart");
+    role == "admin" && router.push("/pages/admin");
+
+  !loading && setFormData({ email: "", password: "" });
   };
 
   const onChangeHandler = (e) => {
@@ -40,13 +44,16 @@ const page = () => {
   };
 
   useEffect(() => {
-      if (role === "admin") {
-         router.push("/pages/admin");
-      } else {
-        isAuthenticated && router.push("/pages/cart");
-      }
+      // if (role === "admin") {
+      //    router.push("/pages/admin");
+      // } else {
+      //   isAuthenticated && router.push("/pages/cart");
+      // }
+      isAuthenticated && role==="user"&& router.push("/pages/cart");
+      role == "admin" && router.push("/pages/admin");
+
     !loading && setFormData({ email: "", password: "" });
-  }, [isAuthenticated, loading, user, error,role]);
+  }, []);
 
   return (
     <div className=" px-[16px] xl:px-[125px] pt-[64px] flex flex-col items-center gap-[36px]">

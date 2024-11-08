@@ -13,7 +13,7 @@ const cartItemSChema = new Schema({
   });
   
   const wishListSchema = new Schema({
-    product: {
+    productId: {
       type: Schema.Types.ObjectId,
       ref: "Product",
     },

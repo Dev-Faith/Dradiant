@@ -9,9 +9,11 @@ const pages = ()=>{
     const wishListItems = useSelector(state=>state.wishlist.items);
      const searchQuery= useSelector(state=>state.search.searchQuery);
 
-    const filteredItems = wishListItems.filter(item => 
-    item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    item.desc.toLowerCase().includes(searchQuery.toLowerCase())
+     console.log(wishListItems);
+
+    const filteredItems = wishListItems?.filter(item => 
+    item.productId.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    item.productId.desc.toLowerCase().includes(searchQuery.toLowerCase())
   );
   
     return (
@@ -27,12 +29,13 @@ const pages = ()=>{
           <div className="wishlist grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-[10px] sm:gap-[30px] md:gap-[30px] lg:gap-[46px]">
             {filteredItems.map((item) => (
               <Itemscard
-                key={item.name}
-                image={item.image}
-                name={item.name}
-                desc={item.desc}
-                price={item.price}
-                quantity={item.quantity}
+                key={item.productId.name}
+                image={item.productId.image}
+                name={item.productId.name}
+                desc={item.productId.desc}
+                price={item.productId.price}
+                quantity={item.productId.quantity}
+                productId = {item.productId._id}
               />
             ))}
           </div>

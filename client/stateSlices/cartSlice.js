@@ -79,20 +79,6 @@ const cartSlice = createSlice({
         error: null
     },
     reducers: {
-        // addToCart(state, action){
-        //     state.items.push(action.payload)
-        // },
-        // removeFromCart(state, action){
-        //    state.items = state.items.filter(item=>item.name!== action.payload)
-        // },
-        // incrementItemQuantity(state, action){
-        //    state.items = state.items.map(item=>item.name==action.payload ? {...item, quantity: item.quantity+1} : item)
-        // },
-        // decrementItemQuantity(state, action){
-        //   state.items = state.items.map(item=>item.name==action.payload && item.quantity>1 ? {...item, quantity: item.quantity-1} : item)
-        // },
-        // emptyCart(state, action) {
-        //     state.items = []
         },
     extraReducers: (builder) => {
         builder.addCase(fetchCart.pending, (state, action) => {

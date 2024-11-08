@@ -7,6 +7,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {wishlistActions, cartActions} from "../../store/index";
 import Link from "next/link";
 import { fetchCart, addToCart, removeFromCart } from '../../stateSlices/cartSlice';
+import { fetchwishList, addTowishList, removeFromwishList } from '../../stateSlices/wishListSlice';
 import useAuth from "../UseAuth";
 
 
@@ -14,17 +15,20 @@ export default function Itemscard({name,price, image, desc, quantity, productId}
   useAuth();
   const dispatch = useDispatch();
   const wishlistItems = useSelector(state=>state.wishlist.items);
-  const currentItem = wishlistItems.filter(item=>item.name==name);
+  // const currentItem = !wishlistActions ? null : wishlistItems.filter(item=>item.name==name);
   const cart = useSelector(state=>state.cart.items);
   const userId = useSelector(state=>state.auth.user?.userId);
 
-    const isLiked = wishlistItems.some(item=>item.name === name);
-    const isAddedToCart = cart.some(item=>item.productId._id == productId);
-    // console.log(cart)
+  console.log("wishlist:", wishlistItems)
+  console.log("cart:", cart)
+    const isLiked = wishlistItems.some(item=>item.productId?._id == productId);
+    const isAddedToCart = cart.some(item=>item.productId?._id == productId);
   
 
   const addToWishlistHandler = ()=>{
-    isLiked ? (dispatch(wishlistActions.removeFromWishlist(name))) : dispatch(wishlistActions.addToWishlist());
+  
+    isLiked ? dispatch(removeFromwishList({userId, productId})): dispatch(addTowishList({userId, quantity, productId}));
+
 
   }
 

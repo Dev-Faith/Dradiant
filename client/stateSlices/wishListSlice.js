@@ -1,11 +1,12 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 export const fetchwishList = createAsyncThunk(
     "wishListSlice/fetchwishList",
     async (userId, {rejectWithValue}) => {
        try {
-        const response = await axios.get("/api/wishlist/get", {params: {userId}});
+        const response = await axios.get(`/api/wishlist/get?userId=${userId}`);
         return response.data;
        } catch (error) {
             return rejectWithValue(error.response?.data?.error || error.message)
@@ -68,21 +69,26 @@ const wishListSlice = createSlice({
         builder.addCase(addTowishList.fulfilled, (state, action) => {
             state.items = action.payload;
             state.loading = false;
+            toast.success(action.payload.message);
         });
         builder.addCase(addTowishList.rejected, (state, action) => {
             state.error = action.payload;
             state.loading = false;
+            toast.error(state.error);
+
         });
         builder.addCase(removeFromwishList.pending, (state, action) => {
             state.loading = true;
         });
         builder.addCase(removeFromwishList.fulfilled, (state, action) => {
-            state.items = action.payload;
             state.loading = false;
+            toast.success(action.payload.message);
         });
         builder.addCase(removeFromwishList.rejected, (state, action) => {
             state.error = action.payload;
             state.loading = false;
+            toast.error(state.error);
+
         });
         
 
