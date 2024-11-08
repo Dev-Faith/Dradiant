@@ -11,7 +11,6 @@ const productSchema = new Schema(
     image: { type: String, required: true },
     category: { type: String, required: true },
     amount: { type: Number, required: true },
-    quantity: { type: Number, required: true },
   },
   { timestamps: true }
 );

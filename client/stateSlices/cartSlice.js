@@ -40,14 +40,36 @@ export const removeFromCart = createAsyncThunk(
 export const emptyCart = createAsyncThunk(
     "cartSlice/emptyCart", async (userId, {rejectWithValue}) => {
         try {
-            const response = await axios.delete("/api/cart/delete", {data: { userId, productId }});
+            const response = await axios.delete("/api/cart/delete", {data: { userId, empty:true }});
             return response.data;
         } catch (error) {
             console.log(error)
             return rejectWithValue(error.response?.data?.error || error.message);
         }
     }
-)
+);
+
+export const incrementItemQuantity = createAsyncThunk(
+    "cartSlice/incrementItemQuantity", async ({userId, productId}, {rejectWithValue}) => {
+        try {
+            const response = await axios.post("/api/cart/post", {userId, productId, increment:true});
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.error || error.message);
+        }
+    }
+);
+
+export const decrementItemQuantity = createAsyncThunk(
+    "cartSlice/decrementItemQuantity", async ({userId, productId}, {rejectWithValue}) => {
+        try {
+            const response = await axios.delete("/api/cart/delete", {data: { userId, decrement:true, productId }});
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response?.data?.error || error.message);
+        }
+    }
+);
 
 
 const cartSlice = createSlice({
@@ -63,16 +85,15 @@ const cartSlice = createSlice({
         // removeFromCart(state, action){
         //    state.items = state.items.filter(item=>item.name!== action.payload)
         // },
-        incrementItemQuantity(state, action){
-           state.items = state.items.map(item=>item.name==action.payload ? {...item, quantity: item.quantity+1} : item)
+        // incrementItemQuantity(state, action){
+        //    state.items = state.items.map(item=>item.name==action.payload ? {...item, quantity: item.quantity+1} : item)
+        // },
+        // decrementItemQuantity(state, action){
+        //   state.items = state.items.map(item=>item.name==action.payload && item.quantity>1 ? {...item, quantity: item.quantity-1} : item)
+        // },
+        // emptyCart(state, action) {
+        //     state.items = []
         },
-        decrementItemQuantity(state, action){
-          state.items = state.items.map(item=>item.name==action.payload && item.quantity>1 ? {...item, quantity: item.quantity-1} : item)
-        },
-        emptyCart(state, action) {
-            state.items = []
-        }
-    },
     extraReducers: (builder) => {
         builder.addCase(fetchCart.pending, (state, action) => {
             state.loading = true;
@@ -110,7 +131,48 @@ const cartSlice = createSlice({
             toast.error(action.payload);
         });
 
+        builder
+        .addCase(emptyCart.pending, (state) => {
+          state.loading = true;
+        })
+        .addCase(emptyCart.fulfilled, (state) => {
+          state.loading = false;
+          toast.success("Cart emptied successfully");
+        })
+        .addCase(emptyCart.rejected, (state, action) => {
+          state.error = action.payload;
+          state.loading = false;
+          toast.error("Failed to empty the cart");
+        });
 
+        builder
+        .addCase(incrementItemQuantity.pending, (state) => {
+          state.loading = true;
+        })
+        .addCase(incrementItemQuantity.fulfilled, (state) => {
+          state.loading = false;
+          toast.success("quantity plus one!");
+        })
+        .addCase(incrementItemQuantity.rejected, (state, action) => {
+          state.error = action.payload;
+          state.loading = false;
+          toast.error(state.error);;
+        });
+
+        builder
+        .addCase(decrementItemQuantity.pending, (state) => {
+          state.loading = true;
+        })
+        .addCase(decrementItemQuantity.fulfilled, (state) => {
+          state.loading = false;
+          toast.success(state.error);
+        })
+        .addCase(decrementItemQuantity.rejected, (state, action) => {
+          state.error = action.payload;
+          state.loading = false;
+          toast.error(state.error);
+        });
+       
     }
 
 })

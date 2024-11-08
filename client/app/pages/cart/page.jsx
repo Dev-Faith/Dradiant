@@ -13,7 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import {useRouter} from "next/navigation";
-import { fetchCart, addToCart, removeFromCart } from "../../../stateSlices/cartSlice";
+import { fetchCart, addToCart, removeFromCart, emptyCart, decrementItemQuantity, incrementItemQuantity } from "../../../stateSlices/cartSlice";
 
 const page = () => {
   const dispatch = useDispatch();
@@ -46,13 +46,13 @@ const page = () => {
         );
   };
 
-  const incrementItemQuantityHandler = (name) => {
-    dispatch(productsActions.incrementItemQuantity(name));
-    dispatch(cartActions.incrementItemQuantity(name));
+
+  const incrementItemQuantityHandler = (productId) => {
+    dispatch(incrementItemQuantity({userId, productId}));
   };
-  const decrementItemQuantityHandler = (name) => {
-    dispatch(productsActions.decrementItemQuantity(name));
-    dispatch(cartActions.decrementItemQuantity(name));
+
+  const decrementItemQuantityHandler = (productId) => {
+    dispatch(decrementItemQuantity({userId, productId}));
   };
 
   const removeFromCartHandler = (productId) => {
@@ -60,7 +60,7 @@ const page = () => {
   };
 
   const emptyCartHandler = ()=>{
-    dispatch(cartActions.emptyCart())
+    dispatch(emptyCart(userId));
   }
 
 const totalPrice =
@@ -94,6 +94,7 @@ const totalPrice =
       <m.div className="cartItems flex flex-col w-full">
         {filteredItems.length !== 0
           ? filteredItems.map((item) => {
+            console.log(item)
               const likeIcons = isLiked(item.productId.name) ? (
                 <IoIosHeart className="size-[16px] text-[#7B7768]" />
               ) : (
@@ -143,13 +144,13 @@ const totalPrice =
                       <p className="price text-[16px] xl:text-[28px] text-[#6A5F11]">
                         ₦
                         {(
-                          Number(item.productId.price.replace(/,/g, "")) * item.productId.quantity
+                          Number(item.productId.price.replace(/,/g, "")) * item.quantity
                         ).toLocaleString()}
                       </p>
                     </div>
                     <div className="incrementals flex items-center justify-between">
                       <button
-                        onClick={() => decrementItemQuantityHandler(item.productId.name)}
+                        onClick={() => decrementItemQuantityHandler(item.productId._id)}
                         className="minus size-[16px] xl:size-[24px] text-[18px] rounded-[5px] text-[#6A5F11] flex items-center justify-center"
                       >
                         <FaMinus />
@@ -158,7 +159,7 @@ const totalPrice =
                         {item.quantity}
                       </p>
                       <button
-                        onClick={() => incrementItemQuantityHandler(item.productId.name)}
+                        onClick={() => incrementItemQuantityHandler(item.productId._id)}
                         className="plus size-[16px] xl:size-[24px] text-[16px] bg-[#6A5F11] rounded-[5px] text-[#fff] flex items-center justify-center"
                       >
                         <FaPlus />

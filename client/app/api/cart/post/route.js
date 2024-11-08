@@ -7,7 +7,9 @@ export async function POST(req) {
     console.log("POST request received at /api/cart/post");
 
     // Extract request body data
-    const { productId, quantity, userId } = await req.json();
+    const { productId, quantity, userId, increment, decrement } = await req.json();
+
+    console.log("Request body data:", { productId, quantity, userId });
 
     try {
         // Find the user by ID
@@ -20,6 +22,15 @@ export async function POST(req) {
 
         // Check if the product already exists in the user's cart
         const existingCartItem = user.cart.find((item) => item.productId.toString() === productId);
+
+        // increment ? existingCartItem.quantity++ : decrement ? existingCartItem.quantity-- : null;
+
+        if(increment){
+            existingCartItem.quantity++;
+            console.log(existingCartItem.quantity);
+            await user.save();
+            return NextResponse.json({ message: "Item quantity plus one!" }, { status: 200 });
+        }
 
         if (existingCartItem) {
             return NextResponse.json({message:"Item is already in the cart"}, {status:400})
