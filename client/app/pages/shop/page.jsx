@@ -10,6 +10,7 @@ import { getProducts } from "@/stateSlices/productSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { loginUser } from "@/stateSlices/authSlice";
 
+
 const page = () => {
   const [toggle, setToggle] = useState({
     recent: false,
@@ -46,13 +47,13 @@ const page = () => {
       item.desc.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getProducts());
+  // }, [dispatch]);
   
-  useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) toast.error(error);
+  // }, [error]);
   
 
   return (

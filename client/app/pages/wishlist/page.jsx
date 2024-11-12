@@ -12,8 +12,8 @@ const pages = ()=>{
      console.log(wishListItems);
 
     const filteredItems = wishListItems?.filter(item => 
-    item.productId.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    item.productId.desc.toLowerCase().includes(searchQuery.toLowerCase())
+    item.productId?.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    item.productId?.desc?.toLowerCase().includes(searchQuery.toLowerCase())
   );
   
     return (

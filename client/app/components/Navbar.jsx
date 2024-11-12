@@ -10,16 +10,20 @@ import { motion as m, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import {useSelector} from "react-redux";
 import useAuth from '../UseAuth';
+import Image from "next/image";
+import { FaAngleDown } from "react-icons/fa6";
+import {profile} from "../DradiantImages";
+
 
 
 const Layout = () => {
-  useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDroppeddown, setIsDroppeddown] = useState(false);
 
   const currentPath = usePathname();
   const wishListItems = useSelector(state=>state.wishlist.items);
   const cartItems = useSelector(state=>state.cart.items);
-
+  const {isAuthenticated} = useSelector(state=>state.auth);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -56,6 +60,16 @@ const Layout = () => {
       name: "Wishlist",
       url: "/pages/wishlist",
       position: "right"
+    },
+    {
+      name: "Sign In",
+      url: "/pages/signin",
+      position: "right"
+    },
+    {
+      name: "Sign Up",
+      url: "/pages/signup",
+      position: "right"
     }
   ]
 
@@ -80,6 +94,45 @@ const Layout = () => {
       }
   }
 
+  const Dropdown = ()=>{
+    return (
+      <m.div 
+      initial={{height: 0, opacity: 0}}
+      exit={{height: 0, opacity: 0}}
+      animate={{height: isDroppeddown ? "auto" : 0, opacity: isDroppeddown ? 1 : 0,
+        transition: { when: "beforeChildren",
+          staggerChildren: 0.2
+        }}
+      }
+      className="dropdown absolute right-[16px] flex flex-col gap-[10px] top-[4rem] bg-[#F9F3E5] rounded-[10px] border-[1px] border-[#CCC6B5] overflow-hidden p-[32px] shadow-md z-40 ">
+        <m.div>
+        <Link href="/pages/profile"> 
+          <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Profile</m.p>
+        </Link>
+        </m.div>
+        <Link href="/pages/orders">
+          <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Orders</m.p>
+        </Link>
+        <Link href="/pages/logout">
+          <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Logout</m.p>
+        </Link>
+      </m.div>
+    )
+  }
+
+  const LoggedInFeatures = ()=>{
+    return (
+      <div className='flex relative items-center gap-[14px] border-l-[1px] border-dashed border-[#CCC6B5] px-[10px] ml-[25px]'>
+        <p className="greetings">Hi, Kunle Adekanye</p>
+        <Image src={profile} alt="profile image" width="31" height="31" className="size-[31px] rounded-full object-cover border-[1px] border-[#1D1C13] cursor-pointer"/>
+        <m.div animate={{rotate:isDroppeddown ? 180 : 0}} initial={{rotate:0}} exit={{rotate:0}}><FaAngleDown onClick={()=>setIsDroppeddown(!isDroppeddown)} className='cursor-pointer'/></m.div>
+        {isDroppeddown && <AnimatePresence><Dropdown/></AnimatePresence>}
+      </div>
+    )
+  }
+  
+
+
   return (
     <>
       {currentPath !== "/pages/signin" &&
@@ -99,7 +152,7 @@ const Layout = () => {
               </div>
               <IoIosHeart />
             </Link>
-            <div className="left xl:flex gap-[32px] text-[16px] hidden">
+            <div className="left xl:flex gap-[32px] text-[16px] hidden xl:min-w-[500px]">
               {navLinks.map((link) =>
                 link.position === "left" ? (
                   <Link key={link.name} href={link.url}>
@@ -142,7 +195,7 @@ const Layout = () => {
                 )}
               </AnimatePresence>
             </div>
-            <div className="right xl:flex gap-[32px] hidden">
+            <div className="right xl:flex gap-[32px] xl:gap-[0px] xl:w-full xl:justify-end p-0 xl:items-center hidden">
               {navLinks.map((link) =>
                 link.position === "right" ? (
                   <Link key={link.name} href={link.url} className="relative">
@@ -151,15 +204,18 @@ const Layout = () => {
                       whileHover={{ scale: 1.5 }}
                       whileTap={{ scale: 1 }}
                       key={link.name}
-                      className={`cursor-pointer hover:underline hover:text-[#2A4E3A] ${
+                      className={`cursor-pointer text-center w-full ${ link.url !== "/pages/signup" ?  "hover:underline hover:text-[#2A4E3A]" : null} ${
                         isActive(link.url) ? " underline text-[#2A4E3A]" : ""
-                      }`}
+                      } xl:mx-[16px] ${link.url == "/pages/signup" ? "bg-[#6A5F11] text-[#fff] rounded-[10px] p-[8px]" : ""} ${(isAuthenticated && link.url == "/pages/signin") | (isAuthenticated && link.url == "/pages/signup") && "hidden"}`}
                     >
                       {link.name}
                     </m.p>
                   </Link>
                 ) : null
               )}
+              {
+                isAuthenticated && <LoggedInFeatures/>
+              }
             </div>
           </div>
         )}

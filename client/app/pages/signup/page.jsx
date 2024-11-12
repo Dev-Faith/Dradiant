@@ -26,6 +26,7 @@ const page = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(signupUser(formData));
+    isAuthenticated && router.back();
   };
 
   const onChangeHandler = (e) => {
@@ -38,10 +39,14 @@ const page = () => {
     }
   };
 
+  // useEffect(() => {
+  //   isAuthenticated && router.push("/pages/cart");
+  //   !loading && setFormData({ email: "", password: "" });
+  // }, [isAuthenticated, loading, user, error]);
+
   useEffect(() => {
-    isAuthenticated && router.push("/pages/cart");
-    !loading && setFormData({ email: "", password: "" });
-  }, [isAuthenticated, loading, user, error]);
+    isAuthenticated && router.back();
+   }, [])
 
   return (
     <div className=" px-[16px] xl:px-[125px] pt-[64px] flex flex-col items-center gap-[36px]">

@@ -17,7 +17,7 @@ export async function POST(req) {
         
         // Return an error if the user does not exist
         if (!user) {
-            return NextResponse.json({ error: "Login to add items to cart" }, { status: 404 });
+            return NextResponse.json({ error: "please login first to add items to cart" }, { status: 404 });
         }
 
         // Check if the product already exists in the user's cart

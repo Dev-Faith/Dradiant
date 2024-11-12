@@ -26,6 +26,17 @@ export const signupUser = createAsyncThunk(
   }
 );
 
+export const updateProfile = createAsyncThunk(
+  "auth/updateProfile", async (profileData, {rejectWithValue}) => {
+    try {
+      const response = await axios.post("/api/user/updateprofile", profileData);
+      return response.data;
+    } catch (error){
+      return rejectWithValue(error.response?.data?.error || error.message);
+    }
+  }
+);
+
 const initialState = {
   user: null,
   loading: false,
@@ -95,6 +106,22 @@ const authSlice = createSlice({
          toast.error(action.payload);
         state.error = action.payload;
       });
+      
+      //Handle update profile async thunk
+      builder
+      .addCase(updateProfile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.data; // Update user data in state with response data
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload; // Update error state
+      });
+
   },
 });
 

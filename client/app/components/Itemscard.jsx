@@ -85,14 +85,14 @@ export default function Itemscard({name,price, image, desc, quantity, productId}
             <p className=" text-[16px] md:text-[18px] lg:text-[24px] text-[#6A5F11]">
               {name.toUpperCase()}
             </p>
-            <Link href={`shop/${name}`}>
+            <Link href={`shop/${productId}`}>
               <p className=" text-[8px] sm:text-[10px]/[13px] md:text-[13px]/[16px] lg:text-[16px]/[16px] text-[#1D1C13] hover:text-[#7B7768] hover:underline">
                 {desc}
               </p>
             </Link>
           </div>
           <div className="details&Price flex justify-between items-baseline">
-            <Link href={`shop/${name}`}>
+            <Link href={`shop/${productId}`}>
               <p className="underline text-[#426651] text-[12px] md:text-[16px]">
                 Details
               </p>

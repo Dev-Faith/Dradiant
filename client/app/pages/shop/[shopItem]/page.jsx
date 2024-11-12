@@ -9,42 +9,66 @@ import {
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import Image from "next/image";
+import {
+  fetchCart,
+  addToCart,
+  removeFromCart,
+  emptyCart,
+  decrementItemQuantity,
+  incrementItemQuantity,
+} from "../../../../stateSlices/cartSlice";
+import { fetchwishList, addTowishList, removeFromwishList } from '../../../../stateSlices/wishListSlice';
+import { useEffect, useState } from "react";
 
 const pages = () => {
   const dispatch = useDispatch();
-  const routeName = useParams().shopItem;
+  const routeId = useParams().shopItem;
   const shopItems = useSelector((state) => state.products.recentShopItems);
   const wishlist = useSelector((state) => state.wishlist.items);
   const cart = useSelector((state) => state.cart.items);
 
-  const product = shopItems.find((item) => item.name === routeName);
-  const productQuantity = product.quantity;
+  const [product, setProduct] = useState();
 
-  const totalPrice = (
-    Number(product.price.replace(/,/g, "")) * product.quantity
-  ).toLocaleString();
+  console.log(shopItems);
+
+  let producti = shopItems.find((item) => item._id === routeId);
+  const wishlistItems = useSelector(state=>state.wishlist.items);
+
+  const totalPrice = product?.price
+  ? Number(product.price.replace(/,/g, "")) * product.quantity
+  : 0;
 
   const addToFavouriteHandler = () => {
     wishlist.some((item) => item.name == product.name)
       ? ""
       : dispatch(wishlistActions.addToWishlist(product));
   };
+  const userId = useSelector(state=>state.auth.user?.userId);
+
+  const addToWishlistHandler = () => {
+   dispatch(addTowishList({ userId, routeId }));
+  };
+
   const addToCartHandler = () => {
-    cart.some((item) => item.name == product.name)
+    cart.some((item) => item._id == product
       ? ""
-      : dispatch(cartActions.addToCart(product));
-    console.log();
+      : dispatch(addToCart({routeId, userId})));
   };
 
   const incrementItemQuantityHandler = () => {
-    dispatch(productsActions.incrementItemQuantity(product.name));
-    dispatch(cartActions.incrementItemQuantity(product.name));
-  };
-  const decrementItemQuantityHandler = () => {
-    dispatch(productsActions.decrementItemQuantity(product.name));
-    dispatch(cartActions.decrementItemQuantity(product.name));
+    dispatch(incrementItemQuantity({ userId, routeId }));
   };
 
+  const decrementItemQuantityHandler = () => {
+    dispatch(decrementItemQuantity({ userId, routeId }));
+  };
+
+  useEffect(()=>{
+    producti=shopItems.find((item) => item._id === routeId);
+    setProduct(producti);
+  },[])
+
+ 
   return (
     <div className=" pt-[200px] xl:pt-[88px] flex flex-col xl:gap-[100px] justify-between min-h-screen">
       <div className="flex items-center justify-center gap-[42px] xl:gap-[156px] w-full">
@@ -52,10 +76,10 @@ const pages = () => {
           <IoIosArrowBack />
         </button>
         <Image
-          src={product.image}
+          src={product?.image}
           width="283"
           height="276"
-          alt={product.name}
+          alt={product?.name}
           className="w-[173px] h-[168px] xl:w-[283px] xl:h-[276px] "
         />
         <button className="arrowForward bg-[#CCC6B5] rounded-full flex items-center justify-center text-[18px] size-[33px] xl:size-[73px] xl:text-[43px] text-[#201C00] border-[1px] border-[#7B7768]">
@@ -66,23 +90,23 @@ const pages = () => {
         <div className="flex flex-col xl:gap-[80px]">
           <div className="topSection flex flex-col gap-[10px] xl:gap-[34px] ">
             <p className="text-[24px] xl:text-[40px]">
-              {product.name.toUpperCase()}
+              {product?.name.toUpperCase()}
             </p>
             <div className="flex items-end justify-between ">
               <p className="xl:w-[452px] w-[180px] text-[16px] md:text-[18px] xl:text-[28px]">
-                {product.desc}
+                {product?.desc}
               </p>
               <div className="flex flex-col items-end">
                 <div className="flex items-center gap-[2rem]">
                   <p className=" text-[16px] xl:text-[24px]">price:</p>{" "}
                   <p className=" text-[24px] xl:text-[36px] text-[#6A5F11] ">
-                    ₦{product.price}
+                    ₦{product?.price}
                   </p>
                 </div>
                 <div className="flex items-center gap-[2rem]">
                   <p className="text-[16px] xl:text-[24px]">total price:</p>{" "}
                   <p className="text-[24px] xl:text-[36px] text-[#6A5F11] ">
-                    ₦{totalPrice}
+                    ₦{totalPrice.toLocaleString()}
                   </p>
                 </div>
               </div>
@@ -91,8 +115,8 @@ const pages = () => {
           <div className="bottomSection flex justify-between items-end">
             <div className="bottom-left flex flex-col gap-[15px]">
               <p className="text-[16px] xl:text-[24px] text-[#201C00]">
-                Quantity: {productQuantity} unit
-                {productQuantity > 1 ? "s" : ""}
+                Quantity: {product?.quantity} unit
+                {product?.quantity > 1 ? "s" : ""}
               </p>
               <div className="decreament-and-increament-buttons flex gap-[24px]">
                 <button
@@ -111,7 +135,7 @@ const pages = () => {
             </div>
             <div className="bottom-right flex gap-[15px] xl:gap-[43px] items-center flex-col xl:flex-row">
               <button
-                onClick={addToFavouriteHandler}
+                onClick={addToWishlistHandler}
                 className="underline text-[16px] xl:text-[24px] text-[#201C00]"
               >
                 Add to favourite

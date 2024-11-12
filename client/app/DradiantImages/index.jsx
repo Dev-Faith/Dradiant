@@ -11,6 +11,7 @@ import classImg from "./unsplash_QjB4ZpqCESY.png"
 import footerBag from "./Dradiant_9.png";
 import cuttingGirl from "./Dradiant_7.png";
 import shopcroche from "./shopCroche.png";
+import profile from "./profileMan.png";
 
 
 export{
@@ -26,5 +27,6 @@ export{
     classImg,
     footerBag,
     cuttingGirl,
-    shopcroche
+    shopcroche,
+    profile
 }

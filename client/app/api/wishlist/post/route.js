@@ -8,6 +8,11 @@ export async function POST(req){
 
     try {
         const user = await User.findById(userId);
+
+        if (!user) {
+            return NextResponse.json({ error: "please login first to add items to the wishlist" }, { status: 404 });
+        }
+
         const existingwishlistItem = user.wishlist.find((item) => item.productId.toString() === productId);
 
         if (!existingwishlistItem) {
