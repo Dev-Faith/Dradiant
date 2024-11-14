@@ -27,7 +27,7 @@ export async function POST(req) {
       );
     }
 
-    const payload = {userId:user._id, role:user.role}
+    const payload = {...user};
 
     //generate token
     const token = jwt.sign(payload, process.env.JWT_KEY, {

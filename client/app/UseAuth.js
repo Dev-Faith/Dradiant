@@ -6,10 +6,11 @@ import { fetchCart } from "../stateSlices/cartSlice";
 import { fetchwishList } from "../stateSlices/wishListSlice";
 import { useRouter } from "next/navigation";
 import { getProducts } from "@/stateSlices/productSlice";
+import { fetchUser } from "@/stateSlices/authSlice";
 
 export default function UseAuth() {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.user?.userId);
+  const userId = useSelector((state) => state.auth.userId);
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const { recentShopItems } = useSelector((state) => state.products);
   const cartItems = useSelector((state) => state.cart.items);
@@ -28,7 +29,8 @@ export default function UseAuth() {
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        dispatch(authActions.setUser({ user: decodedToken, role: decodedToken.role }));
+        // console.log(decodedToken._doc._id);
+        dispatch(authActions.setUserId(decodedToken._doc._id));
       } catch (error) {
         console.error("Invalid token:", error);
       }
@@ -37,9 +39,11 @@ export default function UseAuth() {
 
   // Second useEffect: Fetch cart and wishlist only if items are not already in the store
   useEffect(() => {
+    const decodedToken = jwtDecode(token);
     if (userId) {
-      if (cartItems.length === 0) dispatch(fetchCart(userId));
-      if (wishlistItems.length === 0) dispatch(fetchwishList(userId));
+      dispatch(fetchUser(decodedToken._doc._id));
+      if (cartItems.length === 0) dispatch(fetchCart(decodedToken._doc._id));
+      if (wishlistItems.length === 0) dispatch(fetchwishList(decodedToken._doc._id));
     }
   }, [dispatch, userId, cartItems.length, wishlistItems.length]);
 }

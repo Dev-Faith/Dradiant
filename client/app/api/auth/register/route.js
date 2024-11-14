@@ -28,9 +28,11 @@ export async function POST(req) {
     const user = await User.create({
       email,
       password: hashedPassword,
+      
     });
 
-    const payload = {userId:user._id, role:user.role}
+    // const payload = {userId:user._id, role:user.role}
+    const payload = {...user};
 
     //generate token
     const token = jwt.sign(payload, process.env.JWT_KEY, {
@@ -44,7 +46,7 @@ export async function POST(req) {
       token, role: user.role,
     });
   } catch (error) {
-    console.error("Error handling registration:", error);
-    return NextResponse.json({ error: "There's an error here" }, { status: 400 });
+    console.log("Error handling registration:", error);
+    return NextResponse.json({ error: "There's an error here", details:error }, { status: 400 });
   }
 }

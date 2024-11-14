@@ -29,9 +29,23 @@ export const signupUser = createAsyncThunk(
 export const updateProfile = createAsyncThunk(
   "auth/updateProfile", async (profileData, {rejectWithValue}) => {
     try {
-      const response = await axios.post("/api/user/updateprofile", profileData);
+      const response = await axios.patch("/api/user/updateprofile", profileData);
+      // console.log("from the authSlice", response.data);
       return response.data;
     } catch (error){
+      console.log(error)
+      return rejectWithValue(error.response?.data?.error || error.message);
+    }
+  }
+);
+export const fetchUser = createAsyncThunk(
+  "auth/fetchUser", async (userId, {rejectWithValue}) => {
+    try {
+      const response = await axios.get(`/api/user/fetchUser?userId=${userId}`);
+      // console.log("from the authSlice", response.data);
+      return response.data;
+    } catch (error){
+      console.log(error)
       return rejectWithValue(error.response?.data?.error || error.message);
     }
   }
@@ -39,6 +53,7 @@ export const updateProfile = createAsyncThunk(
 
 const initialState = {
   user: null,
+  userId: null,
   loading: false,
   error: null,
   role: null,
@@ -54,8 +69,8 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       localStorage.removeItem("token");
     },
-    setUser(state, action) {
-      state.user = action.payload.user;
+    setUserId(state, action) {
+      state.userId = action.payload;
       state.role = action.payload.role;
       state.isAuthenticated = true;
     },
@@ -103,10 +118,10 @@ const authSlice = createSlice({
       .addCase(signupUser.rejected, (state, action) => {
         state.user = null;
         state.loading = false;
-         toast.error(action.payload);
+         toast.error(action.payload.details);
         state.error = action.payload;
       });
-      
+
       //Handle update profile async thunk
       builder
       .addCase(updateProfile.pending, (state) => {
@@ -115,11 +130,29 @@ const authSlice = createSlice({
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.data; // Update user data in state with response data
+        state.user = action.payload; 
+        toast.success(action.payload.message)
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload; // Update error state
+        state.error = action.payload;
+        toast.error(action.payload); // Update error state
+      });
+
+      builder
+      .addCase(fetchUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload; 
+        toast.success(action.payload.message)
+      })
+      .addCase(fetchUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+        toast.error(action.payload); // Update error state
       });
 
   },

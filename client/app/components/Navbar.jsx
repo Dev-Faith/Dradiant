@@ -16,6 +16,33 @@ import {profile} from "../DradiantImages";
 
 
 
+
+export  const Dropdown = ({isDroppeddown})=>{
+  return (
+    <AnimatePresence>
+    <m.div mode="wait"
+    initial={{height: 0, opacity: 0}}
+    animate={{height: isDroppeddown ? "auto" : 0, opacity: isDroppeddown ? 1 : 0,
+    }}
+    exit={{height: 0, opacity: 0}}
+    transition={{ duration: 0.3, ease: "easeInOut" }}
+    className="dropdown absolute right-[16px] flex flex-col gap-[10px] top-[4rem] bg-[#F9F3E5] rounded-[10px] border-[1px] border-[#CCC6B5] overflow-hidden p-[32px] shadow-md z-40 ">
+      <Link href="/pages/profile"> 
+        <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Profile</m.p>
+      </Link>
+      <Link href="/pages/orders">
+        <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Orders</m.p>
+      </Link>
+      <Link href="/pages/logout">
+        <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Logout</m.p>
+      </Link>
+    </m.div>
+    </AnimatePresence>
+  )
+}
+
+
+
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDroppeddown, setIsDroppeddown] = useState(false);
@@ -23,7 +50,7 @@ const Layout = () => {
   const currentPath = usePathname();
   const wishListItems = useSelector(state=>state.wishlist.items);
   const cartItems = useSelector(state=>state.cart.items);
-  const {isAuthenticated} = useSelector(state=>state.auth);
+  const {isAuthenticated, user} = useSelector(state=>state?.auth);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -94,39 +121,14 @@ const Layout = () => {
       }
   }
 
-  const Dropdown = ()=>{
-    return (
-      <m.div 
-      initial={{height: 0, opacity: 0}}
-      exit={{height: 0, opacity: 0}}
-      animate={{height: isDroppeddown ? "auto" : 0, opacity: isDroppeddown ? 1 : 0,
-        transition: { when: "beforeChildren",
-          staggerChildren: 0.2
-        }}
-      }
-      className="dropdown absolute right-[16px] flex flex-col gap-[10px] top-[4rem] bg-[#F9F3E5] rounded-[10px] border-[1px] border-[#CCC6B5] overflow-hidden p-[32px] shadow-md z-40 ">
-        <m.div>
-        <Link href="/pages/profile"> 
-          <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Profile</m.p>
-        </Link>
-        </m.div>
-        <Link href="/pages/orders">
-          <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Orders</m.p>
-        </Link>
-        <Link href="/pages/logout">
-          <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Logout</m.p>
-        </Link>
-      </m.div>
-    )
-  }
 
   const LoggedInFeatures = ()=>{
     return (
-      <div className='flex relative items-center gap-[14px] border-l-[1px] border-dashed border-[#CCC6B5] px-[10px] ml-[25px]'>
-        <p className="greetings">Hi, Kunle Adekanye</p>
+      <div className='flex relative min-w-[240px] justify-end items-center gap-[14px] border-l-[1px] border-dashed border-[#CCC6B5] px-[10px] ml-[25px]'>
+        <p className="greetings">Hi, {`${user?.user?.firstName} ${user?.user?.lastName}`}</p>
         <Image src={profile} alt="profile image" width="31" height="31" className="size-[31px] rounded-full object-cover border-[1px] border-[#1D1C13] cursor-pointer"/>
         <m.div animate={{rotate:isDroppeddown ? 180 : 0}} initial={{rotate:0}} exit={{rotate:0}}><FaAngleDown onClick={()=>setIsDroppeddown(!isDroppeddown)} className='cursor-pointer'/></m.div>
-        {isDroppeddown && <AnimatePresence><Dropdown/></AnimatePresence>}
+        <AnimatePresence>{isDroppeddown && <Dropdown isDroppeddown={isDroppeddown} />}</AnimatePresence>
       </div>
     )
   }
