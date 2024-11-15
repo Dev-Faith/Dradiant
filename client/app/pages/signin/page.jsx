@@ -56,7 +56,7 @@ const page = () => {
 
   useEffect(() => {
    isAuthenticated && router.back();
-  }, [])
+  }, [isAuthenticated])
   
 
   return (

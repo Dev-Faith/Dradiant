@@ -46,7 +46,7 @@ const page = () => {
 
   useEffect(() => {
     isAuthenticated && router.back();
-   }, [])
+   }, [isAuthenticated])
 
   return (
     <div className=" px-[16px] xl:px-[125px] pt-[64px] flex flex-col items-center gap-[36px]">

@@ -12,75 +12,157 @@ import { IoHelp } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { motion as m } from "framer-motion";
+import { motion as m, AnimatePresence } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { IoMdClose } from "react-icons/io";
+
+const Modal = React.memo(function Modal({ type, closeModal }) {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth?.user?.user || {});
+  const { loading, error } = useSelector((state) => state.auth);
+  const router = useRouter();
+
+  const logoutHandler = () => {
+    dispatch(authActions.logout());
+    closeModal();
+    router.push("/pages/signin");
+  };
+
+  const modalContent = {
+    delete: (
+        <div className="logout flex flex-col items-center xl:gap-[90px] gap-[19px] self-center">
+        <div className="texts flex flex-col items-center xl:gap-[40px] w-[405px] text-center">
+          <p className="font-bold text-[#6A5F11] xl:text-[48px] text-[32px] xl:w-[405px] w-[202px] ">
+            We will miss you! 🥰
+          </p>
+          <p className="text-[#7B7768] xl:text-[24px] text-[16px] xl:w-[405px] w-[202px]">
+            You are about to logout. Are you sure this is what you want ?
+          </p>
+        </div>
+        <div className="buttons flex justify-between xl:w-[405px] w-[202px]">
+          <m.button
+            onClick={closeModal}
+            className="text-[#6A5F11] xl:text-[24px] hover:underline p-[10px]"
+          >
+            Cancel
+          </m.button>
+          <m.button
+            whileHover={{
+              backgroundColor: "#FFF9EB",
+              color: "#6A5F11",
+              border: "1px solid #6A5F11",
+            }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 200, damping: 10 }}
+            onClick={logoutHandler}
+            className="bg-[#6A5F11] text-white xl:text-[24px] p-[10px] rounded-[10px]"
+          >
+            Confirm logout
+          </m.button>
+        </div>
+      </div>
+    ),
+  };
+
+  return (
+    <m.div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-[13px]">
+      {type !== "loading" ? (
+        <m.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.3 }}
+          className="bg-[#F9F3E5] shadow-lg p-6 w-[887px] max-w-full relative p-[45px] rounded-[10px]"
+        >
+          <IoMdClose
+            className="absolute top-[20px] right-[20px] size-[30px] text-gray-500 hover:text-gray-800 cursor-pointer"
+            onClick={closeModal}
+          />
+          <div>{modalContent[type]}</div>
+        </m.div>
+      ) : (
+        <FallingLines
+          color="#fff"
+          width="33"
+          visible={true}
+          className="hidden"
+        />
+      )}
+    </m.div>
+  );
+});
 
 const Mobilemenu = ({ setOpenSideMenu, openSideMenu }) => {
   const currentPath = usePathname();
 
+  const [clicked, setClicked] = useState(false);
+  const closeModal = () => setClicked(false);
+
   const [links, setLinks] = useState([
     {
-        title: "Overview",
-        active: true,
-        icon: <CgMenuGridO className="size-[18px]" />,
-        position: "top",
-        url: "/pages/admin",
-      },
-      {
-        title: "Upload",
-        active: false,
-        icon: <RiUploadCloud2Line className="size-[18px]" />,
-        position: "top",
-        url: "/pages/admin/upload",
-      },
-      {
-        title: "Sales",
-        active: false,
-        icon: <GiReceiveMoney className="size-[18px]" />,
-        position: "top",
-        url: "#",
-      },
-      {
-        title: "Profile",
-        active: false,
-        icon: <CgProfile className="size-[18px]" />,
-        position: "top",
-        url: "/pages/profile",
-      },
-      {
-        title: "Home",
-        active: false,
-        icon: <IoHomeOutline className="size-[18px]" />,
-        position: "top",
-        url: "/",
-      },
-      {
-        title: "Report",
-        active: false,
-        icon: <MdOutlineReportProblem className="size-[18px]" />,
-        position: "bottom",
-        url: "#",
-      },
-      {
-        title: "Help",
-        active: false,
-        icon: <IoHelp className="size-[18px]" />,
-        position: "bottom",
-        url: "#",
-      },
-      {
-        title: "Settings",
-        active: false,
-        icon: <IoSettingsOutline className="size-[18px]" />,
-        position: "bottom",
-        url: "#",
-      },
-      {
-        title: "Log out",
-        active: false,
-        icon: <CgLogOut className="size-[18px]" />,
-        position: "bottom",
-        url: "/pages/profile",
-      },
+      title: "Overview",
+      active: true,
+      icon: <CgMenuGridO className="size-[18px]" />,
+      position: "top",
+      url: "/pages/admin",
+    },
+    {
+      title: "Upload",
+      active: false,
+      icon: <RiUploadCloud2Line className="size-[18px]" />,
+      position: "top",
+      url: "/pages/admin/upload",
+    },
+    {
+      title: "Sales",
+      active: false,
+      icon: <GiReceiveMoney className="size-[18px]" />,
+      position: "top",
+      url: "#",
+    },
+    {
+      title: "Profile",
+      active: false,
+      icon: <CgProfile className="size-[18px]" />,
+      position: "top",
+      url: "/pages/profile",
+    },
+    {
+      title: "Home",
+      active: false,
+      icon: <IoHomeOutline className="size-[18px]" />,
+      position: "top",
+      url: "/",
+    },
+    {
+      title: "Report",
+      active: false,
+      icon: <MdOutlineReportProblem className="size-[18px]" />,
+      position: "bottom",
+      url: "#",
+    },
+    {
+      title: "Help",
+      active: false,
+      icon: <IoHelp className="size-[18px]" />,
+      position: "bottom",
+      url: "#",
+    },
+    {
+      title: "Settings",
+      active: false,
+      icon: <IoSettingsOutline className="size-[18px]" />,
+      position: "bottom",
+      url: "#",
+    },
+    {
+      title: "Log out",
+      active: false,
+      icon: <CgLogOut className="size-[18px]" />,
+      position: "bottom",
+      url: "/pages/profile",
+    },
   ]);
 
   const sideMenuVariant = {
@@ -112,13 +194,14 @@ const Mobilemenu = ({ setOpenSideMenu, openSideMenu }) => {
   // className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
 
   return (
-    <m.div 
-    className={`bg-black bg-opacity-50 xl:w-[12.7%] h-full full xl:hidden flex-col items-center justify-between absolute inset-0 z-10`}>
+    <m.div
+      className={`bg-black bg-opacity-50 xl:w-[12.7%] h-full full xl:hidden flex-col items-center justify-between absolute inset-0 z-10`}
+    >
       <m.div
-      variants={sideMenuVariant}
-      animate="animate"
-      initial="initial"
-      exit="initial"
+        variants={sideMenuVariant}
+        animate="animate"
+        initial="initial"
+        exit="initial"
         className={`bg-[#EEE8DA] h-full w-[50%] xl:w-full flex flex-col items-center justify-between p-[32px] absolute inset-0 z-50`}
       >
         <div className="upper flex flex-col gap-[56px] w-full">
@@ -150,12 +233,24 @@ const Mobilemenu = ({ setOpenSideMenu, openSideMenu }) => {
           <div className="links flex flex-col gap-[10px] w-full">
             {links.map(
               (link) =>
-                link.position == "bottom" && (
-                  <Link
-                    onClick={() => setOpenSideMenu(false)}
-                    href={link.url}
+                link.position == "bottom" && link.title !== "Log out" ? (
+                    <Link
+                      onClick={() => setOpenSideMenu(false)}
+                      href={link.url}
+                      key={link.title}
+                      className={`overview flex items-center gap-[10px] text-[16px]/[0px] font-bold ${
+                        link.active
+                          ? "underline text-[#426651]"
+                          : "text-[#1D1C13]"
+                      } w-full px-[8px] py-[10px] rounded-[16px]`}
+                    >
+                      {link.icon}
+                      <p className="">{link.title}</p>
+                    </Link>
+                  ): link.title == "Log out" ? ( <div
+                    onClick={() =>{ setClicked(true)}}
                     key={link.title}
-                    className={`overview flex items-center gap-[10px] text-[16px]/[0px] font-bold ${
+                    className={`overview flex items-center gap-[10px] cursor-pointer text-[16px]/[0px] font-bold ${
                       link.active
                         ? "underline text-[#426651]"
                         : "text-[#1D1C13]"
@@ -163,10 +258,12 @@ const Mobilemenu = ({ setOpenSideMenu, openSideMenu }) => {
                   >
                     {link.icon}
                     <p className="">{link.title}</p>
-                  </Link>
-                )
+                  </div>):null
             )}
           </div>
+          <AnimatePresence mode="wait">
+            {clicked && <Modal type="delete" closeModal={closeModal} />}
+          </AnimatePresence>
         </div>
       </m.div>
     </m.div>

@@ -15,9 +15,10 @@ export const fetchwishList = createAsyncThunk(
 );
 
 export const addTowishList = createAsyncThunk(
-    "wishListSlice/addTowishList", async ({userId, productId, quantity}, {rejectWithValue}) => {
+    "wishListSlice/addTowishList", async ({userId, productId, quantity}, {rejectWithValue, dispatch}) => {
         try {
             const response = await axios.post("/api/wishlist/post", {userId, productId, quantity});
+            dispatch(fetchwishList(userId));
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response?.data?.error || error.message);
@@ -26,9 +27,10 @@ export const addTowishList = createAsyncThunk(
 );
 
 export const removeFromwishList = createAsyncThunk(
-    "wishListSlice/removeFromwishList", async ({userId, productId}, {rejectWithValue}) => {
+    "wishListSlice/removeFromwishList", async ({userId, productId}, {rejectWithValue, dispatch}) => {
         try {
             const response = await axios.delete("/api/wishlist/delete", {data: {userId, productId}});
+            dispatch(fetchwishList(userId));
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response?.data?.error || error.message);
@@ -61,6 +63,7 @@ const wishListSlice = createSlice({
         });
         builder.addCase(fetchwishList.rejected, (state, action) => {
             state.error = action.payload;
+            toast.error(action.payload);
             state.loading = false;
         });
         builder.addCase(addTowishList.pending, (state, action) => {

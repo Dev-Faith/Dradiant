@@ -16,6 +16,7 @@ import {
   addTowishList,
   removeFromwishList,
 } from "../../stateSlices/wishListSlice";
+import { useEffect } from "react";
 
 export default function Itemscard({ name, price, image, desc, productId }) {
   const dispatch = useDispatch();
@@ -32,12 +33,14 @@ export default function Itemscard({ name, price, image, desc, productId }) {
     isLiked
       ? dispatch(removeFromwishList({ userId, productId }))
       : dispatch(addTowishList({ userId, productId }));
+      // dispatch(fetchwishList(userId));
   };
 
   const addToCartHandler = () => {
     isAddedToCart
       ? dispatch(removeFromCart({ userId, productId }))
       : dispatch(addToCart({ userId, productId }));
+      // dispatch(fetchCart(userId));
   };
 
   // const icon = <IoIosHeartEmpty className="size-[39px] text-[#7B7768]"/>
@@ -60,6 +63,10 @@ export default function Itemscard({ name, price, image, desc, productId }) {
     });
     return formatter.format(number);
   }
+
+  useEffect(()=>{
+
+  },[]);
 
 
   return (

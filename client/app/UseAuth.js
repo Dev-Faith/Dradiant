@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { authActions } from "../store";
 import { fetchCart } from "../stateSlices/cartSlice";
 import { fetchwishList } from "../stateSlices/wishListSlice";
@@ -15,7 +15,8 @@ export default function UseAuth() {
   const { recentShopItems } = useSelector((state) => state.products);
   const cartItems = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist.items);
-  const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   // Fetch products only if they're not already in the store
   useEffect(() => {
@@ -39,17 +40,17 @@ export default function UseAuth() {
 
   // Second useEffect: Fetch cart and wishlist only if items are not already in the store
   useEffect(() => {
-   if(token){
-    const decodedToken = jwtDecode(token);
-    dispatch(fetchUser(decodedToken._doc._id));
-   }
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      dispatch(fetchUser(decodedToken._doc._id));
+    }
     if (userId) {
-     try {
-      if (cartItems.length === 0) dispatch(fetchCart(decodedToken._doc._id));
-      if (wishlistItems.length === 0) dispatch(fetchwishList(decodedToken._doc._id));
-     } catch (error) {
-      console.error("Invalid token:", error);
-     }
+      try {
+        if (cartItems.length === 0) dispatch(fetchCart(userId));
+        if (wishlistItems.length === 0) dispatch(fetchwishList(userId));
+      } catch (error) {
+        console.error("Invalid token:", error);
+      }
     }
   }, [dispatch, userId, cartItems.length, wishlistItems.length]);
 }
