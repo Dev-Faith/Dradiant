@@ -39,8 +39,10 @@ export default function UseAuth() {
 
   // Second useEffect: Fetch cart and wishlist only if items are not already in the store
   useEffect(() => {
+   if(token){
     const decodedToken = jwtDecode(token);
     dispatch(fetchUser(decodedToken._doc._id));
+   }
     if (userId) {
      try {
       if (cartItems.length === 0) dispatch(fetchCart(decodedToken._doc._id));
