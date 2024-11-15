@@ -93,7 +93,7 @@ const MenuSheet = ({ closeMenu, isOpen}) => {
         </button>
       </div>
       <ul className="navlinks w-full h-full flex flex-col items-center justify-center md:text-[45px] text-[32px] ">
-        {navLinks.map((link) => link.title!=="Dashboard" &&( user.role=="user") ? (
+        {navLinks.map((link) => link.title!=="Dashboard" &&( user?.role=="user") ? (
           <Link
             href={link.url}
             key={link.title}
@@ -109,7 +109,7 @@ const MenuSheet = ({ closeMenu, isOpen}) => {
               {link.title}
             </m.li>
           </Link>
-        ): user.role=="admin" ?<Link
+        ): user?.role=="admin" ?<Link
         href={link.url}
         key={link.title}
         onClick={closeMenu}
@@ -123,7 +123,21 @@ const MenuSheet = ({ closeMenu, isOpen}) => {
         >
           {link.title}
         </m.li>
-      </Link>: "")}
+      </Link>: link.title!=="Dashboard" && <Link
+            href={link.url}
+            key={link.title}
+            onClick={closeMenu}
+            className=""
+          >
+            <m.li
+              className={isActive(link.url) ? "underline text-[#2A4E3A]" : ""}
+              variants={navItemVariant}
+              whileHover={{ scale: 1.5 }}
+              whileTap={{ scale: 1 }}
+            >
+              {link.title}
+            </m.li>
+          </Link>)}
       </ul>
     </m.div>
   );
