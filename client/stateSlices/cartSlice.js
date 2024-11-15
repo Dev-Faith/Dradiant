@@ -49,11 +49,13 @@ export const removeFromCart = createAsyncThunk(
 
 export const emptyCart = createAsyncThunk(
   "cartSlice/emptyCart",
-  async (userId, { rejectWithValue }) => {
+  async (userId, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.delete("/api/cart/delete", {
         data: { userId, empty: true },
       });
+      dispatch(fetchCart(userId));
+      toast.success("Cart emptied successfully");
       return response.data;
     } catch (error) {
       console.log(error);
@@ -72,6 +74,7 @@ export const incrementItemQuantity = createAsyncThunk(
         increment: true,
       });
       dispatch(fetchCart(userId));
+      toast.success("quantity plus one!");
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.error || error.message);
@@ -87,6 +90,7 @@ export const decrementItemQuantity = createAsyncThunk(
         data: { userId, decrement: true, productId },
       });
       dispatch(fetchCart(userId));
+      toast.success("quantity minus one!");
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.error || error.message);
@@ -142,7 +146,6 @@ const cartSlice = createSlice({
       })
       .addCase(emptyCart.fulfilled, (state) => {
         state.loading = false;
-        toast.success("Cart emptied successfully");
       })
       .addCase(emptyCart.rejected, (state, action) => {
         state.error = action.payload;
@@ -156,7 +159,6 @@ const cartSlice = createSlice({
       })
       .addCase(incrementItemQuantity.fulfilled, (state) => {
         state.loading = false;
-        toast.success("quantity plus one!");
       })
       .addCase(incrementItemQuantity.rejected, (state, action) => {
         state.error = action.payload;
@@ -170,7 +172,6 @@ const cartSlice = createSlice({
       })
       .addCase(decrementItemQuantity.fulfilled, (state) => {
         state.loading = false;
-        toast.success("quantity minus one!");
       })
       .addCase(decrementItemQuantity.rejected, (state, action) => {
         state.error = action.payload;

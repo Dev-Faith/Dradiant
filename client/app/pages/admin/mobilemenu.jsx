@@ -16,6 +16,7 @@ import { motion as m, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
+import { authActions } from "../../../store";
 
 const Modal = React.memo(function Modal({ type, closeModal }) {
   const dispatch = useDispatch();

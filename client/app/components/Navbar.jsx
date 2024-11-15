@@ -93,8 +93,8 @@ export  const Dropdown = React.memo(function Dropdown({isDroppeddown,setIsDroppe
       <Link href="/pages/profile" onClick={()=>setIsDroppeddown(false)}> 
         <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Profile</m.p>
       </Link>
-      <Link href="/pages/orders">
-        <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Orders</m.p>
+      <Link href="/" onClick={()=>setIsDroppeddown(false)}>
+        <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Home</m.p>
       </Link>
      { user.role=="admin" && <Link href="/pages/admin" onClick={()=>setIsDroppeddown(false)}>
         <m.p className="text-[16px] hover:text-[#7B7768] hover:underline hover:text-[#2A4E3A]">Dashboard</m.p>
@@ -226,7 +226,7 @@ const Layout = () => {
               </div>
               <IoIosHeart />
             </Link>
-            <div className="left xl:flex gap-[32px] text-[16px] hidden xl:min-w-[500px]">
+            <div className="left xl:flex gap-[32px] text-[16px] hidden xl:min-w-[40%]">
               {navLinks.map((link) =>
                 link.position === "left" ? (
                   <Link key={link.name} href={link.url}>
@@ -244,7 +244,7 @@ const Layout = () => {
                 ) : null
               )}
             </div>
-            <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center w-[20%]">
               <Link href="/">
                 <p className="logo text-[22px] text-center cursor-pointer w-full">
                   DRADIANTBAGS
@@ -269,7 +269,7 @@ const Layout = () => {
                 )}
               </AnimatePresence>
             </div>
-            <div className="right xl:flex gap-[32px] xl:gap-[0px] xl:w-full xl:justify-end p-0 xl:items-center hidden">
+            <div className="right xl:flex gap-[32px] xl:gap-[0px] xl:min-w-[40%] xl:justify-end p-0 xl:items-center hidden">
               {navLinks.map((link) =>
                 link.position === "right" ? (
                   <Link key={link.name} href={link.url} className="relative">
