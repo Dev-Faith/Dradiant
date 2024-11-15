@@ -57,7 +57,7 @@ console.log(formattedDate);  // "May 29, 2024"
 const layout = ({children}) => {
   UseAuth();
   const user = useSelector((state) => state.auth);
-  const [openSideMenu, setOpenSideMenu] = useState(true);
+  const [openSideMenu, setOpenSideMenu] = useState(false);
   // console.log(user.user?.user?.firstName);
   return (
     <div className="flex items-center flex h-screen overflow-hidden">

@@ -95,7 +95,7 @@ const UploadPage = () => {
 
   
   return (
-    <div className="w-full px-[28px] xl:pt-[64px] h-auto pb-[50px] xl:pb-[200px] flex flex-grow items-start justify-between overflow-y-auto">
+    <div className="w-full px-[28px] xl:pt-[64px] h-auto flex  mb-[50px] xl:pb-[50px] flex-grow xl:items-start justify-center xl:justify-between overflow-y-auto">
       <div className="uploadProducts flex flex-col gap-[32px]">
         <p className="xl:text-[32px]  text-[24px] font-bold">
           Upload more products to the Store
@@ -171,7 +171,7 @@ const UploadPage = () => {
               name="desc"
               placeholder="Enter description"
               rows="5"
-              className="xl h-[auto] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
+              className="xl:w-[379px] h-[auto] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
             />
           </div>
 
