@@ -15,8 +15,7 @@ const UploadPage = () => {
     amount: "",
     category: "",
     desc: "",
-    image: "",
-    quantity: 1,
+    image: ""
   });
   const [image, setImage] = useState(null);
   const [fileArray, setFileArray] = useState([]);
@@ -94,6 +93,7 @@ const UploadPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  
   return (
     <div className="w-full px-[28px] pt-[64px] h-auto pb-[200px] flex flex-grow items-start justify-between overflow-y-auto">
       <div className="uploadProducts flex flex-col gap-[32px]">
@@ -120,8 +120,7 @@ const UploadPage = () => {
               value={formData.price}
               id="price"
               name="price"
-              type="text"
-              placeholder="Enter price"
+              type="number" min="0" step="0.01" placeholder="0.00"
               className="w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
             />
           </div>
@@ -139,7 +138,21 @@ const UploadPage = () => {
           </div>
           <div className="name flex flex-col gap-[16px]">
             <label htmlFor="category">Category:</label>
-            <input
+            <select
+              value={formData.category}
+              onChange={onChangeHandler}
+              name="category"
+              id="category"
+              className="w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
+            >
+              <option value="" disabled hidden>
+                Select an option
+              </option>
+              <option value="Women's bags">Women's bags</option>
+              <option value="Men's bags">Men's bags</option>
+              <option value="Unisex bags">Unisex bags</option>
+            </select>
+            {/* <input
               onChange={onChangeHandler}
               value={formData.category}
               id="category"
@@ -147,7 +160,7 @@ const UploadPage = () => {
               type="text"
               placeholder="Enter category"
               className="w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
-            />
+            /> */}
           </div>
           <div className="name flex flex-col gap-[16px]">
             <label htmlFor="description">Description:</label>
@@ -167,7 +180,7 @@ const UploadPage = () => {
             type="file"
             className="hidden"
             onChange={(e) => handleFileUpload(e.target.files)}
-            accept="image/png"
+            accept="image/png,image/jpeg,"
           />
 
           <label

@@ -1,7 +1,7 @@
 import React from 'react';
 import Overview from './overview/page';
 
-const page = () => {
+const Page = () => {
   return (
     <div className="h-full">
       <Overview/>
@@ -9,4 +9,4 @@ const page = () => {
   );
 }
 
-export default page;
+export default Page;

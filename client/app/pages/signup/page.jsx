@@ -26,7 +26,7 @@ const page = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(signupUser(formData));
-    isAuthenticated && router.back();
+    !loading && isAuthenticated && router.back();
   };
 
   const onChangeHandler = (e) => {

@@ -43,7 +43,7 @@ const Sidemenu = () => {
       active: false,
       icon: <CgProfile className="size-[18px]" />,
       position: "top",
-      url: "/pages/admin/profile",
+      url: "/pages/profile",
     },
     {
       title: "Home",
@@ -82,8 +82,6 @@ const Sidemenu = () => {
     },
   ]);
 
-
-
   useEffect(() => {
     setLinks(
       links.map((link) => ({
@@ -91,7 +89,7 @@ const Sidemenu = () => {
         active: link.url === currentPath,
       }))
     );
-  },[currentPath]);
+  }, [currentPath]);
 
   return (
     <div className="bg-[#EEE8DA] h-full w-[12.7%] flex flex-col items-center justify-between p-[32px]">

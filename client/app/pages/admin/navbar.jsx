@@ -1,13 +1,20 @@
-import React from 'react';
+"use client";
+import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FaChevronDown } from "react-icons/fa";
 import Image from "next/image";
 import footerBag from "../../DradiantImages/Dradiant_9.png";
-
-
+import { useSelector } from "react-redux";
+import UseAuth from "../../UseAuth";
+import { defaultProfile } from "../../DradiantImages";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.auth);
+  console.log(user);
+  const { profileImage, firstName, lastName } = useSelector(
+    (state) => state.auth?.user?.user
+  );
 
   return (
     <div className="w-full p-[28px] flex flex-col gap-[45px] h-screen overflow-hidden min-h-[130px] max-h-[130px]">
@@ -26,14 +33,14 @@ const Navbar = () => {
           </div>
           <div className="profile min-w-[258px] h-[71px] flex items-center justify-between bg-[#EEE8DA] rounded-[50px] pr-[16px]">
             <Image
-              src={footerBag}
+              src={profileImage || defaultProfile}
               alt="profile image"
               width="71"
               height="71"
-              className="w-[71px] h-[71px] fit-cover rounded-full object-fit"
+              className="w-[71px] h-[71px] object-cover rounded-full object-fit"
             />
             <div className="texts ">
-              <p className="name text-[16px]">Ajefu Omada</p>
+              <p className="name text-[16px]">{`${firstName} ${lastName}`}</p>
               <p className="role text-[12px] text-[#81737A]">Executive</p>
             </div>
             <FaChevronDown className="cursor-pointer" />
@@ -42,6 +49,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;

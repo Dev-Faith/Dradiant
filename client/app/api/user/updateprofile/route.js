@@ -18,7 +18,8 @@ export async function PATCH(req) {
             city,
             state,
             country,
-            type
+            type,
+            profileImage
         } = await req.json();
 
         // Ensure user exists
@@ -49,6 +50,13 @@ export async function PATCH(req) {
                     { new: true }
                 );
                 return NextResponse.json({ message: "Address Updated Successfully", user: updatedAddress }, { status: 200 });
+            case "overview":
+                const updatedImage = await User.findByIdAndUpdate(
+                    userId,
+                    { profileImage },
+                    { new: true }
+                );
+                return NextResponse.json({ message: "Profile image Updated Successfully", user: updatedImage }, { status: 200 });
 
             default:
                 return NextResponse.json({ message: "Invalid Request" }, { status: 400 });

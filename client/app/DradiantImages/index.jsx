@@ -12,6 +12,7 @@ import footerBag from "./Dradiant_9.png";
 import cuttingGirl from "./Dradiant_7.png";
 import shopcroche from "./shopCroche.png";
 import profile from "./profileMan.png";
+import defaultProfile from "./default.webp";
 
 
 export{
@@ -28,5 +29,6 @@ export{
     footerBag,
     cuttingGirl,
     shopcroche,
-    profile
+    profile,
+    defaultProfile
 }

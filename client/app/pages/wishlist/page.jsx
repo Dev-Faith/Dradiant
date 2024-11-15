@@ -26,7 +26,7 @@ const pages = ()=>{
         {filteredItems.length === 0 ? (
           "There's no item that matches your search!"
         ) : (
-          <div className="wishlist grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-[10px] sm:gap-[30px] md:gap-[30px] lg:gap-[46px]">
+          <div className="wishlist grid no-scrollbar grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-[10px] sm:gap-[30px] md:gap-[30px] lg:gap-[46px]">
             {filteredItems.map((item) => (
               <Itemscard
                 key={item.productId.name}

@@ -151,7 +151,7 @@ const cartSlice = createSlice({
         })
         .addCase(decrementItemQuantity.fulfilled, (state) => {
           state.loading = false;
-          toast.success(state.error);
+          toast.success("quantity minus one!");
         })
         .addCase(decrementItemQuantity.rejected, (state, action) => {
           state.error = action.payload;

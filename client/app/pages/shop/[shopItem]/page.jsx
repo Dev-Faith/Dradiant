@@ -35,7 +35,7 @@ const pages = () => {
   const wishlistItems = useSelector(state=>state.wishlist.items);
 
   const totalPrice = product?.price
-  ? Number(product.price.replace(/,/g, "")) * product.quantity
+  ? product.price * 1
   : 0;
 
   const addToFavouriteHandler = () => {
@@ -67,6 +67,15 @@ const pages = () => {
     producti=shopItems.find((item) => item._id === routeId);
     setProduct(producti);
   },[])
+
+  function formatNumberWithIntl(number, decimalPlaces = 2) {
+    const formatter = new Intl.NumberFormat("en-US", {
+      style: "decimal",
+      minimumFractionDigits: decimalPlaces,
+      maximumFractionDigits: decimalPlaces,
+    });
+    return formatter.format(number);
+  }
 
  
   return (
@@ -100,13 +109,13 @@ const pages = () => {
                 <div className="flex items-center gap-[2rem]">
                   <p className=" text-[16px] xl:text-[24px]">price:</p>{" "}
                   <p className=" text-[24px] xl:text-[36px] text-[#6A5F11] ">
-                    ₦{product?.price}
+                    ₦{formatNumberWithIntl(product?.price)}
                   </p>
                 </div>
                 <div className="flex items-center gap-[2rem]">
                   <p className="text-[16px] xl:text-[24px]">total price:</p>{" "}
                   <p className="text-[24px] xl:text-[36px] text-[#6A5F11] ">
-                    ₦{totalPrice.toLocaleString()}
+                    ₦{formatNumberWithIntl(totalPrice)}
                   </p>
                 </div>
               </div>

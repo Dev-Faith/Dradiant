@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { FallingLines } from "react-loader-spinner";
 import { loginUser } from "../../../stateSlices/authSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -29,7 +28,7 @@ const page = () => {
     dispatch(loginUser(formData)
   );
   !loading && setFormData({ email: "", password: "" });
-  isAuthenticated && router.back();
+  !loading && isAuthenticated && router.back();
   console.log(isAuthenticated);
   };
 

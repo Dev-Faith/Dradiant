@@ -88,6 +88,7 @@ const authSlice = createSlice({
         toast.success(action.payload.message)
         state.user = action.payload;
         state.role = action.payload.role;
+        state.userId = action.payload._id;
         state.error = null;
         state.isAuthenticated = true;
         localStorage.setItem("token", action.payload.token);
@@ -110,6 +111,7 @@ const authSlice = createSlice({
         state.loading = false;
         toast.success(action.payload.message);
         state.user = action.payload;
+        state.userId = action.payload._id;
         state.error = null
         state.isAuthenticated = true;
         localStorage.setItem("token", action.payload.token);
@@ -131,6 +133,7 @@ const authSlice = createSlice({
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload; 
+        state.userId = action.payload._id;
         toast.success(action.payload.message)
       })
       .addCase(updateProfile.rejected, (state, action) => {

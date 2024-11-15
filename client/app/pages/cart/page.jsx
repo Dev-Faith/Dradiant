@@ -28,7 +28,7 @@ const Page = () => {
 
   const cart = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist.items);
-  const userId = useSelector((state) => state.auth.user?.userId);
+  const userId = useSelector((state) => state.auth.userId);
 
   const searchQuery = useSelector((state) => state.search.searchQuery);
   const shopItems = useSelector((state) => state.products.recentShopItems);
@@ -61,7 +61,7 @@ const Page = () => {
     (total, item) =>
       total +
       (item.productId?.price
-        ? Number(item.productId.price.replace(/,/g, "")) * item.quantity
+        ?item.productId.price * item.quantity
         : 0),
     0
   );
@@ -122,7 +122,7 @@ const Page = () => {
                       Remove
                     </button>
                     <p className="price text-[16px] xl:text-[28px] text-[#6A5F11]">
-                      ₦{(Number(item.productId.price.replace(/,/g, "")) * item.quantity).toLocaleString()}
+                      ₦{(item.productId.price * item.quantity).toLocaleString()}
                     </p>
                   </div>
                   <div className="incrementals flex items-center justify-between">

@@ -13,7 +13,7 @@ import { loginUser } from "@/stateSlices/authSlice";
 
 const page = () => {
   const [toggle, setToggle] = useState({
-    recent: false,
+    unisex: false,
     women: false,
     men: false,
     all: true,
@@ -29,12 +29,12 @@ const page = () => {
   // console.log(recentShopItems);
   
 
-  const handleToggle = (group) => {
-    if (group == "recent") {
-      setToggle({ ...toggle, recent: !toggle.recent });
-    } else if (group == "women") {
+  const handleToggle = (category) => {
+    if (category == "unisex") {
+      setToggle({ ...toggle, unisex: !toggle.unisex });
+    } else if (category == "women") {
       setToggle({ ...toggle, women: !toggle.women });
-    } else if (group == "men") {
+    } else if (category == "men") {
       setToggle({ ...toggle, men: !toggle.men });
     } else {
       setToggle({ ...toggle, all: !toggle.all });
@@ -73,27 +73,27 @@ const page = () => {
           <div className="flex flex-col gap-[50px]">
             <div className="recent flex flex-col gap-[28px]">
               <div className="flex items-center gap-[15px] text-[16px] cursor-pointer">
-                <p className="font-bold">Recent</p>
-                {toggle.recent == false ? (
+                <p className="font-bold">Unisex bags</p>
+                {toggle.unisex == false ? (
                   <IoIosArrowForward
                     className="cursor-pointer cursor"
-                    onClick={() => handleToggle("recent")}
+                    onClick={() => handleToggle("unisex")}
                   />
                 ) : (
                   <IoIosArrowDown
                     className="cursor-pointer cursor"
-                    onClick={() => handleToggle("recent")}
+                    onClick={() => handleToggle("unisex")}
                   />
                 )}
               </div>
               <div
-                className={`items gap-[10px] sm:gap-[30px] md:gap-[30px] lg:gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${
-                  toggle.recent == false
+                className={`items gap-[10px] no-scrollbar sm:gap-[30px] md:gap-[30px] lg:gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${
+                  toggle.unisex == false
                     ? "flex"
                     : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5"
                 }`}
               >
-                {filteredItems.map((item) => (
+                {filteredItems.map((item) => item.category=="Unisex bags" && (
                   <Itemscard
                     key={item.name}
                     image={item.image}
@@ -122,13 +122,13 @@ const page = () => {
                 )}
               </div>
               <div
-                className={`items gap-[10px] sm:gap-[30px] md:gap-[30px] lg:gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${
+                className={`items gap-[10px] no-scrollbar sm:gap-[30px] md:gap-[30px] lg:gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${
                   toggle.women == false
                     ? "flex"
                     : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5"
                 }`}
               >
-                {filteredItems.map((item) => (
+                 {filteredItems.map((item) => item.category=="Women's bags" && (
                   <Itemscard
                     key={item.name}
                     image={item.image}
@@ -157,13 +157,13 @@ const page = () => {
                 )}
               </div>
               <div
-                className={`items gap-[10px] sm:gap-[30px] md:gap-[30px] lg:gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${
+                className={`items gap-[10px] no-scrollbar sm:gap-[30px] md:gap-[30px] lg:gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${
                   toggle.men == false
                     ? "flex"
                     : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5"
                 }`}
               >
-                {filteredItems.map((item) => (
+                 {filteredItems.map((item) => item.category=="Men's bags" && (
                   <Itemscard
                     key={item.name}
                     image={item.image}
@@ -192,7 +192,7 @@ const page = () => {
                 )}
               </div>
               <div
-                className={`items gap-[10px] sm:gap-[30px] md:gap-[30px] lg:gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${
+                className={`items gap-[10px] no-scrollbar sm:gap-[30px] md:gap-[30px] lg:gap-[46px] w-full overflow-y-auto scroll-ml-6 snap-start ${
                   toggle.all == false
                     ? "flex"
                     : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5"

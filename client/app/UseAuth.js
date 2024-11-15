@@ -40,10 +40,14 @@ export default function UseAuth() {
   // Second useEffect: Fetch cart and wishlist only if items are not already in the store
   useEffect(() => {
     const decodedToken = jwtDecode(token);
+    dispatch(fetchUser(decodedToken._doc._id));
     if (userId) {
-      dispatch(fetchUser(decodedToken._doc._id));
+     try {
       if (cartItems.length === 0) dispatch(fetchCart(decodedToken._doc._id));
       if (wishlistItems.length === 0) dispatch(fetchwishList(decodedToken._doc._id));
+     } catch (error) {
+      console.error("Invalid token:", error);
+     }
     }
   }, [dispatch, userId, cartItems.length, wishlistItems.length]);
 }
