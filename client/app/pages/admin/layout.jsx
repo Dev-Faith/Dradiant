@@ -33,7 +33,7 @@
 import React from 'react'
 import UseAuth from '@/app/UseAuth';
 import {useSelector} from 'react-redux';
-import Sidemenu from './Sidemenu';
+import Sidemenu from './sidemenu';
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FaChevronDown } from "react-icons/fa";
