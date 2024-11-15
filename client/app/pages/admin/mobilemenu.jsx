@@ -14,75 +14,91 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion as m } from "framer-motion";
 
-const Sidemenu = ({ setOpenSideMenu, openSideMenu }) => {
+const Mobilemenu = ({ setOpenSideMenu, openSideMenu }) => {
   const currentPath = usePathname();
 
   const [links, setLinks] = useState([
     {
-      title: "Overview",
-      active: true,
-      icon: <CgMenuGridO className="size-[18px]" />,
-      position: "top",
-      url: "/pages/admin",
-    },
-    {
-      title: "Upload",
-      active: false,
-      icon: <RiUploadCloud2Line className="size-[18px]" />,
-      position: "top",
-      url: "/pages/admin/upload",
-    },
-    {
-      title: "Sales",
-      active: false,
-      icon: <GiReceiveMoney className="size-[18px]" />,
-      position: "top",
-      url: "#",
-    },
-    {
-      title: "Profile",
-      active: false,
-      icon: <CgProfile className="size-[18px]" />,
-      position: "top",
-      url: "/pages/profile",
-    },
-    {
-      title: "Home",
-      active: false,
-      icon: <IoHomeOutline className="size-[18px]" />,
-      position: "top",
-      url: "/",
-    },
-    {
-      title: "Report",
-      active: false,
-      icon: <MdOutlineReportProblem className="size-[18px]" />,
-      position: "bottom",
-      url: "#",
-    },
-    {
-      title: "Help",
-      active: false,
-      icon: <IoHelp className="size-[18px]" />,
-      position: "bottom",
-      url: "#",
-    },
-    {
-      title: "Settings",
-      active: false,
-      icon: <IoSettingsOutline className="size-[18px]" />,
-      position: "bottom",
-      url: "#",
-    },
-    {
-      title: "Log out",
-      active: false,
-      icon: <CgLogOut className="size-[18px]" />,
-      position: "bottom",
-      url: "/pages/profile",
-    },
+        title: "Overview",
+        active: true,
+        icon: <CgMenuGridO className="size-[18px]" />,
+        position: "top",
+        url: "/pages/admin",
+      },
+      {
+        title: "Upload",
+        active: false,
+        icon: <RiUploadCloud2Line className="size-[18px]" />,
+        position: "top",
+        url: "/pages/admin/upload",
+      },
+      {
+        title: "Sales",
+        active: false,
+        icon: <GiReceiveMoney className="size-[18px]" />,
+        position: "top",
+        url: "#",
+      },
+      {
+        title: "Profile",
+        active: false,
+        icon: <CgProfile className="size-[18px]" />,
+        position: "top",
+        url: "/pages/profile",
+      },
+      {
+        title: "Home",
+        active: false,
+        icon: <IoHomeOutline className="size-[18px]" />,
+        position: "top",
+        url: "/",
+      },
+      {
+        title: "Report",
+        active: false,
+        icon: <MdOutlineReportProblem className="size-[18px]" />,
+        position: "bottom",
+        url: "#",
+      },
+      {
+        title: "Help",
+        active: false,
+        icon: <IoHelp className="size-[18px]" />,
+        position: "bottom",
+        url: "#",
+      },
+      {
+        title: "Settings",
+        active: false,
+        icon: <IoSettingsOutline className="size-[18px]" />,
+        position: "bottom",
+        url: "#",
+      },
+      {
+        title: "Log out",
+        active: false,
+        icon: <CgLogOut className="size-[18px]" />,
+        position: "bottom",
+        url: "/pages/profile",
+      },
   ]);
 
+  const sideMenuVariant = {
+    animate: {
+      x: 0,
+      transition: {
+        stiffness: 5,
+        when: "beforeChildren",
+        staggerChildren: 0.2,
+      },
+    },
+    initial: {
+      x: "-100vw",
+      transition: {
+        stiffness: 5,
+      },
+    },
+  };
 
   useEffect(() => {
     setLinks(
@@ -96,10 +112,14 @@ const Sidemenu = ({ setOpenSideMenu, openSideMenu }) => {
   // className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
 
   return (
-    <div 
-    className={`bg-black bg-opacity-50 xl:w-[12.7%] hidden h-full full xl:flex flex-col items-center justify-between xl:relative absolute inset-0 z-10`}>
-      <div
-        className={`bg-[#EEE8DA] h-full w-[50%] xl:w-full xl:flex flex-col items-center justify-between p-[32px] xl:relative absolute inset-0 z-10`}
+    <m.div 
+    className={`bg-black bg-opacity-50 xl:w-[12.7%] h-full full xl:hidden flex-col items-center justify-between absolute inset-0 z-10`}>
+      <m.div
+      variants={sideMenuVariant}
+      animate="animate"
+      initial="initial"
+      exit="initial"
+        className={`bg-[#EEE8DA] h-full w-[50%] xl:w-full flex flex-col items-center justify-between p-[32px] absolute inset-0 z-50`}
       >
         <div className="upper flex flex-col gap-[56px] w-full">
           <Link href="./" onClick={() => setOpenSideMenu(false)}>
@@ -148,9 +168,9 @@ const Sidemenu = ({ setOpenSideMenu, openSideMenu }) => {
             )}
           </div>
         </div>
-      </div>
-    </div>
+      </m.div>
+    </m.div>
   );
 };
 
-export default Sidemenu;
+export default Mobilemenu;

@@ -95,9 +95,9 @@ const UploadPage = () => {
 
   
   return (
-    <div className="w-full px-[28px] pt-[64px] h-auto pb-[200px] flex flex-grow items-start justify-between overflow-y-auto">
+    <div className="w-full px-[28px] xl:pt-[64px] h-auto pb-[50px] xl:pb-[200px] flex flex-grow items-start justify-between overflow-y-auto">
       <div className="uploadProducts flex flex-col gap-[32px]">
-        <p className="text-[32px] font-bold">
+        <p className="xl:text-[32px]  text-[24px] font-bold">
           Upload more products to the Store
         </p>
         <form onSubmit={submitHandler} className="flex flex-col gap-[27px]">
@@ -110,7 +110,7 @@ const UploadPage = () => {
               name="name"
               type="text"
               placeholder="AEFR4463KD"
-              className="w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
+              className="xl:w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
             />
           </div>
           <div className="name flex flex-col gap-[16px]">
@@ -121,7 +121,7 @@ const UploadPage = () => {
               id="price"
               name="price"
               type="number" min="0" step="0.01" placeholder="0.00"
-              className="w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
+              className="xl:w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
             />
           </div>
           <div className="name flex flex-col gap-[16px]">
@@ -133,7 +133,7 @@ const UploadPage = () => {
               name="amount"
               type="text"
               placeholder="Enter amount"
-              className="w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
+              className="xl:w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
             />
           </div>
           <div className="name flex flex-col gap-[16px]">
@@ -143,7 +143,7 @@ const UploadPage = () => {
               onChange={onChangeHandler}
               name="category"
               id="category"
-              className="w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
+              className="xl:w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
             >
               <option value="" disabled hidden>
                 Select an option
@@ -171,7 +171,7 @@ const UploadPage = () => {
               name="desc"
               placeholder="Enter description"
               rows="5"
-              className="w-[379px] h-[auto] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
+              className="xl h-[auto] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
             />
           </div>
 
@@ -187,7 +187,7 @@ const UploadPage = () => {
             htmlFor="file-upload"
             onDrop={handleDrop}
             onDragOver={handleDragOver}
-            className="w-[379px] h-[121px] border-[1px] rounded-[16px] flex flex-col gap-[10px] items-center justify-center border-dashed border-black cursor-pointer"
+            className="xl:w-[379px]  h-[121px] border-[1px] rounded-[16px] flex flex-col gap-[10px] items-center justify-center border-dashed border-black cursor-pointer"
           >
             <AiOutlineFileAdd className="size-[32px] cursor-pointer" />
             <p className="text-[16px]">
@@ -195,10 +195,10 @@ const UploadPage = () => {
             </p>
           </label>
 
-          <div className="btn-con w-[379px] h-[56px] flex justify-end">
+          <div className="btn-con xl:w-[379px] h-[56px] flex justify-end">
             <button
               type="submit"
-              className="w-[112px] h-[56px] bg-[#6A5F11] rounded-[16px] p-[16px] text-white text-[16px] flex items-center justify-center"
+              className="xl:w-[112px] h-[56px] bg-[#6A5F11] rounded-[16px] p-[16px] text-white text-[16px] flex items-center justify-center"
             >
               {uploading ? (
                 <FallingLines color="#fff" width="33" visible={true} />

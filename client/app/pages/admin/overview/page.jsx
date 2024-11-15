@@ -294,34 +294,34 @@ const Overview = () => {
 
    
   return (
-    <div className="w-full p-[28px] h-full flex flex-col flex-1 gap-[45px] overflow-hidden">
-      <div className="middle flex items-center justfiy-between">
-        <div className="left w-full flex items-center gap-[60px]">
+    <div className="xl:w-full px-[28px] pb-[28px] xl:p-[28px] h-full flex flex-col flex-1 gap-[45px] overflow-hidden">
+      <div className="middle flex xl:flex-row flex-col items-center justify-center xl:justfiy-between gap-[20px]">
+        <div className="left w-full flex items-center xl:gap-[60px]">
           <div className="sales w-[200px] h-[100px] flex items-center justify-between">
-            <div className="card size-[100px] flex items-center justify-center bg-[#EEE8DA] rounded-[32px]">
+            <div className="card size-[100px] flex items-center justify-center bg-[#EEE8DA] rounded-[32px] hidden xl:flex">
               <MdOutlineSell className="size-[51px]" />
             </div>
-            <div className="texts flex flex-col justify-between h-[100px]">
-              <p className="text-end text-[16px]">Total Sales</p>
-              <p className="text-end text-[32px]">64</p>
+            <div className="texts flex flex-col justify-between xl:h-[100px] h-[50px]">
+              <p className="xl:text-end text-[16px]">Total Sales</p>
+              <p className="xl:text-end text-[32px]">64</p>
             </div>
           </div>
-          <div className="totalProducts w-[230px] h-[100px] flex items-center justify-between">
-            <div className="card size-[100px] flex items-center justify-center bg-[#EEE8DA] rounded-[32px]">
+          <div className="totalProducts w-[230px] h-[100px] flex items-center xl:justify-between justify-end">
+            <div className="card size-[100px] flex items-center justify-center bg-[#EEE8DA] rounded-[32px] hidden xl:flex">
               <AiOutlineProduct className="size-[51px]" />
             </div>
-            <div className="texts flex flex-col justify-between h-[100px]">
+            <div className="texts flex flex-col justify-between xl:h-[100px] h-[50px]">
               <p className="text-end text-[16px]">Total Products</p>
               <p className="text-end text-[32px]">120</p>
             </div>
           </div>
         </div>
-        <div className="right flex items-center w-[439px] justify-between">
-          <div className="warning flex items-center w-[300px] cursor-pointer hover:underline">
+        <div className="right flex xl:flex-row flex-col items-center xl:w-[439px] gap-[20px] justify-center xl:justify-between">
+          <div className="warning flex items-center w-[300px] cursor-pointer justify-center hover:underline">
             <CiWarning className="size-[24px] text-[#BA1A1A]" />
             <p className="text-[16px] ">You got 5 pending uploads</p>
           </div>
-          <div className="addBags flex items-center gap-[5px]">
+          <div className="addBags flex items-center xl:gap-[5px] gap-[0px] justify-between w-full xl:w-auto">
             <div className="setting size-[60px] border-[1px] border-[#79747E] rounded-full flex items-center justify-center cursor-pointer">
               <GiSettingsKnobs className="size-[22px] " />
             </div>
@@ -331,7 +331,8 @@ const Overview = () => {
           </div>
         </div>
       </div>
-      <div className="recentActivities flex flex-col gap-[10px] h-full">
+      <div className="recentActivities flex flex-col gap-[10px] h-full xl:w-full overflow-x-auto">
+      <div className="recentActivities flex flex-col gap-[10px] h-full xl:w-full w-[1452px]">
         <div className="header flex items-center justify-between py-[10px] w-full">
           <div className="left flex items-center flex gap-[32px]">
             <p className="recent text-[20px] font-bold">Recent Activities</p>
@@ -366,7 +367,7 @@ const Overview = () => {
             </div>
           ))}
         </div>
-        <div className="activities w-full flex flex-col flex-grow h-full overflow-y-auto pb-[30px]">
+        <div className="activities w-full flex flex-col flex-grow h-full overflow-y-auto pb-[50px]">
           {activityDetails.map((item) => (
             <div className="activity text-[14px] flex items-center gap-[.5rem] justify-between px-[32px] py-[10px] w-full">
               <div className="id-checker flex items-center gap-[8px] min-w-[12.5%] overflow-hidden">
@@ -409,6 +410,7 @@ const Overview = () => {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </div>
   );

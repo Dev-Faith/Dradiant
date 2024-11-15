@@ -9,8 +9,6 @@ const pages = ()=>{
     const wishListItems = useSelector(state=>state.wishlist.items);
      const searchQuery= useSelector(state=>state.search.searchQuery);
 
-     console.log(wishListItems);
-
     const filteredItems = wishListItems?.filter(item => 
     item.productId?.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
     item.productId?.desc?.toLowerCase().includes(searchQuery.toLowerCase())

@@ -1,11 +1,26 @@
+"use client"
 import { FaArrowTurnDown } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {motion as m } from "framer-motion";
+import {useSelector} from "react-redux";
 
 const MenuSheet = ({ closeMenu, isOpen}) => {
+
+  const user = useSelector(state=>state.auth?.user?.user);
+
+  // console.log(user);
+
   const navLinks = [
+    {
+      title: "Dashboard",
+      url: "/pages/admin"
+    },
+    {
+      title: "Profile",
+      url: "/pages/profile"
+    },
     {
       title: "Shop",
       url: "/pages/shop"
@@ -78,7 +93,7 @@ const MenuSheet = ({ closeMenu, isOpen}) => {
         </button>
       </div>
       <ul className="navlinks w-full h-full flex flex-col items-center justify-center md:text-[45px] text-[32px] ">
-        {navLinks.map((link) => (
+        {navLinks.map((link) => link.title!=="Dashboard" &&( user.role=="user") ? (
           <Link
             href={link.url}
             key={link.title}
@@ -94,7 +109,21 @@ const MenuSheet = ({ closeMenu, isOpen}) => {
               {link.title}
             </m.li>
           </Link>
-        ))}
+        ): user.role=="admin" ?<Link
+        href={link.url}
+        key={link.title}
+        onClick={closeMenu}
+        className=""
+      >
+        <m.li
+          className={isActive(link.url) ? "underline text-[#2A4E3A]" : ""}
+          variants={navItemVariant}
+          whileHover={{ scale: 1.5 }}
+          whileTap={{ scale: 1 }}
+        >
+          {link.title}
+        </m.li>
+      </Link>: "")}
       </ul>
     </m.div>
   );

@@ -91,11 +91,11 @@ export default function Itemscard({ name, price, image, desc, productId }) {
       </div>
       <div className="flex flex-col gap-[2px] md:gap-[18px] w-full h-full justify-between">
         <div className="desc&name flex flex-col gap-[2px] md:gap-[10px]">
-          <p className=" text-[16px] md:text-[18px] lg:text-[24px] text-[#6A5F11]">
+          <p className=" text-[16px] md:text-[18px] lg:text-[24px] text-[#6A5F11] truncate">
             {name.toUpperCase()}
           </p>
           <Link href={`shop/${productId}`}>
-            <p className=" text-[8px] sm:text-[10px]/[13px] md:text-[13px]/[16px] lg:text-[16px]/[16px] text-[#1D1C13] hover:text-[#7B7768] hover:underline line-clamp-3">
+            <p className=" text-[8px] sm:text-[10px]/[13px] md:text-[13px]/[16px] lg:text-[16px]/[16px] text-[#1D1C13] hover:text-[#7B7768] hover:underline line-clamp-2 xl:line-clamp-3">
               {desc}
             </p>
           </Link>
