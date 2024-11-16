@@ -42,13 +42,13 @@ export default function UseAuth() {
   useEffect(() => {
     if (token) {
       const decodedToken = jwtDecode(token);
-      dispatch(fetchUser(decodedToken._doc._id));
+      userId && dispatch(fetchUser(userId));
     }
     if (userId) {
       try {
-        if (cartItems.length === 0) dispatch(fetchCart(decodedToken._doc._id));
+        if (cartItems.length === 0) dispatch(fetchCart(userId));
         if (wishlistItems.length === 0)
-          dispatch(fetchwishList(decodedToken._doc._id));
+          dispatch(fetchwishList(userId));
       } catch (error) {
         console.error("Invalid token:", error);
       }
