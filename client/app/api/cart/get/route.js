@@ -9,7 +9,7 @@ export async function GET(req) {
     const userId = url.searchParams.get("userId");
   
     try {
-      const user = await User.findById(userId).populate("cart.productId");
+      const user = await User.findById(userId).populate("cart.productId").lean();
       return NextResponse.json(user.cart);
     } catch (error) {
       return NextResponse.json(
