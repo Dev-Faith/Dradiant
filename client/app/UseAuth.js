@@ -46,8 +46,9 @@ export default function UseAuth() {
     }
     if (userId) {
       try {
-        if (cartItems.length === 0) dispatch(fetchCart(userId));
-        if (wishlistItems.length === 0) dispatch(fetchwishList(userId));
+        if (cartItems.length === 0) dispatch(fetchCart(decodedToken._doc._id));
+        if (wishlistItems.length === 0)
+          dispatch(fetchwishList(decodedToken._doc._id));
       } catch (error) {
         console.error("Invalid token:", error);
       }
