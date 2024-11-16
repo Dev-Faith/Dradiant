@@ -10,7 +10,6 @@ import { getProducts } from "@/stateSlices/productSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { loginUser } from "@/stateSlices/authSlice";
 
-
 const page = () => {
   const [toggle, setToggle] = useState({
     unisex: false,
@@ -27,7 +26,6 @@ const page = () => {
   );
 
   // console.log(recentShopItems);
-  
 
   const handleToggle = (category) => {
     if (category == "unisex") {
@@ -47,14 +45,6 @@ const page = () => {
       item.desc.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // useEffect(() => {
-  //   dispatch(getProducts());
-  // }, [dispatch]);
-  
-  // useEffect(() => {
-  //   if (error) toast.error(error);
-  // }, [error]);
-  
 
   return (
     <div className=" h-[100vh] pt-[56px] px-[13px] md:px-[50px] lg:px-[50px] xl:px-[125px] flex flex-col gap-[46px]">
@@ -93,17 +83,20 @@ const page = () => {
                     : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5"
                 }`}
               >
-                {filteredItems.map((item) => item.category=="Unisex bags" && (
-                  <Itemscard
-                    key={item.name}
-                    image={item.image}
-                    name={item.name}
-                    desc={item.desc}
-                    price={item.price}
-                    quantity={item.quantity}
-                    productId={item._id}
-                  />
-                ))}
+                {filteredItems.map(
+                  (item) =>
+                    item.category == "Unisex bags" && (
+                      <Itemscard
+                        key={item.name}
+                        image={item.image}
+                        name={item.name}
+                        desc={item.desc}
+                        price={item.price}
+                        quantity={item.quantity}
+                        productId={item._id}
+                      />
+                    )
+                )}
               </div>
             </div>
             <div className="women'sbag flex flex-col gap-[28px]">
@@ -128,17 +121,20 @@ const page = () => {
                     : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5"
                 }`}
               >
-                 {filteredItems.map((item) => item.category=="Women's bags" && (
-                  <Itemscard
-                    key={item.name}
-                    image={item.image}
-                    name={item.name}
-                    desc={item.desc}
-                    price={item.price}
-                    quantity={item.quantity}
-                    productId={item._id}
-                  />
-                ))}
+                {filteredItems.map(
+                  (item) =>
+                    item.category == "Women's bags" && (
+                      <Itemscard
+                        key={item.name}
+                        image={item.image}
+                        name={item.name}
+                        desc={item.desc}
+                        price={item.price}
+                        quantity={item.quantity}
+                        productId={item._id}
+                      />
+                    )
+                )}
               </div>
             </div>
             <div className="men'sbag flex flex-col gap-[28px]">
@@ -163,17 +159,20 @@ const page = () => {
                     : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5"
                 }`}
               >
-                 {filteredItems.map((item) => item.category=="Men's bags" && (
-                  <Itemscard
-                    key={item.name}
-                    image={item.image}
-                    name={item.name}
-                    desc={item.desc}
-                    price={item.price}
-                    quantity={item.quantity}
-                    productId={item._id}
-                  />
-                ))}
+                {filteredItems.map(
+                  (item) =>
+                    item.category == "Men's bags" && (
+                      <Itemscard
+                        key={item.name}
+                        image={item.image}
+                        name={item.name}
+                        desc={item.desc}
+                        price={item.price}
+                        quantity={item.quantity}
+                        productId={item._id}
+                      />
+                    )
+                )}
               </div>
             </div>
             <div className="All flex flex-col gap-[28px] pb-[56px]">
