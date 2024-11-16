@@ -111,7 +111,7 @@ const Modal = React.memo(function Modal({
         );
         // const productData = { ...formData, image: imageUrl };
 
-        setImage(null);
+        // setImage(null);
       } catch (error) {
         toast.error(
           "Image upload failed: " + error.response?.data?.details ||
@@ -119,10 +119,11 @@ const Modal = React.memo(function Modal({
         );
       } finally {
         setUploading(false);
+        closeModal();
       }
     };
 
-    submitHandler();
+    type == "overview" && submitHandler();
 
     type !== "overview" &&
       dispatch(updateProfile({ ...updatedProfile, userId: user._id, type }))
@@ -214,7 +215,7 @@ const Modal = React.memo(function Modal({
             type="submit"
             className="delete p-[10px] flex  justify-center bg-[#6A5F11] text-[#fff] w-[70px] rounded-[10px]"
           >
-            {loading ? (
+            {loading || uploading ? (
               <FallingLines
                 color="#fff"
                 width="33"
@@ -452,15 +453,19 @@ const Page = React.memo(function Page() {
       <div className="preview flex items-start w-full justify-between p-[10px] xl:p-[40px] border-[1px] border-[#7B7768] rounded-[10px]">
         <div className="image&text flex gap-[28px] items-center">
           <Image
-            src={user.profileImage||defaultProfile}
+            src={user.profileImage || defaultProfile}
             alt="profile image"
             height="88"
             width="88"
             className=" size-[88px] rounded-full object-cover"
           />
           <div className="texts">
-            <p className="name font-bold">{` ${user.firstName!==undefined?user.firstName:"New"} ${user.lastName!==undefined?user.lastName:"Customer"}`}</p>
-            <p className="address text-[#7B7768]">{`${user.lodge!==undefined?user.lodge:"Lodge"}, ${user?.campus!==undefined?user?.campus:"Campus"}`}</p>
+            <p className="name font-bold">{` ${
+              user.firstName !== undefined ? user.firstName : "New"
+            } ${user.lastName !== undefined ? user.lastName : "Customer"}`}</p>
+            <p className="address text-[#7B7768]">{`${
+              user.lodge !== undefined ? user.lodge : "Lodge"
+            }, ${user?.campus !== undefined ? user?.campus : "Campus"}`}</p>
           </div>
         </div>
         <m.button
