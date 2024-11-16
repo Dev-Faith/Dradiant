@@ -1,4 +1,4 @@
- 
+export const dynamic = "force-dynamic";
 import dbConnect from "../../../../Utils/Db";
 import { NextResponse } from "next/server";
 import User from "../../../../Models/User";
