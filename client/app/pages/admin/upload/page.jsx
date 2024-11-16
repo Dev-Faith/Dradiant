@@ -132,7 +132,7 @@ const UploadPage = () => {
               value={formData.amount}
               id="Amount"
               name="amount"
-              type="text"
+              type="number"
               placeholder="Enter amount"
               className="xl:w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
             />

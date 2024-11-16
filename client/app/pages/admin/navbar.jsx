@@ -40,7 +40,7 @@ const Navbar = () => {
               className="w-[71px] h-[71px] object-cover rounded-full object-fit"
             />
             <div className="texts ">
-              <p className="name text-[16px]">{`${firstName} ${lastName}`}</p>
+              <p className="name text-[16px]">{`${firstName!==undefined?firstName:""} ${lastName!==undefined?lastName:""}`}</p>
               <p className="role text-[12px] text-[#81737A]">Executive</p>
             </div>
             <FaChevronDown className="cursor-pointer" />

@@ -452,15 +452,15 @@ const Page = React.memo(function Page() {
       <div className="preview flex items-start w-full justify-between p-[10px] xl:p-[40px] border-[1px] border-[#7B7768] rounded-[10px]">
         <div className="image&text flex gap-[28px] items-center">
           <Image
-            src={user.profileImage}
+            src={user.profileImage||defaultProfile}
             alt="profile image"
             height="88"
             width="88"
             className=" size-[88px] rounded-full object-cover"
           />
           <div className="texts">
-            <p className="name font-bold">{` ${user.firstName} ${user.lastName}`}</p>
-            <p className="address text-[#7B7768]">{`${user.lodge}, ${user?.campus}`}</p>
+            <p className="name font-bold">{` ${user.firstName!==undefined?user.firstName:"New"} ${user.lastName!==undefined?user.lastName:"Customer"}`}</p>
+            <p className="address text-[#7B7768]">{`${user.lodge!==undefined?user.lodge:"Lodge"}, ${user?.campus!==undefined?user?.campus:"Campus"}`}</p>
           </div>
         </div>
         <m.button
