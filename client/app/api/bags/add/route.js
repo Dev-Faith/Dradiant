@@ -1,5 +1,5 @@
 import dbConnect from "../../../../Utils/Db";
-import { Product } from "../../../../Models/Product";
+import Product from "../../../../Models/Product";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {

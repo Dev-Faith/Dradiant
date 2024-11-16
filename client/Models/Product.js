@@ -14,5 +14,5 @@ const productSchema = new Schema(
   },
   { timestamps: true }
 );
-
-export const Product = models.Product || model("Product", productSchema);
+const Product = models.Product || model("Product", productSchema);
+export default Product;
