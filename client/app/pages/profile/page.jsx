@@ -448,7 +448,7 @@ const Page = React.memo(function Page() {
     });
 
   return (
-    <div className="xl:px-[123px] px-[13px] py-[32px] xl:py-[64px] flex flex-col gap-[35px]">
+    <div className="xl:px-[123px] px-[13px] py-[32px] xl:py-[64px] flex flex-col gap-[35px] text-[#1D1B20]">
       <p className="title text-[36px] font-bold">My Profile</p>
       <div className="preview flex items-start w-full justify-between p-[10px] xl:p-[40px] border-[1px] border-[#7B7768] rounded-[10px]">
         <div className="image&text flex gap-[28px] items-center">

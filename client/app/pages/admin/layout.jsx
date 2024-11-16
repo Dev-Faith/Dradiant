@@ -1,34 +1,4 @@
-// "use client"
-// import React from 'react';
-// import { useRouter } from 'next/navigation';
-// import Sidemenu from './Sidemenu';
-// import Navbar from './Navbar';
-// import {authActions} from "../../../store";
-// import {useSelector, useDispatch} from "react-redux";
 
-// const Layout = ({ children}) => {
-//   const router = useRouter();
-//   const user = useSelector((state) => state.auth);
-
-//   React.useEffect(() => {
-//     console.log(user);
-//     if (!user) {
-//       router.push('/pages/signin');
-//     }
-//   }, [router, user]);
-
-//   return (
-//     <div className="flex items-center flex h-screen overflow-hidden">
-//       <Sidemenu />
-//       <div className="w-full h-full flex flex-col">
-//         <Navbar />
-//         {children}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Layout;
 "use client";
 import React, {useState} from 'react'
 import UseAuth from '@/app/UseAuth';
@@ -50,8 +20,7 @@ const formattedDate = currentDate.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
-});
-console.log(formattedDate);  // "May 29, 2024"
+});  // "May 29, 2024"
 
 
 const layout = ({children}) => {
@@ -60,7 +29,7 @@ const layout = ({children}) => {
   const [openSideMenu, setOpenSideMenu] = useState(false);
   // console.log(user.user?.user?.firstName);
   return (
-    <div className="flex items-center flex h-screen overflow-hidden">
+    <div className="flex items-center flex h-screen overflow-hidden text-[#1D1B20]">
     <Sidemenu setOpenSideMenu={setOpenSideMenu} openSideMenu={openSideMenu} />
     <AnimatePresence>{openSideMenu && <Mobilemenu setOpenSideMenu={setOpenSideMenu} openSideMenu={openSideMenu} />}</AnimatePresence>
     <div className="w-full h-full flex flex-col">
