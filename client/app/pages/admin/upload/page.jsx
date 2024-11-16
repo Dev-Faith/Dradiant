@@ -15,7 +15,7 @@ const UploadPage = () => {
     amount: "",
     category: "",
     desc: "",
-    image: ""
+    image: "",
   });
   const [image, setImage] = useState(null);
   const [fileArray, setFileArray] = useState([]);
@@ -76,7 +76,6 @@ const UploadPage = () => {
         category: "",
         desc: "",
         image: "",
-        quantity: 1,
       });
       setImage(null);
     } catch (error) {
@@ -93,7 +92,6 @@ const UploadPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  
   return (
     <div className="w-full px-[28px] xl:pt-[64px] h-auto flex  mb-[50px] xl:pb-[50px] flex-grow xl:items-start justify-center xl:justify-between overflow-y-auto">
       <div className="uploadProducts flex flex-col gap-[32px]">
@@ -120,7 +118,10 @@ const UploadPage = () => {
               value={formData.price}
               id="price"
               name="price"
-              type="number" min="0" step="0.01" placeholder="0.00"
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="0.00"
               className="xl:w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
             />
           </div>

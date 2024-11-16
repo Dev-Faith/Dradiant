@@ -4,8 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   await dbConnect();
-  const { name, price, amount, category, desc, image, quantity } =
-    await req.json();
+  const { name, price, amount, category, desc, image } = await req.json();
 
   try {
     const newBag = new Product({
@@ -15,7 +14,6 @@ export async function POST(req) {
       category,
       desc,
       image,
-      quantity,
     });
 
     await newBag.save();
