@@ -32,7 +32,7 @@ const Modal = React.memo(function Modal({ type, closeModal }) {
 
   const modalContent = {
     delete: (
-        <div className="logout flex flex-col items-center xl:gap-[90px] gap-[19px] self-center">
+      <div className="logout flex flex-col items-center xl:gap-[90px] gap-[19px] self-center">
         <div className="texts flex flex-col items-center xl:gap-[40px] w-[405px] text-center">
           <p className="font-bold text-[#6A5F11] xl:text-[48px] text-[32px] xl:w-[405px] w-[202px] ">
             We will miss you! 🥰
@@ -206,7 +206,7 @@ const Mobilemenu = ({ setOpenSideMenu, openSideMenu }) => {
         className={`bg-[#EEE8DA] h-full w-[50%] xl:w-full flex flex-col items-center justify-between p-[32px] absolute inset-0 z-50`}
       >
         <div className="upper flex flex-col gap-[56px] w-full">
-          <Link href="./" onClick={() => setOpenSideMenu(false)}>
+          <Link href="/" onClick={() => setOpenSideMenu(false)}>
             <p className="logo text-[24px] text-center">Dradiantbags</p>
           </Link>
           <div className="links flex flex-col gap-[10px]">
@@ -232,34 +232,33 @@ const Mobilemenu = ({ setOpenSideMenu, openSideMenu }) => {
         </div>
         <div className="lower w-full">
           <div className="links flex flex-col gap-[10px] w-full">
-            {links.map(
-              (link) =>
-                link.position == "bottom" && link.title !== "Log out" ? (
-                    <Link
-                      onClick={() => setOpenSideMenu(false)}
-                      href={link.url}
-                      key={link.title}
-                      className={`overview flex items-center gap-[10px] text-[16px]/[0px] font-bold ${
-                        link.active
-                          ? "underline text-[#426651]"
-                          : "text-[#1D1C13]"
-                      } w-full px-[8px] py-[10px] rounded-[16px]`}
-                    >
-                      {link.icon}
-                      <p className="">{link.title}</p>
-                    </Link>
-                  ): link.title == "Log out" ? ( <div
-                    onClick={() =>{ setClicked(true)}}
-                    key={link.title}
-                    className={`overview flex items-center gap-[10px] cursor-pointer text-[16px]/[0px] font-bold ${
-                      link.active
-                        ? "underline text-[#426651]"
-                        : "text-[#1D1C13]"
-                    } w-full px-[8px] py-[10px] rounded-[16px]`}
-                  >
-                    {link.icon}
-                    <p className="">{link.title}</p>
-                  </div>):null
+            {links.map((link) =>
+              link.position == "bottom" && link.title !== "Log out" ? (
+                <Link
+                  onClick={() => setOpenSideMenu(false)}
+                  href={link.url}
+                  key={link.title}
+                  className={`overview flex items-center gap-[10px] text-[16px]/[0px] font-bold ${
+                    link.active ? "underline text-[#426651]" : "text-[#1D1C13]"
+                  } w-full px-[8px] py-[10px] rounded-[16px]`}
+                >
+                  {link.icon}
+                  <p className="">{link.title}</p>
+                </Link>
+              ) : link.title == "Log out" ? (
+                <div
+                  onClick={() => {
+                    setClicked(true);
+                  }}
+                  key={link.title}
+                  className={`overview flex items-center gap-[10px] cursor-pointer text-[16px]/[0px] font-bold ${
+                    link.active ? "underline text-[#426651]" : "text-[#1D1C13]"
+                  } w-full px-[8px] py-[10px] rounded-[16px]`}
+                >
+                  {link.icon}
+                  <p className="">{link.title}</p>
+                </div>
+              ) : null
             )}
           </div>
           <AnimatePresence mode="wait">

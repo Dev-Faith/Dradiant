@@ -185,7 +185,7 @@ const Sidemenu = ({ setOpenSideMenu, openSideMenu }) => {
         className={`bg-[#EEE8DA] h-full w-[50%] xl:w-full xl:flex flex-col items-center justify-between p-[32px] xl:relative absolute inset-0 z-10`}
       >
         <div className="upper flex flex-col gap-[56px] w-full">
-          <Link href="./" onClick={() => setOpenSideMenu(false)}>
+          <Link href="/" onClick={() => setOpenSideMenu(false)}>
             <p className="logo text-[24px] text-center">Dradiantbags</p>
           </Link>
           <div className="links flex flex-col gap-[10px]">
