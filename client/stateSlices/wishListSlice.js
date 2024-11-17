@@ -63,7 +63,7 @@ const wishListSlice = createSlice({
         });
         builder.addCase(fetchwishList.rejected, (state, action) => {
             state.error = action.payload;
-            toast.error(action.payload);
+            toast.error(action.payload, {toastId:"fetchwishList"});
             state.loading = false;
         });
         builder.addCase(addTowishList.pending, (state, action) => {
@@ -72,12 +72,12 @@ const wishListSlice = createSlice({
         builder.addCase(addTowishList.fulfilled, (state, action) => {
             state.items = action.payload;
             state.loading = false;
-            toast.success(action.payload.message);
+            toast.success(action.payload.message, {toastId:"addTowishList"});
         });
         builder.addCase(addTowishList.rejected, (state, action) => {
             state.error = action.payload;
             state.loading = false;
-            toast.error(state.error);
+            toast.error(state.error, {toastId:"addTowishList"});
 
         });
         builder.addCase(removeFromwishList.pending, (state, action) => {
@@ -85,12 +85,12 @@ const wishListSlice = createSlice({
         });
         builder.addCase(removeFromwishList.fulfilled, (state, action) => {
             state.loading = false;
-            toast.success(action.payload.message);
+            toast.success(action.payload.message, {toastId:"removeFromwishList"});
         });
         builder.addCase(removeFromwishList.rejected, (state, action) => {
             state.error = action.payload;
             state.loading = false;
-            toast.error(state.error);
+            toast.error(state.error, {toastId:"removeFromwishList"});
 
         });
         

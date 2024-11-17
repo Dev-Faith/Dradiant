@@ -27,25 +27,30 @@ export const signupUser = createAsyncThunk(
 );
 
 export const updateProfile = createAsyncThunk(
-  "auth/updateProfile", async (profileData, {rejectWithValue}) => {
+  "auth/updateProfile",
+  async (profileData, { rejectWithValue }) => {
     try {
-      const response = await axios.patch("/api/user/updateprofile", profileData);
+      const response = await axios.patch(
+        "/api/user/updateprofile",
+        profileData
+      );
       // console.log("from the authSlice", response.data);
       return response.data;
-    } catch (error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
       return rejectWithValue(error.response?.data?.error || error.message);
     }
   }
 );
 export const fetchUser = createAsyncThunk(
-  "auth/fetchUser", async (userId, {rejectWithValue}) => {
+  "auth/fetchUser",
+  async (userId, { rejectWithValue }) => {
     try {
       const response = await axios.get(`/api/user/fetchUser?userId=${userId}`);
       // console.log("from the authSlice", response.data);
       return response.data;
-    } catch (error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
       return rejectWithValue(error.response?.data?.error || error.message);
     }
   }
@@ -81,11 +86,11 @@ const authSlice = createSlice({
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.user = null
+        state.user = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        toast.success(action.payload.message)
+        toast.success(action.payload.message, { toastId: "loginUser" });
         state.user = action.payload;
         state.role = action.payload.role;
         state.userId = action.payload._id;
@@ -96,7 +101,7 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.user = null;
         state.loading = false;
-        toast.error(action.payload)
+        toast.error(action.payload, { toastId: "loginUser" });
         state.error = action.payload;
       });
 
@@ -105,59 +110,57 @@ const authSlice = createSlice({
       .addCase(signupUser.pending, (state) => {
         state.loading = true;
         state.user = null;
-        state.error = null
+        state.error = null;
       })
       .addCase(signupUser.fulfilled, (state, action) => {
         state.loading = false;
-        toast.success(action.payload.message);
+        toast.success(action.payload.message, { toastId: "signupUser" });
         state.user = action.payload;
         state.userId = action.payload._id;
-        state.error = null
+        state.error = null;
         state.isAuthenticated = true;
         localStorage.setItem("token", action.payload.token);
-        
       })
       .addCase(signupUser.rejected, (state, action) => {
         state.user = null;
         state.loading = false;
-         toast.error(action.payload.details);
+        toast.error(action.payload.details, { toastId: "signupUser" });
         state.error = action.payload;
       });
 
-      //Handle update profile async thunk
-      builder
+    //Handle update profile async thunk
+    builder
       .addCase(updateProfile.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload; 
+        state.user = action.payload;
         state.userId = action.payload._id;
-        toast.success(action.payload.message)
+        toast.success(action.payload.message, { toastId: "updateProfile" });
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-        toast.error(action.payload); // Update error state
+        toast.error(action.payload, { toastId: "updateProfile" }); // Update error state
       });
 
-      builder
+    builder
       .addCase(fetchUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload; 
-        toast.success(action.payload.message)
+        state.user = action.payload;
+        toast.success(action.payload.message, { toastId: "fetchUser" });
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-        toast.error(action.payload); // Update error state
+        toast.error(action.payload, { toastId: "fetchUser" }); // Update error state
       });
-
   },
 });
 

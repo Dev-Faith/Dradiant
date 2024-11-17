@@ -234,7 +234,7 @@ const Modal = React.memo(function Modal({
         <div className="grid xl:grid-cols-2 grid-cols-1 self-center xl:gap-[30px] gap-[20px] w-full">
           {cloudProfileDetails.personalInfo.map((item, index) => (
             <div key={index} className="formItems flex flex-col gap-[8px]">
-              <label className="font-bold">{splitAtCapital(item.title)}:</label>
+              <label className="xl:font-bold">{splitAtCapital(item.title)}:</label>
               <input
                 onChange={(e) => handleInputChange("personalInfo", index, e)}
                 className="bg-[#F9F3E5] px-[10px] py-[15px] border-[1px] border-[#6A5F11] rounded-[10px]"
@@ -266,7 +266,7 @@ const Modal = React.memo(function Modal({
         <div className="grid xl:grid-cols-2 grid-cols-1 self-center gap-[30px] w-full">
           {cloudProfileDetails.addressInfo.map((item, index) => (
             <div key={index} className="formItems flex flex-col gap-[8px]">
-              <label className="font-bold">{splitAtCapital(item.title)}:</label>
+              <label className="xl:font-bold">{splitAtCapital(item.title)}:</label>
               <input
                 onChange={(e) => handleInputChange("addressInfo", index, e)}
                 className="bg-[#F9F3E5] px-[10px] py-[15px] border-[1px] border-[#6A5F11] rounded-[10px]"
@@ -449,7 +449,7 @@ const Page = React.memo(function Page() {
 
   return (
     <div className="xl:px-[123px] px-[13px] py-[32px] xl:py-[64px] flex flex-col gap-[35px] text-[#1D1B20]">
-      <p className="title text-[36px] font-bold">My Profile</p>
+      <p className="title text-[36px] xl:font-bold">My Profile</p>
       <div className="preview flex items-start w-full justify-between p-[10px] xl:p-[40px] border-[1px] border-[#7B7768] rounded-[10px]">
         <div className="image&text flex gap-[28px] items-center">
           <Image
@@ -460,7 +460,7 @@ const Page = React.memo(function Page() {
             className=" size-[88px] rounded-full object-cover"
           />
           <div className="texts">
-            <p className="name font-bold">{` ${
+            <p className="name xl:font-bold">{` ${
               user.firstName !== undefined ? user.firstName : "New"
             } ${user.lastName !== undefined ? user.lastName : "Customer"}`}</p>
             <p className="address text-[#7B7768]">{`${
@@ -483,12 +483,12 @@ const Page = React.memo(function Page() {
       {/* Personal Information Section */}
       <div className="personal flex items-start w-full justify-between p-[10px] xl:p-[40px] border-[1px] border-[#7B7768] rounded-[10px]">
         <div className="left flex flex-col gap-[32px]">
-          <p className="title text-[24px] font-bold">Personal Information</p>
+          <p className="title xl:text-[24px] text-[20px] xl:font-bold">Personal Information</p>
           <div className="details grid grid-cols-2 xl:gap-[32px] gap-[16px] gap-x-[20px] xl:gap-x-[128px]">
             {profileDetails.personalInfo.map((info, index) => (
               <div key={index} className="detail">
                 <p className="title text-[#7B7768]">{info.title}</p>
-                <p className="value font-bold">{info.value}</p>
+                <p className="value xl:font-bold">{info.value}</p>
               </div>
             ))}
           </div>
@@ -507,9 +507,9 @@ const Page = React.memo(function Page() {
 
       {/* Address Section */}
       <div className="address flex items-start w-full justify-between p-[10px] xl:p-[40px] border-[1px] border-[#7B7768] rounded-[10px]">
-        <div className="left flex flex-col gap-[32px]">
-          <p className="title text-[24px] font-bold">Address</p>
-          <div className="details grid grid-cols-2 gap-[32px] gap-x-[128px]">
+        <div className="left flex flex-col gap-[32px] w-full">
+          <p className="title xl:text-[24px] text-[20px] xl:font-bold">Address</p>
+          <div className="details grid grid-cols-2 w-full gap-[32px] gap-x-[128px]">
             {profileDetails.addressInfo.map((info, index) => (
               <div key={index} className="detail">
                 <p className="title text-[#7B7768]">{info.title}</p>
