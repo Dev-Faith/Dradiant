@@ -142,11 +142,11 @@ const Layout = () => {
       url: "https://bit.ly/ShopfromDradiant",
       position: "left"
     },
-    {
-      name: "Search",
-      url: "/pages/search",
-      position: "right"
-    },
+    // {
+    //   name: "Search",
+    //   url: "/pages/search",
+    //   position: "right"
+    // },
     {
       name: "Cart",
       url: "/pages/cart",
@@ -194,7 +194,7 @@ const Layout = () => {
   const LoggedInFeatures = ()=>{
     return (
       <div className='flex relative min-w-[210px] justify-end items-center gap-[14px] border-l-[1px] border-dashed border-[#CCC6B5] px-[10px] ml-[30px]'>
-        <p className="greetings w-[100px] truncate">Hi, {`${user?.user?.firstName!==undefined ?user?.user?.firstName:"New" } ${user?.user?.lastName!==undefined?user?.user?.lastName:"Customer"}`}</p>
+        <p className="greetings w-[100px] truncate">Hi, {`${user?.user?.firstName!==undefined ?user?.user?.firstName:"" } ${user?.user?.lastName!==undefined?user?.user?.lastName:"Customer"}`}</p>
         <Image src={user?.user?.profileImage ||defaultProfile} alt="profile image" width="31" height="31" className="size-[31px] rounded-full object-cover border-[1px] border-[#1D1C13] cursor-pointer"/>
         <m.div animate={{rotate:isDroppeddown ? 180 : 0}} initial={{rotate:0}} exit={{rotate:0}}><FaAngleDown onClick={()=>setIsDroppeddown(!isDroppeddown)} className='cursor-pointer'/></m.div>
         <AnimatePresence>{isDroppeddown && <Dropdown isDroppeddown={isDroppeddown} setIsDroppeddown={setIsDroppeddown} setClicked={setClicked} />}</AnimatePresence>

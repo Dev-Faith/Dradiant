@@ -48,7 +48,7 @@ const NewArrival = () => {
                 <p className="text-[36px]/[44px]">{bag.name}</p>
                 <p className="text-[24px]/[32px]">{bag.price}</p>
               </div>
-              <Link href="https://bit.ly/ShopfromDradiant">
+              <Link href="./pages/cart">
                 <button className="text-[36px] w-[100%] border-[1px] hover:bg-[#FFF9EB] hover:text-[#201C00] transition ease-in">
                   Add to Cart
                 </button>

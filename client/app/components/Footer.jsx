@@ -39,18 +39,18 @@ const Footer = () => {
     const navLinks = [
         {
             title: "Shop",
-            url: "https://bit.ly/ShopfromDradiant"
+            url: "./pages/shop"
         }, 
         {
-            title: "New Arrival",
-            url: "https://bit.ly/ShopfromDradiant"
-        }, 
-        {
-            title: "Catalogue",
-            url: "https://bit.ly/ShopfromDradiant"
+            title: "Cart",
+            url: "./pages/cart"
         }, 
         {
             title: "Wishlist",
+            url: "./pages/wishlist"
+        }, 
+        {
+            title: "About Us",
             url: "https://bit.ly/ShopfromDradiant"
         }, 
         {
@@ -104,7 +104,7 @@ const Footer = () => {
       <div className="bottom flex  items-center justify-between border-t-2 border-[#FFF9EB] w-[100%] 2xl:px-[123px] px-[11px] md:px-[50px] lg:px-[50px] py-[16px]">
         <p className="xl:text-[16px] text-[12px]/[16px]">Designed & Developed by Faith Adebayo</p>
         <p className="logo xl:text-[40px] hidden xl:flex">DRADIANTBAGS</p>
-        <p className="xl:text-[16px] w-[153px] text-[12px]/[16px]">Checkout my portfolio website @ <Link href="https://muyiwa.dev" className="text-[#C3ECD1] hover:underline transition ease-in">Muyiwa.dev</Link></p>
+        <p className="xl:text-[16px] w-[153px] text-[12px]/[16px]">Checkout my portfolio website @ <Link href="https://muyiwa.dev" className="text-[#C3ECD1] hover:underline transition ease-in">muyiwa.dev</Link></p>
       </div>
     </div>
   )

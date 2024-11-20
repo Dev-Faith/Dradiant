@@ -23,7 +23,7 @@ const Style = () => {
           STYLE
         </p>
         <p className="text-[#7B7768] lg:text-[28px]/[36px] text-[16px]/[24px] w-[300px] xl:w-[844px] md:w-[500px] lg:w-[610px] lg:text-[24px] md:text-[24px] ">
-          le's a creative canvas for self-expression. It allows you to tell a
+          let's a creative canvas for self-expression. It allows you to tell a
           story through your style that reflecting your personality, interest
           even mood.
         </p>
@@ -40,7 +40,7 @@ const Style = () => {
               <p className="lg:w-[200px] text-[#F3EDE0] w-[145px] xl:w-[400px] lg:text-[16px]/[20px] xl:text-[32px]/[40px]">
                 {bag.text}
               </p>
-              <Link href="https://bit.ly/ShopfromDradiant">
+              <Link href="./pages/shop">
                 <button className="lg:size-[32px] size-[31px] bg-[#F3EDE0] flex items-center justify-center rounded-full hover:bg-[#201C00] hover:text-[#F3EDE0] transition ease-in">
                   <MdOutlineArrowOutward className="lg:size-[24px] size-[24]" />
                 </button>
