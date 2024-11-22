@@ -39,15 +39,15 @@ const Footer = () => {
     const navLinks = [
         {
             title: "Shop",
-            url: "./pages/shop"
+            url: "/pages/shop"
         }, 
         {
             title: "Cart",
-            url: "./pages/cart"
+            url: "/pages/cart"
         }, 
         {
             title: "Wishlist",
-            url: "./pages/wishlist"
+            url: "/pages/wishlist"
         }, 
         {
             title: "About Us",

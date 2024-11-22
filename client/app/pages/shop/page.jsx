@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { getProducts } from "@/stateSlices/productSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { loginUser } from "@/stateSlices/authSlice";
+import Footer from "@/app/components/Footer";
 
 const page = () => {
   const [toggle, setToggle] = useState({
@@ -47,14 +48,14 @@ const page = () => {
 
 
   return (
-    <div className=" h-[100vh] pt-[56px] px-[13px] md:px-[50px] lg:px-[50px] xl:px-[125px] flex flex-col gap-[46px]">
-      <div className="flex flex-col gap-[36px]">
+    <div className=" h-[100vh] flex flex-col">
+      <div className="flex flex-col gap-[36px]  pt-[56px] px-[13px] md:px-[50px] lg:px-[50px] xl:px-[125px]">
         <p className=" text-[24px] md:text-[32px] lg:text-[64px] ">
           Buy from the Best Collections! 👜{" "}
         </p>
         <Searchbox />
       </div>
-      <div className="shopItemsGroups flex flex-col gap-[114px]">
+      <div className="shopItemsGroups flex flex-col gap-[114px]  pt-[56px] px-[13px] md:px-[50px] lg:px-[50px] xl:px-[125px]">
         {loading ? (
           "Loading..."
         ) : filteredItems.length === 0 ? (
@@ -213,6 +214,7 @@ const page = () => {
           </div>
         )}
       </div>
+      <Footer/>
     </div>
   );
 };

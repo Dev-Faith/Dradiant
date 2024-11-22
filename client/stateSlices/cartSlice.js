@@ -26,6 +26,7 @@ export const addToCart = createAsyncThunk(
       dispatch(fetchCart(userId));
       return response.data;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error.response?.data?.error || error.message);
     }
   }

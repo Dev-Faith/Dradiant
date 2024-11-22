@@ -17,8 +17,13 @@ import {
   decrementItemQuantity,
   incrementItemQuantity,
 } from "../../../../stateSlices/cartSlice";
-import { fetchwishList, addTowishList, removeFromwishList } from '../../../../stateSlices/wishListSlice';
+import {
+  fetchwishList,
+  addTowishList,
+  removeFromwishList,
+} from "../../../../stateSlices/wishListSlice";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const pages = () => {
   const dispatch = useDispatch();
@@ -28,45 +33,52 @@ const pages = () => {
   const cart = useSelector((state) => state.cart.items);
 
   const [product, setProduct] = useState();
-
-  console.log(shopItems);
+  const [isinCart, setIsinCart] = useState(false);
+  const [isinWishlist, setIsInWishlist] = useState(false);
 
   let producti = shopItems.find((item) => item._id === routeId);
-  const wishlistItems = useSelector(state=>state.wishlist.items);
+  const wishlistItems = useSelector((state) => state.wishlist.items);
+  const isAddedToCart = cart.some((item) => item.productId?._id == routeId);
+  const isAddedToWishlist = wishlist.some((item) => item.productId?._id == routeId);
 
-  const totalPrice = product?.price
-  ? product.price * 1
-  : 0;
+  const totalPrice = product?.price ? product.price * 1 : 0;
 
-  const addToFavouriteHandler = () => {
-    wishlist.some((item) => item.name == product.name)
-      ? ""
-      : dispatch(wishlistActions.addToWishlist(product));
-  };
-  const userId = useSelector(state=>state.auth.user?.userId);
+  const itemQuantity = cart.find(item=>item.productId._id == routeId)?.quantity;
+
+  // const addToFavouriteHandler = () => {
+  //   wishlist.some((item) => item.name == product.name)
+  //     ? ""
+  //     : dispatch(wishlistActions.addToWishlist(product));
+  // };
+  const userId = useSelector((state) => state.auth.user?.user?._id);
 
   const addToWishlistHandler = () => {
-   dispatch(addTowishList({ userId, routeId }));
+    !isinWishlist?(dispatch(addTowishList({ userId, productId: product._id })), setIsInWishlist(isAddedToWishlist)) : toast.error("Already exists in Wishlist")
   };
-
   const addToCartHandler = () => {
-    cart.some((item) => item._id == product
-      ? ""
-      : dispatch(addToCart({routeId, userId})));
+    // cart.some((item) =>
+    //   item.productId._id == product._id
+    //     ? toast.error("item already in Cart")
+    //     : dispatch(addToCart({ userId, productId: product._id }))
+    // );
+
+    !isinCart?(dispatch(addToCart({ userId, productId: product._id })), setIsinCart(isAddedToCart)) : toast.error("already exists in Cart")
   };
 
   const incrementItemQuantityHandler = () => {
-    dispatch(incrementItemQuantity({ userId, routeId }));
+    dispatch(incrementItemQuantity({ userId, productId:routeId }));
   };
 
   const decrementItemQuantityHandler = () => {
-    dispatch(decrementItemQuantity({ userId, routeId }));
+    dispatch(decrementItemQuantity({ userId, productId:routeId  }));
   };
 
-  useEffect(()=>{
-    producti=shopItems.find((item) => item._id === routeId);
+  useEffect(() => {
+    setIsinCart(isAddedToCart);
+   setIsInWishlist(isAddedToWishlist);
+    producti = shopItems.find((item) => item._id === routeId);
     setProduct(producti);
-  },[])
+  }, [routeId, shopItems]);
 
   function formatNumberWithIntl(number, decimalPlaces = 2) {
     const formatter = new Intl.NumberFormat("en-US", {
@@ -77,7 +89,6 @@ const pages = () => {
     return formatter.format(number);
   }
 
- 
   return (
     <div className=" pt-[200px] xl:pt-[88px] flex flex-col xl:gap-[100px] justify-between min-h-screen">
       <div className="flex items-center justify-center gap-[42px] xl:gap-[156px] w-full">
@@ -107,13 +118,13 @@ const pages = () => {
               </p>
               <div className="flex flex-col items-end">
                 <div className="flex items-center gap-[2rem]">
-                  <p className=" text-[16px] xl:text-[24px]">price:</p>{" "}
+                  <p className=" text-[16px] xl:text-[24px] font-semibold">price:</p>{" "}
                   <p className=" text-[24px] xl:text-[36px] text-[#6A5F11] ">
                     ₦{formatNumberWithIntl(product?.price)}
                   </p>
                 </div>
                 <div className="flex items-center gap-[2rem]">
-                  <p className="text-[16px] xl:text-[24px]">total price:</p>{" "}
+                  <p className="text-[16px] xl:text-[24px] font-semibold">total price:</p>{" "}
                   <p className="text-[24px] xl:text-[36px] text-[#6A5F11] ">
                     ₦{formatNumberWithIntl(totalPrice)}
                   </p>
@@ -124,8 +135,8 @@ const pages = () => {
           <div className="bottomSection flex justify-between items-end">
             <div className="bottom-left flex flex-col gap-[15px]">
               <p className="text-[16px] xl:text-[24px] text-[#201C00]">
-                Quantity: {product?.quantity} unit
-                {product?.quantity > 1 ? "s" : ""}
+                <span className="font-semibold">Quantity:</span> {itemQuantity} unit
+                {itemQuantity > 1 ? "s" : ""} in Cart
               </p>
               <div className="decreament-and-increament-buttons flex gap-[24px]">
                 <button

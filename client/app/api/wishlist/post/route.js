@@ -4,7 +4,7 @@ import User from "@/Models/User";
 
 export async function POST(req){
     await dbConnect();
-    const { productId, userId, increment, decrement } = await req.json();
+    const { productId, userId } = await req.json();
 
     try {
         const user = await User.findById(userId);
