@@ -483,12 +483,12 @@ const Page = React.memo(function Page() {
       {/* Personal Information Section */}
       <div className="personal flex items-start w-full justify-between p-[10px] xl:p-[40px] border-[1px] border-[#7B7768] rounded-[10px]">
         <div className="left flex flex-col gap-[32px]">
-          <p className="title xl:text-[24px] text-[20px] xl:font-bold">Personal Information</p>
+          <p className="title xl:text-[24px] text-[20px] xl:font-bold font-semibold">Personal Information</p>
           <div className="details grid grid-cols-2 xl:gap-[32px] gap-[16px] gap-x-[20px] xl:gap-x-[128px]">
             {profileDetails.personalInfo.map((info, index) => (
               <div key={index} className="detail">
                 <p className="title text-[#7B7768]">{info.title}</p>
-                <p className="value xl:font-bold">{info.value}</p>
+                <p className="value xl:font-bold font-semibold">{info.value}</p>
               </div>
             ))}
           </div>
@@ -508,12 +508,12 @@ const Page = React.memo(function Page() {
       {/* Address Section */}
       <div className="address flex items-start w-full justify-between p-[10px] xl:p-[40px] border-[1px] border-[#7B7768] rounded-[10px]">
         <div className="left flex flex-col gap-[32px] w-full">
-          <p className="title xl:text-[24px] text-[20px] xl:font-bold">Address</p>
+          <p className="title xl:text-[24px] text-[20px] xl:font-bold font-semibold">Address</p>
           <div className="details grid grid-cols-2 w-full gap-[32px] gap-x-[128px]">
             {profileDetails.addressInfo.map((info, index) => (
               <div key={index} className="detail">
                 <p className="title text-[#7B7768]">{info.title}</p>
-                <p className="value  font-bold">{info.value}</p>
+                <p className="value  xl:font-bold font-semibold">{info.value}</p>
               </div>
             ))}
           </div>
