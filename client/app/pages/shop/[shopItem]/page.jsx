@@ -91,7 +91,7 @@ const pages = () => {
 
   return (
     <div className=" pt-[200px] xl:pt-[88px] flex flex-col xl:gap-[100px] justify-between min-h-screen">
-      <div className="flex items-center justify-center gap-[42px] xl:gap-[156px] w-full">
+      <div className="flex items-center justify-center gap-[42px] xl:gap-[156px] w-full relative bottom-[100px]">
         <button className="arrowBackward bg-[#CCC6B5] rounded-full flex items-center justify-center text-[18px] size-[33px] xl:size-[73px] xl:text-[43px] text-[#201C00] border-[1px] border-[#7B7768]">
           <IoIosArrowBack />
         </button>
