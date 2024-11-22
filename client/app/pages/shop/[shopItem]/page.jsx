@@ -141,13 +141,13 @@ const pages = () => {
               <div className="decreament-and-increament-buttons flex gap-[24px]">
                 <button
                   onClick={decrementItemQuantityHandler}
-                  className="minus size-[23px] xl:size-[30px] xl:text-[16px] bg-[#6A5F11] rounded-[5px] text-[#fff] flex items-center justify-center"
+                  className="minus size-[30px] xl:size-[30px] xl:text-[16px] bg-[#6A5F11] rounded-[5px] text-[#fff] flex items-center justify-center"
                 >
                   <FaMinus />
                 </button>
                 <button
                   onClick={incrementItemQuantityHandler}
-                  className="plus size-[23px] xl:size-[30px] text-[16px] bg-[#6A5F11] rounded-[5px] text-[#fff] flex items-center justify-center"
+                  className="plus size-[30px] xl:size-[30px] text-[16px] bg-[#6A5F11] rounded-[5px] text-[#fff] flex items-center justify-center"
                 >
                   <FaPlus />
                 </button>
