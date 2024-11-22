@@ -77,7 +77,7 @@ const Page = () => {
 
   return (
     <div>
-      <div className=" h-full pt-[56px] px-[11px] xl:px-[125px] flex flex-col gap-[64px]">
+      <div className=" h-full pt-[56px] px-[11px] xl:px-[125px] flex flex-col gap-[32px] xl:gap-[64px]">
         <Searchbox />
         <m.div className="cartItems flex flex-col w-full">
           {filteredItems.length !== 0
@@ -96,7 +96,7 @@ const Page = () => {
                     />
                     <div className="middle flex flex-col gap-[17px] xl:gap-[20px]">
                       <div className="top-middle flex gap-[10px] xl:gap-[30px] items-center">
-                        <p className="name text-[16px] xl:text-[24px] text-[#6A5F11]">
+                        <p className="name text-[20px] xl:text-[24px] text-[#6A5F11] truncate">
                           {item.productId.name.toUpperCase()}
                         </p>
                         <button
@@ -113,13 +113,13 @@ const Page = () => {
                         </button>
                       </div>
                       <Link href={`shop/${item.productId._id}`}>
-                        <p className="desc text-[10px] xl:text-[20px] w-[130px] xl:w-[390px] hover:underline hover:text-[#7B7768]">
+                        <p className="desc text-[16px] xl:text-[20px] w-[130px] xl:w-[390px] hover:underline hover:text-[#7B7768] line-clamp-3">
                           {item.productId.desc}
                         </p>
                       </Link>
                     </div>
                   </div>
-                  <div className="right flex flex-col gap-[15px]">
+                  <div className="right flex flex-col gap-[15px] w-[80px]">
                     <div className="remove&class flex flex-col items-end gap-[20px]">
                       <button
                         onClick={() =>
@@ -129,7 +129,7 @@ const Page = () => {
                       >
                         Remove
                       </button>
-                      <p className="price text-[16px] xl:text-[28px] text-[#6A5F11]">
+                      <p className="price text-[20px] xl:text-[28px] text-[#6A5F11]">
                         ₦
                         {(
                           item.productId.price * item.quantity
@@ -141,18 +141,18 @@ const Page = () => {
                         onClick={() =>
                           decrementItemQuantityHandler(item.productId._id)
                         }
-                        className="minus size-[16px] xl:size-[24px] text-[18px] rounded-[5px] text-[#6A5F11] flex items-center justify-center"
+                        className="minus size-[24px] xl:size-[24px] text-[18px] rounded-[5px] text-[#6A5F11] flex items-center justify-center"
                       >
                         <FaMinus />
                       </button>
-                      <p className="text-[16px] xl:text-[24px]">
+                      <p className="text-[20px] xl:text-[24px]">
                         {item.quantity}
                       </p>
                       <button
                         onClick={() =>
                           incrementItemQuantityHandler(item.productId._id)
                         }
-                        className="plus size-[16px] xl:size-[24px] text-[16px] bg-[#6A5F11] rounded-[5px] text-[#fff] flex items-center justify-center"
+                        className="plus size-[24px] xl:size-[24px] text-[16px] bg-[#6A5F11] rounded-[5px] text-[#fff] flex items-center justify-center"
                       >
                         <FaPlus />
                       </button>
@@ -164,17 +164,17 @@ const Page = () => {
         </m.div>
         <div className="clearItem&total self-end flex flex-col gap-[20px] xl:gap-[64px] items-end pb-[64px]">
           <div className="total flex items-center gap-[24px] text-[16px] xl:text-[36px] text-[#6A5F11]">
-            <p className="label">Sum total:</p>
-            <p className="total ">₦{totalPrice.toLocaleString()}</p>
+            <p className="label text-[20px] font-semibold xl:text-[28px]">Sum total:</p>
+            <p className="total text-[20px] xl:text-[28px]">₦{totalPrice.toLocaleString()}</p>
           </div>
           <div className="checkout&empty flex items-center gap-[20px] xl:gap-[24px]">
             <button
               onClick={emptyCartHandler}
-              className="empty text-[16px] xl:text-[24px] underline text-[#6A5F11]"
+              className="empty text-[20px] xl:text-[24px] underline text-[#6A5F11]"
             >
               Empty Cart
             </button>
-            <button className="checkout text-[16px] xl:text-[24px] bg-[#6A5F11] rounded-[10px] text-[#fff] xl:px-[20px] px-[8px] py-[4px] xl:py-[10px]">
+            <button className="checkout text-[20px] xl:text-[24px] bg-[#6A5F11] rounded-[8px] text-[#fff] xl:px-[20px] px-[8px] py-[4px] xl:py-[10px]">
               Checkout
             </button>
           </div>

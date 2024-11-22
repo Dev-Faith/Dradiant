@@ -107,16 +107,16 @@ const pages = () => {
         </button>
       </div>
       <div className="w-full h-full border-[1px] bg-[#E9E2D0] border-[#7B7768] rounded-t-[30px] px-[23px] self-end xl:px-[125px] py-[40px] mt-auto flex flex-col gap-[24px]">
-        <div className="flex flex-col xl:gap-[80px]">
+        <div className="flex flex-col xl:gap-[80px] gap-[32px]">
           <div className="topSection flex flex-col gap-[10px] xl:gap-[34px] ">
             <p className="text-[24px] xl:text-[40px]">
               {product?.name.toUpperCase()}
             </p>
-            <div className="flex items-end justify-between ">
-              <p className="xl:w-[452px] w-[180px] text-[16px] md:text-[18px] xl:text-[28px]">
+            <div className="xl:flex-row flex flex-col xl:items-end items-start w-full justify-between gap-[32px]">
+              <p className="xl:w-[452px]  w-full text-[16px] md:text-[18px] xl:text-[28px]">
                 {product?.desc}
               </p>
-              <div className="flex flex-col items-end">
+              <div className="flex flex-col xl:items-end">
                 <div className="flex items-center gap-[2rem]">
                   <p className=" text-[16px] xl:text-[24px] font-semibold">price:</p>{" "}
                   <p className=" text-[24px] xl:text-[36px] text-[#6A5F11] ">
@@ -132,10 +132,10 @@ const pages = () => {
               </div>
             </div>
           </div>
-          <div className="bottomSection flex justify-between items-end">
+          <div className="bottomSection flex xl:flex-row flex-col gap-[32px] justify-between xl:items-end">
             <div className="bottom-left flex flex-col gap-[15px]">
               <p className="text-[16px] xl:text-[24px] text-[#201C00]">
-                <span className="font-semibold">Quantity:</span> {itemQuantity} unit
+                <span className="font-semibold">Quantity:</span> {itemQuantity > 0 ? itemQuantity : 0} unit
                 {itemQuantity > 1 ? "s" : ""} in Cart
               </p>
               <div className="decreament-and-increament-buttons flex gap-[24px]">
@@ -153,7 +153,7 @@ const pages = () => {
                 </button>
               </div>
             </div>
-            <div className="bottom-right flex gap-[15px] xl:gap-[43px] items-center flex-col xl:flex-row">
+            <div className="bottom-right flex xl:gap-[15px] xl:gap-[43px] xl:w-[400px] w-full justify-between items-center flex-row">
               <button
                 onClick={addToWishlistHandler}
                 className="underline text-[16px] xl:text-[24px] text-[#201C00]"
