@@ -96,6 +96,7 @@ const Modal = React.memo(function Modal({
       try {
         const data = new FormData();
         data.append("file", image);
+        setpreviewImage(data);
 
         const uploadResponse = await axios.post("/api/upload", data, {
           headers: { "Content-Type": "multipart/form-data" },
@@ -173,7 +174,7 @@ const Modal = React.memo(function Modal({
       >
         <div className="image relative flex self-center">
           <Image
-            src={imageUrl || user.profileImage || defaultProfile}
+            src={ imageUrl || user.profileImage || defaultProfile}
             alt="profile image"
             height="416"
             width="277"

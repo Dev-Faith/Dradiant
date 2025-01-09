@@ -1,4 +1,4 @@
-import { Bebas_Neue, Neucha } from "next/font/google";
+import { Bebas_Neue, Neucha, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import CustomMouse from "./components/customMouse";
@@ -12,7 +12,7 @@ const bebasNeue = Bebas_Neue({
   variable: "--font-bebasNeue",
   weight: "400",
 });
-const neucha = Neucha({
+const neucha = Neucha ({
   subsets: ["latin"],
   variable: "--font-neucha",
   weight: ["400"],
