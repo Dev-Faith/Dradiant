@@ -13,6 +13,7 @@ export const getProducts = createAsyncThunk(
           Expires: "0", // Expire immediately
         },
       });
+      console.log("from productSlice.js", response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.error || error.message);

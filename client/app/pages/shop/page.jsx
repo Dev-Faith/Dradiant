@@ -46,6 +46,10 @@ const page = () => {
       item.desc.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  useEffect(() => {
+    dispatch(getProducts());
+  },[]);
+
 
   return (
     <div className=" h-[100vh] flex flex-col">
