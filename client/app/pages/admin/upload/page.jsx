@@ -5,6 +5,7 @@ import { RxCross1 } from "react-icons/rx";
 import { FallingLines } from "react-loader-spinner";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import Image from "next/image";
 
 const UploadPage = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -21,8 +22,24 @@ const UploadPage = () => {
   const [fileArray, setFileArray] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [filea, setFiles] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [file, setFile] = useState(null);
 
   const handleFileUpload = (files) => {
+    const file = files?.[0];
+    setFile(file);
+
+    if (preview) {
+      URL.revokeObjectURL(preview);
+    }
+
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setPreview(url);
+    } else {
+      setPreview(undefined);
+    }
+
     setImage(files[0]);
     setFiles(files);
     setFileArray(
@@ -184,17 +201,35 @@ const UploadPage = () => {
             accept="image/png,image/jpeg,"
           />
 
-          <label
-            htmlFor="file-upload"
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            className="xl:w-[379px]  h-[121px] border-[1px] rounded-[16px] flex flex-col gap-[10px] items-center justify-center border-dashed border-black cursor-pointer"
-          >
-            <AiOutlineFileAdd className="size-[32px] cursor-pointer" />
-            <p className="text-[16px]">
-              Drag and drop or click to upload image
-            </p>
-          </label>
+          <div className="flex flex-col gap-[20px]">
+            <label
+              htmlFor="file-upload"
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              className="xl:w-[379px]  h-[121px] border-[1px] rounded-[16px] flex flex-col gap-[10px] items-center justify-center border-dashed border-black cursor-pointer"
+            >
+              <AiOutlineFileAdd className="size-[32px] cursor-pointer" />
+              <p className="text-[16px]">
+                Drag and drop or click to upload image
+              </p>
+            </label>
+            {preview && file && (
+              <div className="flex items-center gap-[20px] w-full">
+                <Image
+                  src={preview}
+                  alt="preview"
+                  width="100"
+                  height="121"
+                  className="xl:w-[100px] object-cover h-[121px] border-[1px] border-black rounded-[16px]"
+                />
+                <div className="previewDesc">
+                <p className="font-bold">{formData.name}</p>
+                <p>{formData.price} Naira</p>
+                <p>({file.size / 1000} KB)</p>
+                </div>
+              </div>
+            )}
+          </div>
 
           <div className="btn-con xl:w-[379px] h-[56px] flex justify-end">
             <button

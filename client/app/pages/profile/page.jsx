@@ -45,7 +45,26 @@ const Modal = React.memo(function Modal({
   const [filea, setFiles] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
 
+  const [file,  setFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+
   const handleFileUpload = (files) => {
+
+    const file = files?.[0];
+    setFile(file);
+
+    if (preview) {
+      URL.revokeObjectURL(preview);
+    }
+
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setPreview(url);
+    } else {
+      setPreview(undefined);
+    }
+
+
     setImage(files[0]);
     setFiles(files);
     setFileArray(
@@ -174,7 +193,7 @@ const Modal = React.memo(function Modal({
       >
         <div className="image relative flex self-center">
           <Image
-            src={ imageUrl || user.profileImage || defaultProfile}
+            src={ preview || imageUrl || user.profileImage || defaultProfile}
             alt="profile image"
             height="416"
             width="277"
