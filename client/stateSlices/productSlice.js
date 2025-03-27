@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { shopcroche } from "../app/DradiantImages";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
@@ -13,9 +14,26 @@ export const getProducts = createAsyncThunk(
           Expires: "0", // Expire immediately
         },
       });
-      console.log("from productSlice.js", response.data);
+      // console.log("from productSlice.js", response.data);
       return response.data;
     } catch (error) {
+      return rejectWithValue(error.response?.data?.error || error.message);
+    }
+  }
+);
+
+export const emptyShop = createAsyncThunk(
+  "cartSlice/emptyShop",
+  async (userId, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.delete("/api/bags/delete", {
+        data: { empty: true },
+      });
+      dispatch(getProducts());
+      toast.success("Product emptied successfully", { toastId: "empty" });
+      return response.data;
+    } catch (error) {
+      console.log(error);
       return rejectWithValue(error.response?.data?.error || error.message);
     }
   }
@@ -60,6 +78,19 @@ const productSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
         // console.log(state.recentShopItems, state.loading, state.error);
+      });
+
+    builder
+      .addCase(emptyShop.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(emptyShop.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(emptyShop.rejected, (state, action) => {
+        state.error = action.payload;
+        state.loading = false;
+        toast.error("Failed to empty shop", { toastId: "emptyCart" });
       });
   },
 });

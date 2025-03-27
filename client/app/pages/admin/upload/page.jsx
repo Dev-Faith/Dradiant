@@ -6,6 +6,9 @@ import { FallingLines } from "react-loader-spinner";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { productsActions } from "@/store";
+import { emptyShop } from "@/stateSlices/productSlice";
 
 const UploadPage = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -24,6 +27,8 @@ const UploadPage = () => {
   const [filea, setFiles] = useState(null);
   const [preview, setPreview] = useState(null);
   const [file, setFile] = useState(null);
+
+  const dispatch = useDispatch();
 
   const handleFileUpload = (files) => {
     const file = files?.[0];
@@ -223,25 +228,40 @@ const UploadPage = () => {
                   className="xl:w-[100px] object-cover h-[121px] border-[1px] border-black rounded-[16px]"
                 />
                 <div className="previewDesc">
-                <p className="font-bold">{formData.name}</p>
-                <p>{formData.price} Naira</p>
-                <p>({file.size / 1000} KB)</p>
+                  <p className="font-bold">{formData.name}</p>
+                  <p>{formData.price} Naira</p>
+                  <p>({file.size / 1000} KB)</p>
                 </div>
               </div>
             )}
           </div>
 
-          <div className="btn-con xl:w-[379px] h-[56px] flex justify-end">
-            <button
-              type="submit"
-              className="xl:w-[112px] h-[56px] bg-[#6A5F11] rounded-[16px] p-[16px] text-white text-[16px] flex items-center justify-center"
-            >
-              {uploading ? (
-                <FallingLines color="#fff" width="33" visible={true} />
-              ) : (
-                "Add Product"
-              )}
-            </button>
+          <div className="flex xl:w-[379px] justify-between">
+            <div className="btn-con xl:w-[379px] h-[56px] flex justify-start">
+              <button
+                type="button"
+                className="xl:w-[112px] h-[56px] border-[1px] border-[#6A5F11] rounded-[16px] p-[16px]  text-[#6A5F11] flex items-center justify-center"
+                onClick={() => dispatch(emptyShop())}
+              >
+                {uploading ? (
+                  <FallingLines color="#fff" width="33" visible={true} />
+                ) : (
+                  "Empty Shop"
+                )}
+              </button>
+            </div>
+            <div className="btn-con xl:w-[379px] h-[56px] flex justify-end">
+              <button
+                type="submit"
+                className="xl:w-[112px] h-[56px] bg-[#6A5F11] rounded-[16px] p-[16px] text-white text-[16px] flex items-center justify-center"
+              >
+                {uploading ? (
+                  <FallingLines color="#fff" width="33" visible={true} />
+                ) : (
+                  "Add Product"
+                )}
+              </button>
+            </div>
           </div>
         </form>
       </div>

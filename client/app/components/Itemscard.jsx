@@ -33,14 +33,14 @@ export default function Itemscard({ name, price, image, desc, productId }) {
     isLiked
       ? dispatch(removeFromwishList({ userId, productId }))
       : dispatch(addTowishList({ userId, productId }));
-      // dispatch(fetchwishList(userId));
+    // dispatch(fetchwishList(userId));
   };
 
   const addToCartHandler = () => {
     isAddedToCart
       ? dispatch(removeFromCart({ userId, productId }))
       : dispatch(addToCart({ userId, productId }));
-      // dispatch(fetchCart(userId));
+    // dispatch(fetchCart(userId));
   };
 
   // const icon = <IoIosHeartEmpty className="size-[39px] text-[#7B7768]"/>
@@ -64,10 +64,7 @@ export default function Itemscard({ name, price, image, desc, productId }) {
     return formatter.format(number);
   }
 
-  useEffect(()=>{
-
-  },[]);
-
+  useEffect(() => {}, []);
 
   return (
     <m.div
@@ -87,7 +84,7 @@ export default function Itemscard({ name, price, image, desc, productId }) {
           alt={name}
           width="120"
           height="117"
-          className=" w-[75px] h-[73px] md:w-[100px]  md:h-[98px] lg:w-[120px] lg:h-[117px] pointer-events-none"
+          className=" w-[75px] h-[73px] md:w-[100px]  md:h-[98px] lg:w-[120px] lg:h-[117px] pointer-events-none rounded-[8px]"
         />
         <div
           onClick={addToWishlistHandler}

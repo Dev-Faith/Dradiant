@@ -26,6 +26,9 @@ import {
 } from "../../../stateSlices/wishListSlice";
 import Footer from "@/app/components/Footer";
 
+import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
+import { ToastContainer, toast } from "react-toastify";
+
 const Page = () => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -33,6 +36,7 @@ const Page = () => {
   const cart = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist.items);
   const userId = useSelector((state) => state.auth.userId);
+  const user = useSelector((state) => state.auth?.user?.user || {});
 
   const searchQuery = useSelector((state) => state.search.searchQuery);
   const shopItems = useSelector((state) => state.products.recentShopItems);
@@ -74,6 +78,44 @@ const Page = () => {
       item.productId?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.productId?.desc?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const config = {
+    public_key:
+      "FLWPUBK_TEST-05e1585fc7c2b1a310b06ae8b5a98643-X" ||
+      process.env.FLUTTERWAVE_PUBLIC_KEY,
+    tx_ref: Date.now(),
+    amount: totalPrice,
+    currency: "NGN",
+    payment_options: "card,mobilemoney,ussd",
+    customer: {
+      email: user.email || "",
+      phone_number: user.phoneNumber || "",
+      name: user.name,
+    },
+
+    customizations: {
+      title: "Dradiantbags",
+      description: "Payment for bags in cart",
+      logo: "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
+    },
+  };
+
+  const handleFlutterPayment = useFlutterwave(config);
+
+  const checkoutPayment = () => {
+    handleFlutterPayment({
+      callback: (response) => {
+        if (response.status === "successful") {
+          toast.success("Payment successful!");
+          emptyCartHandler();
+          router.push("/pages/shop");
+        }
+        console.log(response);
+        closePaymentModal(); // this will close the modal programmatically
+      },
+      onClose: () => {},
+    });
+  };
 
   return (
     <div>
@@ -164,23 +206,34 @@ const Page = () => {
         </m.div>
         <div className="clearItem&total self-end flex flex-col gap-[20px] xl:gap-[64px] items-end pb-[64px]">
           <div className="total flex items-center gap-[24px] text-[16px] xl:text-[36px] text-[#6A5F11]">
-            <p className="label text-[20px] font-semibold xl:text-[28px]">Sum total:</p>
-            <p className="total text-[20px] xl:text-[28px]">₦{totalPrice.toLocaleString()}</p>
+            <p className="label text-[20px] font-semibold xl:text-[28px]">
+              Sum total:
+            </p>
+            <p className="total text-[20px] xl:text-[28px]">
+              ₦{totalPrice.toLocaleString()}
+            </p>
           </div>
           <div className="checkout&empty flex items-center gap-[20px] xl:gap-[24px]">
             <button
+              disabled={filteredItems.length == 0 ? true : false}
               onClick={emptyCartHandler}
               className="empty text-[20px] xl:text-[24px] underline text-[#6A5F11]"
             >
               Empty Cart
             </button>
-            <button className="checkout text-[20px] xl:text-[24px] bg-[#6A5F11] rounded-[8px] text-[#fff] xl:px-[20px] px-[8px] py-[4px] xl:py-[10px]">
+            <button
+              disabled={filteredItems.length == 0 ? true : false}
+              className={`checkout text-[20px] xl:text-[24px] bg-[#6A5F11] rounded-[8px] text-[#fff] xl:px-[20px] px-[8px] py-[4px] xl:py-[10px] hover:cursor-pointer ${
+                filteredItems.length == 0 ? "bg-zinc-400" : ""
+              }`}
+              onClick={checkoutPayment}
+            >
               Checkout
             </button>
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
