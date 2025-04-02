@@ -84,7 +84,7 @@ export default function Itemscard({ name, price, image, desc, productId }) {
           alt={name}
           width="120"
           height="117"
-          className=" w-[75px] h-[73px] md:w-[100px]  md:h-[98px] lg:w-[120px] lg:h-[117px] pointer-events-none rounded-[8px]"
+          className=" w-[75px] h-[73px] md:w-[100px]  md:h-[98px] lg:w-[120px] lg:h-[117px] pointer-events-none rounded-[8px] object-cover"
         />
         <div
           onClick={addToWishlistHandler}

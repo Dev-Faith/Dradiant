@@ -80,9 +80,7 @@ const Page = () => {
   );
 
   const config = {
-    public_key:
-      "FLWPUBK_TEST-05e1585fc7c2b1a310b06ae8b5a98643-X" ||
-      process.env.FLUTTERWAVE_PUBLIC_KEY,
+    public_key: process.env.NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY,
     tx_ref: Date.now(),
     amount: totalPrice,
     currency: "NGN",
