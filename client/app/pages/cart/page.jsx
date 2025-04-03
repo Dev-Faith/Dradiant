@@ -28,6 +28,7 @@ import Footer from "@/app/components/Footer";
 
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { ToastContainer, toast } from "react-toastify";
+import { useEffect } from "react";
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -105,7 +106,7 @@ const Page = () => {
       callback: (response) => {
         if (response.status === "successful") {
           toast.success("Payment successful!");
-          emptyCartHandler();
+          dispatch(emptyCart(userId));
           router.push("/pages/shop");
         }
         console.log(response);
@@ -114,6 +115,12 @@ const Page = () => {
       onClose: () => {},
     });
   };
+
+  useEffect(() => {
+    if (shopItems.length === 0 && cart.length > 0) {
+      dispatch(emptyCart(userId));
+    }
+  }, []);
 
   return (
     <div>
@@ -132,7 +139,7 @@ const Page = () => {
                       alt={item.productId.name}
                       width="104"
                       height="101"
-                      className="w-[75px] h-[72.84px] xl:w-[104px] xl:h-[101px]"
+                      className="w-[75px] h-[72.84px] xl:w-[104px] xl:h-[101px] object-cover rounded-[8px] border-[1px] border-[#7B7768]"
                     />
                     <div className="middle flex flex-col gap-[17px] xl:gap-[20px]">
                       <div className="top-middle flex gap-[10px] xl:gap-[30px] items-center">

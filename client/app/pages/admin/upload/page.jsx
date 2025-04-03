@@ -9,6 +9,9 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { productsActions } from "@/store";
 import { emptyShop } from "@/stateSlices/productSlice";
+import { motion as m, AnimatePresence } from "framer-motion";
+
+import { Modal } from "../sidemenu";
 
 const UploadPage = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -27,6 +30,7 @@ const UploadPage = () => {
   const [filea, setFiles] = useState(null);
   const [preview, setPreview] = useState(null);
   const [file, setFile] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -100,6 +104,7 @@ const UploadPage = () => {
         image: "",
       });
       setImage(null);
+      setPreview(null);
     } catch (error) {
       toast.error(
         "Image upload failed: " + error.response?.data?.details || error.message
@@ -113,6 +118,45 @@ const UploadPage = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  const emptyShopHandler = () => {
+    setShowModal(true);
+  };
+
+  const modalContent = (
+    <div className="logout flex flex-col items-center gap-[90px] self-center">
+      <div className="texts flex flex-col items-center gap-[40px] w-[405px] text-center">
+        <p className="font-bold text-[#6A5F11] text-[48px]">
+          We will miss you! 🥰
+        </p>
+        <p className="text-[#7B7768] text-[24px]">
+          You are about to clear all products from shop. Are you sure this is
+          what you want ?
+        </p>
+      </div>
+      <div className="buttons flex justify-between w-[405px]">
+        <m.button
+          onClick={() => setShowModal(false)}
+          className="text-[#6A5F11] text-[24px] hover:underline p-[10px]"
+        >
+          Cancel
+        </m.button>
+        <m.button
+          whileHover={{
+            backgroundColor: "#FFF9EB",
+            color: "#6A5F11",
+            border: "1px solid #6A5F11",
+          }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 200, damping: 10 }}
+          onClick={() => (dispatch(emptyShop()), setShowModal(false))}
+          className="bg-[#6A5F11] text-white text-[24px] p-[10px] rounded-[10px]"
+        >
+          Empty Shop
+        </m.button>
+      </div>
+    </div>
+  );
 
   return (
     <div className="w-full px-[28px] xl:pt-[64px] h-auto flex  mb-[50px] xl:pb-[50px] flex-grow xl:items-start justify-center xl:justify-between overflow-y-auto">
@@ -154,6 +198,7 @@ const UploadPage = () => {
               value={formData.amount}
               id="Amount"
               name="amount"
+              min="0"
               type="number"
               placeholder="Enter amount"
               className="xl:w-[379px] h-[62px] border-black border-[1px] px-[16px] py-[8px] outline-none bg-[#FFF9EB] rounded-[16px]"
@@ -241,7 +286,7 @@ const UploadPage = () => {
               <button
                 type="button"
                 className="xl:w-[112px] h-[56px] border-[1px] border-[#6A5F11] rounded-[16px] p-[16px]  text-[#6A5F11] flex items-center justify-center"
-                onClick={() => dispatch(emptyShop())}
+                onClick={emptyShopHandler}
               >
                 {uploading ? (
                   <FallingLines color="#fff" width="33" visible={true} />
@@ -249,6 +294,12 @@ const UploadPage = () => {
                   "Empty Shop"
                 )}
               </button>
+              {showModal && (
+                <Modal
+                  ModalContent={modalContent}
+                  closeModal={() => setShowModal(false)}
+                />
+              )}
             </div>
             <div className="btn-con xl:w-[379px] h-[56px] flex justify-end">
               <button

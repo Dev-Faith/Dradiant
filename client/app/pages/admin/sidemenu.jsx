@@ -18,8 +18,11 @@ import { useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { authActions } from "../../../store";
 
-
-const Modal = React.memo(function Modal({ type, closeModal }) {
+export const Modal = React.memo(function Modal({
+  type,
+  closeModal,
+  ModalContent,
+}) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth?.user?.user || {});
   const { loading, error } = useSelector((state) => state.auth);
@@ -81,7 +84,7 @@ const Modal = React.memo(function Modal({ type, closeModal }) {
             className="absolute top-[20px] right-[20px] size-[30px] text-gray-500 hover:text-gray-800 cursor-pointer"
             onClick={closeModal}
           />
-          <div>{modalContent[type]}</div>
+          <div>{ModalContent || modalContent[type]}</div>
         </m.div>
       ) : (
         <FallingLines
@@ -211,34 +214,34 @@ const Sidemenu = ({ setOpenSideMenu, openSideMenu }) => {
         </div>
         <div className="lower w-full">
           <div className="links flex flex-col gap-[10px] w-full">
-            {links.map(
-              (link) =>
-                link.position == "bottom" && link.title !== "Log out" ? (
-                  <Link
-                    onClick={() => setOpenSideMenu(false)}
-                    href={link.url}
-                    key={link.title}
-                    className={`overview flex items-center gap-[10px] text-[16px]/[0px] font-bold ${
-                      link.active
-                        ? "underline text-[#426651]"
-                        : "text-[#1D1C13]"
-                    } w-full px-[8px] py-[10px] rounded-[16px]`}
-                  >
-                    {link.icon}
-                    <p className="">{link.title}</p>
-                  </Link>
-                ): link.title == "Log out" ? ( <div
-                  onClick={() =>{ setOpenSideMenu(false); setClicked(true)}}
+            {links.map((link) =>
+              link.position == "bottom" && link.title !== "Log out" ? (
+                <Link
+                  onClick={() => setOpenSideMenu(false)}
+                  href={link.url}
                   key={link.title}
-                  className={`overview flex items-center gap-[10px] cursor-pointer text-[16px]/[0px] font-bold ${
-                    link.active
-                      ? "underline text-[#426651]"
-                      : "text-[#1D1C13]"
+                  className={`overview flex items-center gap-[10px] text-[16px]/[0px] font-bold ${
+                    link.active ? "underline text-[#426651]" : "text-[#1D1C13]"
                   } w-full px-[8px] py-[10px] rounded-[16px]`}
                 >
                   {link.icon}
                   <p className="">{link.title}</p>
-                </div>):null
+                </Link>
+              ) : link.title == "Log out" ? (
+                <div
+                  onClick={() => {
+                    setOpenSideMenu(false);
+                    setClicked(true);
+                  }}
+                  key={link.title}
+                  className={`overview flex items-center gap-[10px] cursor-pointer text-[16px]/[0px] font-bold ${
+                    link.active ? "underline text-[#426651]" : "text-[#1D1C13]"
+                  } w-full px-[8px] py-[10px] rounded-[16px]`}
+                >
+                  {link.icon}
+                  <p className="">{link.title}</p>
+                </div>
+              ) : null
             )}
           </div>
           <AnimatePresence mode="wait">
