@@ -104,7 +104,7 @@ const Page = () => {
   const checkoutPayment = () => {
     handleFlutterPayment({
       callback: (response) => {
-        if (response.status === "successful") {
+        if (response.status === "completed") {
           toast.success("Payment successful!");
           dispatch(emptyCart(userId));
           router.push("/pages/shop");
