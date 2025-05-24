@@ -21,6 +21,7 @@ const page = () => {
 
   const dispatch = useDispatch();
 
+
   const searchQuery = useSelector((state) => state.search.searchQuery);
   const { recentShopItems, loading, error } = useSelector(
     (state) => state.products

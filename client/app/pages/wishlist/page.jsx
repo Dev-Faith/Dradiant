@@ -5,16 +5,27 @@ import { useSelector } from "react-redux";
 import { motion as m } from "framer-motion";
 import { useEffect } from "react";
 import Footer from "@/app/components/Footer";
+import { emptyWishlist } from "@/stateSlices/wishListSlice";
+import { useDispatch } from "react-redux";
 
 const pages = () => {
   const wishListItems = useSelector((state) => state.wishlist.items);
+  const shopItems = useSelector((state) => state.products.recentShopItems);
   const searchQuery = useSelector((state) => state.search.searchQuery);
+  const userId = useSelector((state) => state.auth.userId);
+  const dispatch = useDispatch();
 
   const filteredItems = wishListItems?.filter(
     (item) =>
       item.productId?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.productId?.desc?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  useEffect(() => {
+    if (shopItems.length === 0 && wishListItems.length > 0) {
+      dispatch(emptyWishlist(userId));
+    }
+  }, []);
 
   return (
     <div>
@@ -42,7 +53,7 @@ const pages = () => {
           </div>
         )}
       </m.div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

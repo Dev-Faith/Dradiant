@@ -28,7 +28,7 @@ export async function DELETE(req) {
 
     
         empty ? user.cart = [] : user.cart = user.cart.filter(item => item.productId.toString() !== productId);
-        await user.save();
+        await user.save(); 
 
         return NextResponse.json({ message: "Item removed from cart successfully" }, { status: 200 });
     } catch (error) {
